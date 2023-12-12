@@ -1,0 +1,27 @@
+{
+	"name": "BuildingGroup",
+	"plugin-id": "Sprite",
+	"sid": 823495620482696,
+	"instanceVariables": [
+		{
+			"name": "LocalLayer",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 193480312108164
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "Drag",
+			"sid": 352115277897242
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"wall",
+		"wall2",
+		"Ground2"
+	]
+}

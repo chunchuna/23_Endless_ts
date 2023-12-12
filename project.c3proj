@@ -1,0 +1,449 @@
+{
+	"projectFormatVersion": 1,
+	"savedWithRelease": 37000,
+	"name": "23_无尽沙盒",
+	"runtime": "c3",
+	"useWorker": "dom",
+	"bundleAddons": true,
+	"usedAddons": [
+		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Button",
+			"name": "按钮",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Keyboard",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "DragnDrop",
+			"name": "拖放",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "EightDir",
+			"name": "8方向",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "MoveTo",
+			"name": "移动到",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "正弦",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "镜头跟随",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "solid",
+			"name": "实体",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "multiply",
+			"name": "正片叠底",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "skymen_BetterOutline",
+			"name": "[BetterOutline]",
+			"author": "skymen",
+			"bundled": true,
+			"version": "1.4.0.3"
+		}
+	],
+	"uniqueId": "817sxb8q3mj",
+	"objectTypes": {
+		"items": [],
+		"subfolders": [
+			{
+				"items": [
+					"Ground1",
+					"player",
+					"Ground2",
+					"wall",
+					"wall2",
+					"MainCamera",
+					"Mouse",
+					"Browser",
+					"Keyboard",
+					"BuildingModeMask",
+					"TextIconExport",
+					"Light",
+					"EventHnadler",
+					"Tree"
+				],
+				"subfolders": [],
+				"name": "GameObject"
+			},
+			{
+				"items": [
+					"ControlIntroductionText"
+				],
+				"subfolders": [],
+				"name": "Text"
+			},
+			{
+				"items": [
+					"BuildingModeButton",
+					"BuildingModeCreatWall2",
+					"BuildingModeCreatWall1",
+					"BuildingModeSpButton"
+				],
+				"subfolders": [],
+				"name": "Button"
+			}
+		]
+	},
+	"autosaveData": null,
+	"containers": [],
+	"families": {
+		"items": [
+			"YsortGroup",
+			"BuildingGroup",
+			"ButtonGroup",
+			"CollectableGroup"
+		],
+		"subfolders": []
+	},
+	"layouts": {
+		"items": [
+			"Game"
+		],
+		"subfolders": []
+	},
+	"eventSheets": {
+		"items": [
+			"Game"
+		],
+		"subfolders": []
+	},
+	"rootFileFolders": {
+		"script": {
+			"items": [
+				{
+					"name": "main.js",
+					"type": "application/javascript",
+					"sid": 951025439557958,
+					"script-info": {
+						"purpose": "main"
+					}
+				},
+				{
+					"name": "importsForEvents.js",
+					"type": "application/javascript",
+					"sid": 863795216656878,
+					"script-info": {
+						"purpose": "imports-for-events"
+					}
+				}
+			],
+			"subfolders": [
+				{
+					"items": [],
+					"subfolders": [
+						{
+							"items": [
+								{
+									"name": "GamePlay_Game.js",
+									"type": "application/javascript",
+									"sid": 524128889265759,
+									"script-info": {
+										"purpose": "none"
+									}
+								}
+							],
+							"subfolders": [],
+							"name": "gameplay"
+						},
+						{
+							"items": [
+								{
+									"name": "Player.js",
+									"type": "application/javascript",
+									"sid": 372521036672308,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "Wall.js",
+									"type": "application/javascript",
+									"sid": 583310718170766,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "Building.js",
+									"type": "application/javascript",
+									"sid": 163895330861882,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "IntroduceText.js",
+									"type": "application/javascript",
+									"sid": 129271027688934,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "Ysort.js",
+									"type": "application/javascript",
+									"sid": 836391808325352,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "Collectable.js",
+									"type": "application/javascript",
+									"sid": 853553527259814,
+									"script-info": {
+										"purpose": "none"
+									}
+								}
+							],
+							"subfolders": [],
+							"name": "entities"
+						},
+						{
+							"items": [
+								{
+									"name": "EventHandler.js",
+									"type": "application/javascript",
+									"sid": 885257389405237,
+									"script-info": {
+										"purpose": "none"
+									}
+								}
+							],
+							"subfolders": [],
+							"name": "utils"
+						}
+					],
+					"name": "Game"
+				}
+			]
+		},
+		"sound": {
+			"items": [],
+			"subfolders": []
+		},
+		"music": {
+			"items": [],
+			"subfolders": []
+		},
+		"video": {
+			"items": [],
+			"subfolders": []
+		},
+		"font": {
+			"items": [],
+			"subfolders": []
+		},
+		"icon": {
+			"items": [
+				{
+					"name": "icon-32.png",
+					"type": "image/png",
+					"sid": 689058221885296,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-256.png",
+					"type": "image/png",
+					"sid": 679690321815068,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-512.png",
+					"type": "image/png",
+					"sid": 425908568142126,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "loading-logo.png",
+					"type": "image/png",
+					"sid": 599077327542274,
+					"icon-info": {
+						"purpose": "loading-logo"
+					}
+				},
+				{
+					"name": "icon-128.png",
+					"type": "image/png",
+					"sid": 974735916411447,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-64.png",
+					"type": "image/png",
+					"sid": 533376630856913,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-16.png",
+					"type": "image/png",
+					"sid": 305014097607611,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"general": {
+			"items": [
+				{
+					"name": "UI.css",
+					"type": "text/css",
+					"sid": 227522208477997,
+					"file-info": {
+						"purpose": "stylesheet"
+					}
+				}
+			],
+			"subfolders": []
+		}
+	},
+	"timelines": {
+		"items": [
+			"时间轴 1"
+		],
+		"subfolders": [
+			{
+				"items": [],
+				"subfolders": []
+			}
+		]
+	},
+	"flowcharts": {
+		"items": [],
+		"subfolders": []
+	},
+	"properties": {
+		"description": "",
+		"version": "1.0.0.0",
+		"author": "",
+		"authorEmail": "",
+		"authorWebsite": "",
+		"appId": "",
+		"pixelRounding": true,
+		"zAxisScale": "normalized",
+		"fov": 0.7853981633974483,
+		"useLoaderLayout": false,
+		"fullscreenMode": "letterbox-scale",
+		"fullscreenQuality": "high",
+		"viewportFit": "auto",
+		"backgroundColor": [
+			0,
+			0,
+			0,
+			0
+		],
+		"splashColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"useThemeColor": false,
+		"themeColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"orientations": "landscape",
+		"webgpu": "no",
+		"gpuPreference": "high-performance",
+		"scriptsType": "module",
+		"framerateMode": "vsync",
+		"compositingMode": "standard",
+		"sampling": "nearest",
+		"downscaling": "medium",
+		"renderingMode": "auto",
+		"anisotropicFiltering": "auto",
+		"zNear": 1,
+		"zFar": 10000,
+		"maxSpriteSheetSize": 2048,
+		"loaderStyle": "splash",
+		"preloadSounds": true,
+		"cordovaiOSScheme": "app",
+		"cordovaAndroidScheme": "https",
+		"autoReloadScriptsOnPreview": true,
+		"exportFileStructure": "folders",
+		"uidAllocationMode": "increment"
+	},
+	"viewportWidth": 1920,
+	"viewportHeight": 1080,
+	"firstLayout": null
+}

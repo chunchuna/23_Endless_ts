@@ -1,0 +1,82 @@
+{
+	"name": "CollectableGroup",
+	"plugin-id": "Sprite",
+	"sid": 823633141827418,
+	"instanceVariables": [
+		{
+			"name": "TypeName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 460335405713127
+		},
+		{
+			"name": "TypeID",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 113298479395100
+		},
+		{
+			"name": "Heath",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 323670112763650
+		},
+		{
+			"name": "GoodsName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 237243303119284
+		},
+		{
+			"name": "GoodsNumber",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 583253227912228
+		},
+		{
+			"name": "IsRandomQuantity",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 503764454883156
+		},
+		{
+			"name": "RandomRangeX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 618735468799823
+		},
+		{
+			"name": "RandomRangeY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 471574039442222
+		},
+		{
+			"name": "ParticleName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 238430992513650
+		},
+		{
+			"name": "Distance",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 604042280075491
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Tree"
+	]
+}

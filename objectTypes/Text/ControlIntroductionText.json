@@ -1,0 +1,14 @@
+{
+	"name": "ControlIntroductionText",
+	"plugin-id": "Text",
+	"sid": 434497220136204,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "skymen_BetterOutline",
+			"name": "BetterOutline"
+		}
+	]
+}

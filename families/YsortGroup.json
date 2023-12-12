@@ -1,0 +1,29 @@
+{
+	"name": "YsortGroup",
+	"plugin-id": "Sprite",
+	"sid": 422204157254882,
+	"instanceVariables": [
+		{
+			"name": "ThisY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 245186976218857
+		},
+		{
+			"name": "LocalLayerName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 979997262234395
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"player",
+		"wall",
+		"wall2",
+		"Tree"
+	]
+}

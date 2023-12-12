@@ -1,0 +1,32 @@
+{
+	"name": "ButtonGroup",
+	"plugin-id": "Sprite",
+	"sid": 205255701629236,
+	"instanceVariables": [
+		{
+			"name": "LocalSizeX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 949664692967991
+		},
+		{
+			"name": "LocalSizeY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 998784961452100
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "ButtonBreath",
+			"sid": 243796251624850
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"BuildingModeSpButton"
+	]
+}

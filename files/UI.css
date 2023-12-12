@@ -1,0 +1,23 @@
+#NormalButton {
+    background-color: #4CAF50; /* 绿色 */
+    border: none;
+    color: white; /* 文字颜色为白色 */
+    padding: 20px 20px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block;
+    font-size: 30px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标指针为手形 */
+    transition-duration: 0.4s; /* 过渡时间 */
+}
+
+#NormalButton:hover {
+    background-color: #45a049; /* 鼠标悬浮时的背景颜色 */
+}
+
+#NormalButton:active {
+    background-color: #3e8e41; /* 鼠标点击时的背景颜色 */
+    box-shadow: 0 5px #666; /* 阴影效果 */
+    transform: translateY(4px); /* 按钮向下移动 */
+}

@@ -1,0 +1,1167 @@
+{
+	"name": "Game",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "CameraZoomValue",
+			"type": "number",
+			"initialValue": "30",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 202079987287903
+		},
+		{
+			"eventType": "variable",
+			"name": "CameraZoomTaget",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 454861949418161
+		},
+		{
+			"eventType": "variable",
+			"name": "ISBuildingMode",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 363583925676194
+		},
+		{
+			"eventType": "variable",
+			"name": "CollectableEffectiveRange",
+			"type": "number",
+			"initialValue": "300",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 501118511175534
+		},
+		{
+			"eventType": "variable",
+			"name": "CollectablePlayerDmg",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 302434207393778
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "GameObjectYsortGroup",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 854235874894524
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "YsortGroup",
+							"sid": 512161627643822,
+							"parameters": {
+								"instance-variable": "ThisY",
+								"value": "Self.Y"
+							}
+						},
+						{
+							"id": "sort-z-order",
+							"objectClass": "System",
+							"sid": 543638517225032,
+							"parameters": {
+								"object": "YsortGroup",
+								"instance-variable": {
+									"name": "ThisY",
+									"objectClass": "YsortGroup"
+								}
+							}
+						}
+					],
+					"sid": 834155535792376
+				}
+			],
+			"sid": 884059243620191
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "PlayerCamera",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 250461698401472
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-position",
+							"objectClass": "MainCamera",
+							"sid": 710240396291690,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"x": "player.x",
+								"y": "player.Y",
+								"mode": "direct"
+							}
+						}
+					],
+					"sid": 810835299707738
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 608633351712645
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "MainCamera",
+							"sid": 422930966743804,
+							"parameters": {
+								"x": "player.X",
+								"y": "player.Y"
+							}
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "MainCamera",
+							"sid": 803012767157678,
+							"parameters": {
+								"opacity": "0"
+							}
+						}
+					],
+					"sid": 277523643745996
+				}
+			],
+			"sid": 664952530901606
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "CameraZoom",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 164468499709442
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 228565015968715,
+							"parameters": {
+								"variable": "CameraZoomValue",
+								"value": "lerp(CameraZoomValue,CameraZoomTaget,3*dt)"
+							}
+						},
+						{
+							"id": "set-layout-scale",
+							"objectClass": "System",
+							"sid": 169887488970670,
+							"disabled": true,
+							"parameters": {
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 438905794109943,
+							"parameters": {
+								"layer": "\"Game\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 807281337434541,
+							"parameters": {
+								"layer": "\"SystemObject\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 725053602932000,
+							"parameters": {
+								"layer": "\"Effect\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 230792743436779,
+							"parameters": {
+								"layer": "\"Object\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 925052407702233,
+							"parameters": {
+								"layer": "\"Wall\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 322677005444496,
+							"parameters": {
+								"layer": "\"Character\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 114853243274465,
+							"parameters": {
+								"layer": "\"Map\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 671422857072315,
+							"parameters": {
+								"layer": "\"Ground\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 726466299942128,
+							"parameters": {
+								"layer": "\"DefaultGround\"",
+								"scale": "CameraZoomValue"
+							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 551989673742076,
+							"parameters": {
+								"layer": "\"BuildingLayer\"",
+								"scale": "CameraZoomValue"
+							}
+						}
+					],
+					"sid": 670377316750579
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-mouse-wheel",
+							"objectClass": "Mouse",
+							"sid": 168250243637320,
+							"parameters": {
+								"direction": "up"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 243783713760139,
+							"parameters": {
+								"variable": "CameraZoomTaget",
+								"value": "CameraZoomValue+0.1"
+							}
+						}
+					],
+					"sid": 603386706418269
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-mouse-wheel",
+							"objectClass": "Mouse",
+							"sid": 853714377074096,
+							"parameters": {
+								"direction": "down"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 337484491309201,
+							"parameters": {
+								"variable": "CameraZoomTaget",
+								"value": "CameraZoomValue-0.1"
+							}
+						}
+					],
+					"sid": 491280764752323
+				}
+			],
+			"sid": 850766073921133
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "PlayerAnimation",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "breathAnimation",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [],
+							"sid": 587615795012083
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "RunAnimation",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-moving",
+											"objectClass": "player",
+											"sid": 285671045673939,
+											"behaviorType": "8方向"
+										}
+									],
+									"actions": [
+										{
+											"id": "set-active",
+											"objectClass": "player",
+											"sid": 613849227325676,
+											"behaviorType": "MoveShakeSine",
+											"parameters": {
+												"state": "active"
+											}
+										}
+									],
+									"sid": 327164229367290
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 728130909653998
+										}
+									],
+									"actions": [
+										{
+											"id": "set-active",
+											"objectClass": "player",
+											"sid": 313539636254671,
+											"behaviorType": "MoveShakeSine",
+											"parameters": {
+												"state": "inactive"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "player",
+											"sid": 912235495878349,
+											"parameters": {
+												"angle": "0"
+											}
+										}
+									],
+									"sid": 468849526301412
+								}
+							],
+							"sid": 737276100991524
+						}
+					],
+					"sid": 906236000989361
+				}
+			],
+			"sid": 627770604417774
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "BuildingMode",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "BuidlingBoxSize",
+					"type": "number",
+					"initialValue": "32",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 436861489312573
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "BuildingHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 721739780492756,
+									"parameters": {
+										"key": 97
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "//var e =document.createEvent(\"test\")\n//window.dispatchEvent(e);\n//EventHandler.emit(\"test\");\n//const e = new C3.Event(\"test\", true);\n//runtime.objects.player.getFirstInstance().GetScriptInterface().dispatchEvent(e);\nconst Event = new C3.Event(\"keyPress_Num1\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 385315744929610
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 542450991633140,
+									"parameters": {
+										"key": 98
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "//var e =document.createEvent(\"test\")\n//window.dispatchEvent(e);\n//EventHandler.emit(\"test\");\n//const e = new C3.Event(\"test\", true);\n//runtime.objects.player.getFirstInstance().GetScriptInterface().dispatchEvent(e);\nconst Event = new C3.Event(\"keyPress_Num2\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 552488708593174
+						}
+					],
+					"sid": 413711549514839
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "BuidlingFunction",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [],
+					"sid": 815508462825010
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "BuildingState",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 914650906401907
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "BuildingGroup",
+									"sid": 252345647924103,
+									"parameters": {
+										"x": "round(Self.X/BuidlingBoxSize)*BuidlingBoxSize",
+										"y": "round(Self.Y/BuidlingBoxSize)*BuidlingBoxSize"
+									}
+								}
+							],
+							"sid": 334585489499635
+						}
+					],
+					"sid": 222570604011164
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "BuildingContrl",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-clicked",
+									"objectClass": "BuildingModeButton",
+									"sid": 195062506679569
+								}
+							],
+							"actions": [
+								{
+									"id": "toggle-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 797242038136752,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"sid": 715801625955170,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 630761771118583,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "BuildingModeSpButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "toggle-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 934648039159142,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"sid": 762771379169680,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 642449664590008,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "BuildingGroup",
+									"sid": 841008852862846,
+									"parameters": {
+										"color": "rgbEx(70, 70, 100)"
+									}
+								}
+							],
+							"sid": 247163460630237,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 973610185654963,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "BuildingGroup",
+									"sid": 413226473904705,
+									"parameters": {
+										"color": "rgbEx(100, 100, 100)"
+									}
+								}
+							],
+							"sid": 377067609545529,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 631959844045427,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "BuildingGroup",
+									"sid": 235264598726591,
+									"behaviorType": "Drag",
+									"parameters": {
+										"state": "enabled"
+									}
+								}
+							],
+							"sid": 290665283312929
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 514096449873167,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-enabled",
+									"objectClass": "BuildingGroup",
+									"sid": 402623075970945,
+									"behaviorType": "Drag",
+									"parameters": {
+										"state": "disabled"
+									}
+								}
+							],
+							"sid": 376133801454580
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 649093336670497,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 701306482018168,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 308557310766700,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "double-clicked",
+												"object-clicked": "BuildingGroup"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "BuildingGroup",
+											"sid": 780690029998502
+										}
+									],
+									"sid": 346453969815823
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 769097575135865,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 991349813465644
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 671160189890234,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 922119400792206,
+									"parameters": {
+										"layer": "\"Light\"",
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 130989478526529
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 549117663575612,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 975744130951976,
+									"parameters": {
+										"layer": "\"Light\"",
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 600276384846960
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 736314612758512,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "BuildingModeSpButton",
+									"sid": 976464622374762,
+									"parameters": {
+										"animation": "\"Enable\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 106992462895594
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 119815826689656,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "BuildingModeSpButton",
+									"sid": 483431115262532,
+									"parameters": {
+										"animation": "\"Disable\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 871204015241782
+						}
+					],
+					"sid": 333550554335418
+				}
+			],
+			"sid": 248235689340785
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "LoadCss",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 962477049948125
+						}
+					],
+					"actions": [
+						{
+							"id": "load-stylesheet",
+							"objectClass": "Browser",
+							"sid": 267611748856855,
+							"parameters": {
+								"url": "\"UI.css\""
+							}
+						}
+					],
+					"sid": 698074918068564
+				}
+			],
+			"sid": 955709075922655
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "ButtonEffect",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 546470410167938,
+							"parameters": {
+								"object": "ButtonGroup"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-active",
+							"objectClass": "ButtonGroup",
+							"sid": 821357853760856,
+							"behaviorType": "ButtonBreath",
+							"parameters": {
+								"state": "active"
+							}
+						},
+						{
+							"type": "script",
+							"script": "document.body.style.cursor = 'pointer';"
+						}
+					],
+					"sid": 994438154399154
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 906662065907955
+						}
+					],
+					"actions": [
+						{
+							"id": "set-active",
+							"objectClass": "ButtonGroup",
+							"sid": 248679123447936,
+							"behaviorType": "ButtonBreath",
+							"parameters": {
+								"state": "inactive"
+							}
+						},
+						{
+							"type": "script",
+							"script": "document.body.style.cursor = 'default';"
+						},
+						{
+							"id": "set-size",
+							"objectClass": "ButtonGroup",
+							"sid": 285920813451167,
+							"parameters": {
+								"width": "Self.LocalSizeX",
+								"height": "Self.LocalSizeY"
+							}
+						}
+					],
+					"sid": 906710273650115
+				}
+			],
+			"sid": 681289853225279
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "WorldEffect",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "LightLockPlayer",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 580589612279141
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "Light",
+									"sid": 380916043920260,
+									"parameters": {
+										"x": "player.X",
+										"y": "player.Y"
+									}
+								}
+							],
+							"sid": 745682303290323
+						}
+					],
+					"sid": 120649458515114
+				}
+			],
+			"sid": 956814548691290
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "CollectableGroup",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "CollectableHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 491122226824793,
+									"parameters": {
+										"object": "CollectableGroup"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 250666050741478,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 782105481116049,
+											"disabled": true
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"script": "const Event = new C3.Event(\"OnMouseOverCollectableGroup\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+										}
+									],
+									"sid": 303117720660225
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 662926093400146,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "CollectableGroup"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "//const Event = new C3.Event(\"OnMouseClickOneceCollectableGroup\",\"123\");\nconst Event = new CustomEvent(\"OnMouseClickOneceCollectableGroup\", { detail: runtime.objects.CollectableGroup.getPickedInstances() });\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 517207346251855
+						}
+					],
+					"sid": 706878957127060
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "CollectableGroupState",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 831767929396354
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "CollectableGroup",
+									"sid": 427598189018754,
+									"parameters": {
+										"instance-variable": "Distance",
+										"value": "distance(player.X,player.Y,Self.X,Self.Y)"
+									}
+								}
+							],
+							"sid": 322124455782272
+						}
+					],
+					"sid": 871480947689994
+				}
+			],
+			"sid": 497147377319868
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "GameMainEvent",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 386146825090856
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "const Event = new C3.Event(\"event_gametick\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+						}
+					],
+					"sid": 300190105241006
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 587829565223178
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "const Event = new C3.Event(\"event_gamestart\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+						}
+					],
+					"sid": 818472511165917
+				}
+			],
+			"sid": 680611042585633
+		}
+	],
+	"sid": 378470522758805
+}
