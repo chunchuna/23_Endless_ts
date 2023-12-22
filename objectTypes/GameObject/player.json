@@ -7,7 +7,7 @@
 	"behaviorTypes": [
 		{
 			"behaviorId": "EightDir",
-			"name": "8方向",
+			"name": "8DirMove",
 			"sid": 573136608847244
 		},
 		{

@@ -377,7 +377,7 @@
 											"id": "is-moving",
 											"objectClass": "player",
 											"sid": 285671045673939,
-											"behaviorType": "8方向"
+											"behaviorType": "8DirMove"
 										}
 									],
 									"actions": [
@@ -1121,7 +1121,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "GameMainEvent",
+			"title": "Script",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [

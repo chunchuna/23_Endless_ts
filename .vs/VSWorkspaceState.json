@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scripts",
+    "\\scripts\\Game",
+    "\\scripts\\Game\\entities",
+    "\\scripts\\Game\\gameplay"
+  ],
+  "SelectedNode": "\\scripts\\Game\\entities\\Building.ts",
+  "PreviewInSolutionExplorer": false
+}

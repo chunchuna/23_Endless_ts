@@ -141,74 +141,6 @@
 							"blendMode": "normal",
 							"zElevation": 0,
 							"global": false
-						},
-						{
-							"name": "Character",
-							"overriden": 0,
-							"subLayers": [],
-							"instances": [],
-							"sid": 982909162280580,
-							"effectTypes": [],
-							"isInitiallyVisible": true,
-							"isInitiallyInteractive": true,
-							"isHTMLElementsLayer": false,
-							"color": [
-								1,
-								1,
-								1,
-								1
-							],
-							"backgroundColor": [
-								1,
-								1,
-								1,
-								1
-							],
-							"isTransparent": true,
-							"parallaxX": 1,
-							"parallaxY": 1,
-							"scaleRate": 1,
-							"forceOwnTexture": false,
-							"renderingMode": "3d",
-							"drawOrder": "z-order",
-							"useRenderCells": false,
-							"blendMode": "normal",
-							"zElevation": 0,
-							"global": false
-						},
-						{
-							"name": "Wall",
-							"overriden": 0,
-							"subLayers": [],
-							"instances": [],
-							"sid": 831628349379118,
-							"effectTypes": [],
-							"isInitiallyVisible": true,
-							"isInitiallyInteractive": true,
-							"isHTMLElementsLayer": false,
-							"color": [
-								1,
-								1,
-								1,
-								1
-							],
-							"backgroundColor": [
-								1,
-								1,
-								1,
-								1
-							],
-							"isTransparent": true,
-							"parallaxX": 1,
-							"parallaxY": 1,
-							"scaleRate": 1,
-							"forceOwnTexture": false,
-							"renderingMode": "3d",
-							"drawOrder": "z-order",
-							"useRenderCells": false,
-							"blendMode": "normal",
-							"zElevation": 0,
-							"global": false
 						}
 					],
 					"instances": [
@@ -319,52 +251,6 @@
 								"enable-collisions": true,
 								"live-preview": false
 							},
-							"uid": 9,
-							"instanceVariables": {
-								"ThisY": 0,
-								"LocalLayerName": "",
-								"LocalLayer": ""
-							},
-							"behaviors": {
-								"Drag": {
-									"properties": {
-										"axes": "both",
-										"enabled": true
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								}
-							},
-							"world": {
-								"x": 5250,
-								"y": 4941,
-								"width": 1452,
-								"height": 288,
-								"originX": 0.5,
-								"originY": 1,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "wall",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "DownPlayer",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
 							"uid": 4,
 							"instanceVariables": {
 								"ThisY": 0,
@@ -386,10 +272,10 @@
 								}
 							},
 							"world": {
-								"x": 5258,
-								"y": 4202,
-								"width": 1451,
-								"height": 288,
+								"x": 5306,
+								"y": 4397,
+								"width": 256,
+								"height": 256,
 								"originX": 0.5,
 								"originY": 1,
 								"color": [
@@ -432,56 +318,10 @@
 								}
 							},
 							"world": {
-								"x": 4559,
-								"y": 4301,
-								"width": 92,
-								"height": 750,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "wall2",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 6,
-							"instanceVariables": {
-								"ThisY": 0,
-								"LocalLayerName": "",
-								"LocalLayer": ""
-							},
-							"behaviors": {
-								"Drag": {
-									"properties": {
-										"axes": "both",
-										"enabled": true
-									}
-								},
-								"实体": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								}
-							},
-							"world": {
-								"x": 5915,
-								"y": 4297,
-								"width": 92,
-								"height": 710,
+								"x": 4704,
+								"y": 4291,
+								"width": 256,
+								"height": 256,
 								"originX": 0.5,
 								"originY": 0.5,
 								"color": [
@@ -509,7 +349,7 @@
 								"LocalLayerName": ""
 							},
 							"behaviors": {
-								"8方向": {
+								"8DirMove": {
 									"properties": {
 										"max-speed": 200,
 										"acceleration": 600,
@@ -551,8 +391,8 @@
 								}
 							},
 							"world": {
-								"x": 5037,
-								"y": 5459,
+								"x": 5264,
+								"y": 6096,
 								"width": 135,
 								"height": 209,
 								"originX": 0.5333333333333333,
@@ -769,8 +609,8 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"world": {
-								"x": 61,
-								"y": -389,
+								"x": 88,
+								"y": -430,
 								"width": 250,
 								"height": 250,
 								"originX": 0.5,
@@ -798,8 +638,8 @@
 							"instanceVariables": {},
 							"behaviors": {},
 							"world": {
-								"x": 127,
-								"y": -232,
+								"x": 360,
+								"y": -414,
 								"width": 250,
 								"height": 250,
 								"originX": 0.5,

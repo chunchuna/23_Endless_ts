@@ -3,7 +3,7 @@ declare namespace InstanceType {
 	class Ground1 extends ISpriteInstance {
 	}
 	class __playerBehaviors<InstType> {
-		"8方向": I8DirectionBehaviorInstance<InstType>;
+		"8DirMove": I8DirectionBehaviorInstance<InstType>;
 		MoveShakeSine: ISineBehaviorInstance<InstType>;
 		BreathSine: ISineBehaviorInstance<InstType>;
 	}
@@ -69,6 +69,7 @@ declare namespace InstanceType {
 	class EventHnadler extends ISpriteInstance {
 	}
 	class __TreeBehaviors<InstType> {
+		ShakeSine: ISineBehaviorInstance<InstType>;
 		Solid: ISolidBehaviorInstance<InstType>;
 	}
 	class Tree extends ISpriteInstance {
@@ -134,6 +135,9 @@ declare namespace InstanceType {
 		};
 		behaviors: __ButtonGroupBehaviors<this>;
 	}
+	class __CollectableGroupBehaviors<InstType> {
+		ShakeSine: ISineBehaviorInstance<InstType>;
+	}
 	class CollectableGroup extends ISpriteInstance {
 		instVars: {
 			TypeName: string,
@@ -147,6 +151,7 @@ declare namespace InstanceType {
 			ParticleName: string,
 			Distance: number
 		};
+		behaviors: __CollectableGroupBehaviors<this>;
 	}
 
 }
