@@ -24,7 +24,6 @@ export class Collectable {
         if (!Instance)
             return;
         const ShakeBehavior = Instance.behaviors.ShakeSine;
-        console.log("SHAKE");
         if (ShakeBehavior) {
             ShakeBehavior.isEnabled = true;
             setTimeout(() => {
