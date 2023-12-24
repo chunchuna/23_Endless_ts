@@ -20,7 +20,14 @@ export class Building {
         const PlayerInstance = runtime.objects.player.getFirstInstance();
         const playerx = PlayerInstance?.x;
         const playery = PlayerInstance?.y;
-        instanceClass.createInstance(runtime.getLayout("Game").getLayer("object"), playerx, playery, false);
+        const offset: number = 30;
+
+        const SpwnpositionX = playerx!+offset
+        const SpwnpositionY = playery!+ offset
+
+        const thisLayer: IAnyProjectLayer | null = runtime.getLayout("Game").getLayer("object");
+        if (thisLayer)
+            instanceClass.createInstance(thisLayer.name, SpwnpositionX, SpwnpositionY, false);
 
     }
     public static BuildingModeMoveBuildingToLayer(runtime: IRuntime) {
