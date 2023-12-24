@@ -1,5 +1,5 @@
 export class WallInstance {
-    public static Wall1StateSwitch(runtime: IRuntime) {
+    public static UpdateWall1State(runtime: IRuntime) {
         const PlayerInstance: InstanceType.player | null = runtime.objects.player.getFirstInstance();
         const ISBuildingMode: boolean = runtime.globalVars.ISBuildingMode;
         for (let wall1 of runtime.objects.wall.instances()) {

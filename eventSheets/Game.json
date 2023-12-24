@@ -513,6 +513,75 @@
 							],
 							"sid": 552488708593174,
 							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 740130738170712,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 254362989352741,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 551003619738712
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"script": "const Event = new C3.Event(\"buildingmode-toggle-on\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+										}
+									],
+									"sid": 617878269979309
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 146571439572201,
+									"parameters": {
+										"variable": "ISBuildingMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 118618592344368,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 738868821146478
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"script": "const Event = new C3.Event(\"buildingmode-toggle-off\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+										}
+									],
+									"sid": 984634434647214
+								}
+							]
 						}
 					],
 					"sid": 413711549514839

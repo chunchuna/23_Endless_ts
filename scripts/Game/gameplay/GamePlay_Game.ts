@@ -8,17 +8,16 @@ export class gameplay {
     public static tick(runtime: IRuntime) {
         [
             Player.PlayerMoveByWASD,
-            IntroduceTextInstance.FixControlIntroductionText,
-            Building.BuildingModeMoveBuildingToLayer,
-            Building.BuildingWall2AWLASSetTop,
-            WallInstance.Wall1StateSwitch,
+            WallInstance.UpdateWall1State,
         ].forEach((func) => func(runtime));
     }
     public static start(runtime: IRuntime) {
         [
-            Building.Addtestobject,
+            Building.AddObjectDebug,
             ObjectYsort.YsortInit,
-            Collectable.CollectableInit
+            Collectable.CollectableInit,
+            Building.BuildingLayerSwitch,
+            IntroduceTextInstance.TextUpdate,
         ].forEach((func) => func(runtime));
     }
 }
