@@ -28,6 +28,8 @@ export class Collectable {
             setTimeout(() => {
                 ShakeBehavior.isEnabled = false;
             }, 500);
+        }else{
+            console.log("not shake behaviors")
         }
 
     }

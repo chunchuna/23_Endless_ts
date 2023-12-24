@@ -443,7 +443,7 @@
 					"eventType": "variable",
 					"name": "BuidlingBoxSize",
 					"type": "number",
-					"initialValue": "32",
+					"initialValue": "256",
 					"comment": "",
 					"isStatic": false,
 					"isConstant": false,
@@ -466,19 +466,36 @@
 									"parameters": {
 										"key": 97
 									}
+								},
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 440394460357552,
+									"parameters": {
+										"key": 49
+									}
 								}
 							],
 							"actions": [
 								{
 									"type": "script",
-									"script": "//var e =document.createEvent(\"test\")\n//window.dispatchEvent(e);\n//EventHandler.emit(\"test\");\n//const e = new C3.Event(\"test\", true);\n//runtime.objects.player.getFirstInstance().GetScriptInterface().dispatchEvent(e);\nconst Event = new C3.Event(\"keyPress_Num1\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"build_creat_wall\");\nEvent.type=\"wall1\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
-							"sid": 385315744929610
+							"sid": 385315744929610,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
 							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 460474415749651,
+									"parameters": {
+										"key": 50
+									}
+								},
 								{
 									"id": "on-key-pressed",
 									"objectClass": "Keyboard",
@@ -491,10 +508,11 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "//var e =document.createEvent(\"test\")\n//window.dispatchEvent(e);\n//EventHandler.emit(\"test\");\n//const e = new C3.Event(\"test\", true);\n//runtime.objects.player.getFirstInstance().GetScriptInterface().dispatchEvent(e);\nconst Event = new C3.Event(\"keyPress_Num2\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"build_creat_wall\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 								}
 							],
-							"sid": 552488708593174
+							"sid": 552488708593174,
+							"isOrBlock": true
 						}
 					],
 					"sid": 413711549514839

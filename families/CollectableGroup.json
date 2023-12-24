@@ -74,7 +74,13 @@
 			"sid": 604042280075491
 		}
 	],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "ShakeSine",
+			"sid": 323919672095784
+		}
+	],
 	"effectTypes": [],
 	"members": [
 		"Tree"

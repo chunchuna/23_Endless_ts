@@ -30,5 +30,8 @@ export class Collectable {
                 ShakeBehavior.isEnabled = false;
             }, 500);
         }
+        else {
+            console.log("not shake behaviors");
+        }
     }
 }

@@ -4,15 +4,20 @@ export class Building {
         const Wall2Class = runtime.objects.wall2;
         const PlayerInstance = runtime.objects.player.getFirstPickedInstance();
         const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        const addWall = async (key, wallClass) => {
-            await (EventHnadlerInstance?.addEventListener)(key, () => {
-                if (PlayerInstance) {
-                    wallClass.createInstance("Object", PlayerInstance.x + 10, PlayerInstance.y + 10, false);
-                }
-            });
-        };
-        await addWall("keyPress_Num1", Wall1Class);
-        await addWall("keyPress_Num2", Wall2Class);
+        await (EventHnadlerInstance?.addEventListener)("build_creat_wall", (e) => {
+            if (e.walltype = "wall1") {
+                Building.BuildCreatInstance(runtime, Wall1Class);
+            }
+            if (e.walltype = "wall2") {
+                Building.BuildCreatInstance(runtime, Wall2Class);
+            }
+        });
+    }
+    static BuildCreatInstance(runtime, instanceClass) {
+        const PlayerInstance = runtime.objects.player.getFirstInstance();
+        const playerx = PlayerInstance?.x;
+        const playery = PlayerInstance?.y;
+        instanceClass.createInstance(runtime.getLayout("Game").getLayer("object"), playerx, playery, false);
     }
     static BuildingModeMoveBuildingToLayer(runtime) {
         const ISBuildingMode = runtime.globalVars.ISBuildingMode;

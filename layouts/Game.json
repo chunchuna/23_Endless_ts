@@ -169,6 +169,20 @@
 								"Distance": 0
 							},
 							"behaviors": {
+								"ShakeSine": {
+									"properties": {
+										"movement": "horizontal",
+										"wave": "sine",
+										"period": 0.2,
+										"period-random": 0,
+										"period-offset": 0,
+										"period-offset-random": 0,
+										"magnitude": 5,
+										"magnitude-random": 0,
+										"enabled": false,
+										"live-preview": false
+									}
+								},
 								"Solid": {
 									"properties": {
 										"enabled": true,
@@ -218,6 +232,20 @@
 								"Distance": 0
 							},
 							"behaviors": {
+								"ShakeSine": {
+									"properties": {
+										"movement": "horizontal",
+										"wave": "sine",
+										"period": 0.2,
+										"period-random": 0,
+										"period-offset": 0,
+										"period-offset-random": 0,
+										"magnitude": 5,
+										"magnitude-random": 0,
+										"enabled": false,
+										"live-preview": false
+									}
+								},
 								"Solid": {
 									"properties": {
 										"enabled": true,
@@ -272,8 +300,8 @@
 								}
 							},
 							"world": {
-								"x": 5306,
-								"y": 4397,
+								"x": 4380,
+								"y": 4443,
 								"width": 256,
 								"height": 256,
 								"originX": 0.5,
@@ -318,8 +346,8 @@
 								}
 							},
 							"world": {
-								"x": 4704,
-								"y": 4291,
+								"x": 4692,
+								"y": 4317,
 								"width": 256,
 								"height": 256,
 								"originX": 0.5,
