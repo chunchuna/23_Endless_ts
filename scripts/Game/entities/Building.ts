@@ -6,10 +6,12 @@ export class Building {
         const PlayerInstance = runtime.objects.player.getFirstPickedInstance();
         const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         await (EventHnadlerInstance?.addEventListener as any)("build_creat_wall", (e: any) => {
-            if (e.walltype = "wall1") {
+
+           
+            if (e.walltype == "wall1") {
                 Building.BuildCreatInstance(runtime, Wall1Class)
             }
-            if (e.walltype = "wall2") {
+            if (e.walltype == "wall2") {
                 Building.BuildCreatInstance(runtime, Wall2Class)
             }
         });
@@ -17,10 +19,11 @@ export class Building {
     }
 
     private static BuildCreatInstance(runtime: IRuntime, instanceClass: IObjectType<any>) {
+       
         const PlayerInstance = runtime.objects.player.getFirstInstance();
         const playerx = PlayerInstance?.x;
         const playery = PlayerInstance?.y;
-        const offset: number = 30;
+        const offset: number = 150;
 
         const SpwnpositionX = playerx!+offset
         const SpwnpositionY = playery!+ offset

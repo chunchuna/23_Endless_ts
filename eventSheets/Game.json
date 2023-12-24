@@ -479,7 +479,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"build_creat_wall\");\nEvent.type=\"wall1\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"build_creat_wall\");\nEvent.walltype=\"wall1\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 385315744929610,
@@ -508,7 +508,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"build_creat_wall\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+									"script": "const Event = new C3.Event(\"build_creat_wall\");\nEvent.walltype=\"wall2\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 								}
 							],
 							"sid": 552488708593174,
