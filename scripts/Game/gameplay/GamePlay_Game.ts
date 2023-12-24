@@ -16,7 +16,7 @@ export class gameplay {
     }
     public static start(runtime: IRuntime) {
         [
-            Building.BuildingAddWall,
+            Building.Addtestobject,
             ObjectYsort.YsortInit,
             Collectable.CollectableInit
         ].forEach((func) => func(runtime));

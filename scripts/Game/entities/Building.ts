@@ -1,6 +1,6 @@
 export class Building {
 
-    public static async BuildingAddWall(runtime: IRuntime) {
+    public static async Addtestobject(runtime: IRuntime) {
         const Wall1Class = runtime.objects.wall;
         const Wall2Class = runtime.objects.wall2;
         const PlayerInstance = runtime.objects.player.getFirstPickedInstance();
