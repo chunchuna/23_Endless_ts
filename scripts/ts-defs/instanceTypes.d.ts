@@ -89,6 +89,8 @@ declare namespace InstanceType {
 		};
 		behaviors: __TreeBehaviors<this>;
 	}
+	class Grid extends ISpriteInstance {
+	}
 	class ControlIntroductionText extends ITextInstance {
 		effects: {
 			BetterOutline: IEffectInstance

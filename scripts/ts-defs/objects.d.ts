@@ -14,6 +14,7 @@ declare class IConstructProjectObjects {
 	readonly Light: IObjectType<InstanceType.Light>;
 	readonly EventHnadler: IObjectType<InstanceType.EventHnadler>;
 	readonly Tree: IObjectType<InstanceType.Tree>;
+	readonly Grid: IObjectType<InstanceType.Grid>;
 	readonly ControlIntroductionText: IObjectType<InstanceType.ControlIntroductionText>;
 	readonly BuildingModeButton: IObjectType<InstanceType.BuildingModeButton>;
 	readonly BuildingModeCreatWall2: IObjectType<InstanceType.BuildingModeCreatWall2>;

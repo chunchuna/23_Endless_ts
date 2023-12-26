@@ -1,4 +1,19 @@
 export class Player {
+
+    public static Update() {
+    }
+
+    public static Init() {
+
+
+
+    }
+
+
+    public static GetPlayerInstance(runtime: IRuntime) {
+        return runtime.objects.player.getFirstInstance();
+
+    }
     public static PlayerMoveByWASD(runtime: IRuntime) {
         const { keyboard, objects: { player } } = runtime;
         const playerInstance = player.getFirstInstance();

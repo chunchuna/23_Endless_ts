@@ -4,7 +4,9 @@
     "\\scripts",
     "\\scripts\\Game",
     "\\scripts\\Game\\entities",
-    "\\scripts\\Game\\gameplay"
+    "\\scripts\\Game\\gameplay",
+    "\\scripts\\ts-defs",
+    "\\scripts\\ts-defs\\runtime"
   ],
   "SelectedNode": "\\scripts\\Game\\entities\\Building.ts",
   "PreviewInSolutionExplorer": false

@@ -1,8 +1,8 @@
 export class Collectable {
-    static CollectableGrouptick(runtime) {
+    static Update(runtime) {
     }
-    static async CollectableInit(runtime) {
-        const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+    static async Init(runtime) {
+        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         await (EventHnadlerInstance?.addEventListener)("OnMouseOverCollectableGroup", () => {
             document.body.style.cursor = 'pointer';
         });
@@ -12,14 +12,14 @@ export class Collectable {
                 return;
             if (getCollectableStuff.instVars["Heath"] > 0) {
                 getCollectableStuff.instVars["Heath"] -= 1;
-                Collectable.getCollectableStuffShakeOnece(runtime, getCollectableStuff);
+                Collectable.CollectableStuffShakeOnece(runtime, getCollectableStuff);
             }
             else if (getCollectableStuff.instVars["Heath"] <= 0) {
                 getCollectableStuff.destroy();
             }
         });
     }
-    static getCollectableStuffShakeOnece(runtime, CollectableInstance) {
+    static CollectableStuffShakeOnece(runtime, CollectableInstance) {
         const Instance = CollectableInstance;
         if (!Instance)
             return;

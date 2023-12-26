@@ -1,5 +1,5 @@
 export class ObjectYsort {
-    static YsortInit(runtime) {
+    static Init(runtime) {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
         for (let YsortGroups of YsortGroupClass) {
             YsortGroups.instVars["LocalLayerName"] = YsortGroups.layer.name;

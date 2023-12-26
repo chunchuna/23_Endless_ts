@@ -1,3 +1,5 @@
+import { Layer } from "../utils/Layer.js";
+import { Player } from "./Player.js";
 import { ObjectYsort } from "./Ysort.js";
 var SpwnTypeEnum;
 (function (SpwnTypeEnum) {
@@ -5,21 +7,85 @@ var SpwnTypeEnum;
     SpwnTypeEnum[SpwnTypeEnum["NearPlayer"] = 1] = "NearPlayer";
 })(SpwnTypeEnum || (SpwnTypeEnum = {}));
 export class Building {
-    static async AddObjectDebug(runtime) {
-        const Wall1Class = runtime.objects.wall;
-        const Wall2Class = runtime.objects.wall2;
-        const PlayerInstance = runtime.objects.player.getFirstPickedInstance();
-        const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("build_creat_wall", (e) => {
+    static Update(runtime) {
+        // Use Grid place
+        for (var buildings of runtime.objects.BuildingGroup.instances()) {
+            var postion = Building.SetPositionRound(runtime, buildings.x, buildings.y);
+            buildings.x = postion[0];
+            buildings.y = postion[1];
+        }
+    }
+    static async Init(runtime) {
+        // When a building is generated
+        runtime.objects.BuildingGroup.addEventListener("instancecreate", (e) => {
+            e.instance.behaviors.Drag.isEnabled = runtime.globalVars.ISBuildingMode;
+            console.log(e.instance.behaviors.Drag.isEnabled);
+        });
+        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+        /*
+        For Debug
+        */
+        await (EventHnadlerInstance?.addEventListener)("[build-spwan]", (e) => {
             if (e.walltype == "wall1") {
-                Building.SpwnBuildingStuff(runtime, Wall1Class, SpwnTypeEnum.NearPlayer);
+                Building.SpwnStuff(runtime, runtime.objects.wall, SpwnTypeEnum.NearPlayer);
             }
             if (e.walltype == "wall2") {
-                Building.SpwnBuildingStuff(runtime, Wall2Class, SpwnTypeEnum.NearPlayer);
+                Building.SpwnStuff(runtime, runtime.objects.wall2, SpwnTypeEnum.NearPlayer);
             }
         });
+        // When click the button to switch the building mode
+        await (EventHnadlerInstance?.addEventListener)("[click-buildingmodebutton]", (e) => {
+            runtime.globalVars.ISBuildingMode = !runtime.globalVars.ISBuildingMode;
+        });
+        // Handling the building mode toggle on event
+        await (EventHnadlerInstance?.addEventListener)("[buildingmode-toggle-on]", () => {
+            /*
+               Mode On
+            */
+            console.log("building mode on");
+            var Postion = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
+            Building.SpwnGrid(runtime, Postion);
+            // Set the building layer visible
+            var BuildingLayer = Layer.GetLayer(runtime, "BuildingLayer");
+            Layer.SetLayerVisibel(runtime, BuildingLayer, true);
+            Building.SetAllBuildingsToLayer(runtime, "BuildingLayer", "null");
+            // Enable drag behavior for buildings  
+            // [bug -> If a building is created after that, it cannot be dragged by default]
+            var AllBuildings = Building.GetAllBuildings(runtime);
+            AllBuildings.forEach((buils) => {
+                buils.behaviors.Drag.isEnabled = true;
+            });
+            // Listen for double-click event on building groups
+            (EventHnadlerInstance?.addEventListener)("[doubleclick-buildinggroup]", (e) => {
+                var getBuilding = e.buildings;
+                console.log(getBuilding);
+                if (getBuilding) {
+                    getBuilding.destroy();
+                }
+            });
+            // Set the light layer invisible
+            Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
+        });
+        // Handling the building mode toggle off event
+        await (EventHnadlerInstance?.addEventListener)("[buildingmode-toggle-off]", () => {
+            /*
+               Mode OFF
+            */
+            console.log("building mode off");
+            // Set the building layer invisible
+            Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "BuildingLayer"), false);
+            Building.SetAllBuildingsToLayer(runtime, "Object", "null");
+            ObjectYsort.YsortFixbug(runtime);
+            // Disable drag behavior for buildings
+            var AllBuildings = Building.GetAllBuildings(runtime);
+            AllBuildings.forEach((buils) => {
+                buils.behaviors.Drag.isEnabled = false;
+            });
+            // Set the light layer visible
+            Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
+        });
     }
-    static SpwnBuildingStuff(runtime, buildingStuffClass, SpwnType) {
+    static SpwnStuff(runtime, buildingStuffClass, SpwnType) {
         var objectClass = buildingStuffClass;
         var layer = runtime.getLayout("Game").getLayer("Object");
         var playerOffset = 500;
@@ -42,23 +108,7 @@ export class Building {
             objectInstance.y = mouseY;
         }
     }
-    static BuildingLayerSwitch(runtime) {
-        var EvnentHandlerInstance = runtime.objects.EventHnadler.getFirstInstance();
-        (EvnentHandlerInstance?.addEventListener)("buildingmode-toggle-on", () => {
-            // building mode on
-            console.log("building mode on");
-            runtime.getLayout("Game").getLayer("BuildingLayer").isVisible = true;
-            Building.MoveBuildingToLayer(runtime, "BuildingLayer", "null");
-        });
-        (EvnentHandlerInstance?.addEventListener)("buildingmode-toggle-off", () => {
-            // building mode off
-            console.log("building mode off");
-            runtime.getLayout("Game").getLayer("BuildingLayer").isVisible = false;
-            Building.MoveBuildingToLayer(runtime, "Object", "null");
-            ObjectYsort.YsortFixbug(runtime);
-        });
-    }
-    static MoveBuildingToLayer(runtime, LayerName, Type) {
+    static SetAllBuildingsToLayer(runtime, LayerName, Type) {
         var BuildingGroupClass;
         var Layer = runtime.getLayout("Game").getLayer(LayerName);
         BuildingGroupClass = runtime.objects.BuildingGroup;
@@ -66,6 +116,28 @@ export class Building {
             if (bdgi && Layer) {
                 bdgi.moveToLayer(Layer);
             }
+        }
+    }
+    static SetPositionRound(runtime, x, y) {
+        var BuidlingGirdSize = 256;
+        var Mathx = Math.round(x / BuidlingGirdSize) * BuidlingGirdSize;
+        var Mathy = Math.round(y / BuidlingGirdSize) * BuidlingGirdSize;
+        var Position = [Mathx, Mathy];
+        return Position;
+    }
+    static GetAllBuildings(runtime) {
+        let allBuildings = [];
+        for (let buildings of runtime.objects.BuildingGroup.instances()) {
+            allBuildings.push(buildings);
+        }
+        return allBuildings;
+    }
+    static SpwnGrid(runtime, Postion) {
+        var GridInstance = runtime.objects.Grid.createInstance("Ground", Postion[0], Postion[1]);
+    }
+    static ClearAllGrid(runtime) {
+        for (var Grid of runtime.objects.Grid.instances()) {
+            Grid.destroy();
         }
     }
 }

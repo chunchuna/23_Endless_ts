@@ -7,16 +7,16 @@ import { ObjectYsort } from "../entities/Ysort.js";
 export class gameplay {
     static tick(runtime) {
         [
+            Building.Update,
             Player.PlayerMoveByWASD,
             WallInstance.UpdateWall1State,
         ].forEach((func) => func(runtime));
     }
     static start(runtime) {
         [
-            Building.AddObjectDebug,
-            ObjectYsort.YsortInit,
-            Collectable.CollectableInit,
-            Building.BuildingLayerSwitch,
+            Building.Init,
+            ObjectYsort.Init,
+            Collectable.Init,
             IntroduceTextInstance.TextUpdate,
         ].forEach((func) => func(runtime));
     }
