@@ -342,35 +342,6 @@
 								"angle": 0,
 								"zElevation": 0
 							}
-						},
-						{
-							"type": "Grid",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 4,
-							"instanceVariables": {},
-							"behaviors": {},
-							"world": {
-								"x": 4169,
-								"y": 4919,
-								"width": 256,
-								"height": 256,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
 						}
 					],
 					"sid": 862817962365560,
@@ -618,11 +589,40 @@
 								"angle": 0,
 								"zElevation": 0
 							}
+						},
+						{
+							"type": "Grid",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Normal",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 4,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 662,
+								"y": -420,
+								"width": 256,
+								"height": 256,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
 						}
 					],
 					"sid": 596674447613978,
 					"effectTypes": [],
-					"isInitiallyVisible": true,
+					"isInitiallyVisible": false,
 					"isInitiallyInteractive": true,
 					"isHTMLElementsLayer": false,
 					"color": [

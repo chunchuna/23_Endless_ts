@@ -5,14 +5,14 @@ import { Player } from "../entities/Player.js";
 import { WallInstance } from "../entities/Wall.js";
 import { ObjectYsort } from "../entities/Ysort.js";
 export class gameplay {
-    static tick(runtime) {
+    static Update(runtime) {
         [
             Building.Update,
             Player.PlayerMoveByWASD,
             WallInstance.UpdateWall1State,
         ].forEach((func) => func(runtime));
     }
-    static start(runtime) {
+    static Init(runtime) {
         [
             Building.Init,
             ObjectYsort.Init,

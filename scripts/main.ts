@@ -1,4 +1,4 @@
-import { gameplay } from "./Game/gameplay/GamePlay_Game.js";
+import { gameplay } from "./Game/gameplay/game.js";
 
 runOnStartup(async runtime => {
     runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
@@ -9,9 +9,9 @@ async function OnBeforeProjectStart(runtime: IRuntime) {
 async function RegisterEvent(runtime: IRuntime) {
     const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstInstance();
     await (EventHnadlerInstance?.addEventListener as any)("event_gametick", () => {
-        gameplay.tick(runtime);
+        gameplay.Update(runtime);
     });
     await (EventHnadlerInstance?.addEventListener as any)("event_gamestart", () => {
-        gameplay.start(runtime);
+        gameplay.Init(runtime);
     });
 }

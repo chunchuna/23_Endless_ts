@@ -6,7 +6,11 @@ enum SpwnTypeEnum {
     Mouse,
     NearPlayer
 }
+
+
 export class Building {
+
+    public static SelectedCreatBuildingType:IObjectType<InstanceType.BuildingGroup>;
 
 
 
@@ -64,7 +68,9 @@ export class Building {
             */
             console.log("building mode on")
             var Postion = [Player.GetPlayerInstance(runtime)!.x, Player.GetPlayerInstance(runtime)!.y]
-            Building.SpwnGrid(runtime, Postion);
+
+            //Building.SpwnGrid(runtime, Postion);
+            Building.CreateGridArray(runtime, 5, 256)
 
 
 
@@ -109,6 +115,7 @@ export class Building {
                Mode OFF
             */
             console.log("building mode off")
+            Building.ClearAllGrid(runtime)
 
             // Set the building layer invisible
             Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "BuildingLayer"), false);
@@ -125,6 +132,33 @@ export class Building {
             // Set the light layer visible
             Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
         });
+
+
+        //Grid event related
+
+
+        Building.SelectedCreatBuildingType=runtime.objects.wall;
+
+        await (EventHnadlerInstance?.addEventListener as any)("[build-MouseOverGrid]", (e: any) => {
+            var IsMouseOver: boolean = e.MouseOver;
+            var GetGrid: InstanceType.Grid = e.ThisGrid[0];
+            GetGrid.setAnimation("MouseOver");
+            setTimeout(() => {
+                GetGrid.setAnimation("Normal")
+            }, 50);
+
+        })
+
+        await (EventHnadlerInstance?.addEventListener as any)("[build-MouseClickGrid]", (e: any) => {
+            var IsMouseOver: boolean = e.MouseOver;
+            var GetGrid: InstanceType.Grid = e.ThisGrid[0];
+            var InstanceClass = Building.SelectedCreatBuildingType;
+            Building.SpwnStuff(runtime,InstanceClass,SpwnTypeEnum.Mouse);
+            
+            
+
+
+        })
 
     }
 
@@ -185,12 +219,26 @@ export class Building {
 
     private static SpwnGrid(runtime: IRuntime, Postion: Array<number>) {
         var GridInstance = runtime.objects.Grid.createInstance("Ground", Postion[0], Postion[1])
+        console.log("grid")
 
     }
 
     private static ClearAllGrid(runtime: IRuntime) {
         for (var Grid of runtime.objects.Grid.instances()) {
             Grid.destroy();
+        }
+    }
+
+    private static CreateGridArray(runtime: IRuntime, ArraySize: number, CellSize: number) {
+        var StartX: number = Player.GetPlayerInstance(runtime)!.x - (ArraySize / 2) * CellSize;
+        var StartY: number = Player.GetPlayerInstance(runtime)!.y - (ArraySize / 2) * CellSize;
+        for (let x = 0; x < ArraySize; x++) {
+            for (let y = 0; y < ArraySize; y++) {
+                var spawnX = StartX + x * CellSize;
+                var spawnY = StartY + y * CellSize;
+                var Position = [spawnX, spawnY];
+                Building.SpwnGrid(runtime, Position);
+            }
         }
     }
 }

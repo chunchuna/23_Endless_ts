@@ -89,8 +89,6 @@ declare namespace InstanceType {
 		};
 		behaviors: __TreeBehaviors<this>;
 	}
-	class Grid extends ISpriteInstance {
-	}
 	class ControlIntroductionText extends ITextInstance {
 		effects: {
 			BetterOutline: IEffectInstance
@@ -111,6 +109,8 @@ declare namespace InstanceType {
 			LocalSizeY: number
 		};
 		behaviors: __BuildingModeSpButtonBehaviors<this>;
+	}
+	class Grid extends ISpriteInstance {
 	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {
