@@ -6,7 +6,8 @@ export class Player {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         await (EventHnadlerInstance?.addEventListener)("[player-moving]", (e) => {
             var PlayerPosition = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
-            Building.UpdateGridPosition(runtime, PlayerPosition);
+            if (runtime.globalVars.ISBuildingMode && runtime.objects.GridBoss.getFirstInstance())
+                Building.UpdateGridPosition(runtime, PlayerPosition);
         });
     }
     static Input(runtime) {

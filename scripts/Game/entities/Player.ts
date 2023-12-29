@@ -10,7 +10,8 @@ export class Player {
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-moving]", (e: any) => {
             var PlayerPosition = [Player.GetPlayerInstance(runtime)!.x, Player.GetPlayerInstance(runtime)!.y] as [number, number];
-            Building.UpdateGridPosition(runtime, PlayerPosition)
+            if (runtime.globalVars.ISBuildingMode && runtime.objects.GridBoss.getFirstInstance())
+                Building.UpdateGridPosition(runtime, PlayerPosition)
         });
 
     }

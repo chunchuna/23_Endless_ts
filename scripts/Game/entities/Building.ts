@@ -302,17 +302,17 @@ export class Building {
         var StartX: number = Player.GetPlayerInstance(runtime)!.x - (ArraySize / 2) * CellSize;
         var StartY: number = Player.GetPlayerInstance(runtime)!.y - (ArraySize / 2) * CellSize;
         var GirdBossInstance = runtime.objects.GridBoss.createInstance("Object", StartX, StartY);
-        var SceneGraphAddChildOpts: SceneGraphAddChildOpts = {
-            transformX: true,
-            transformY: true,
-        };
         for (let x = 0; x < ArraySize; x++) {
             for (let y = 0; y < ArraySize; y++) {
                 var spawnX = StartX + x * CellSize;
                 var spawnY = StartY + y * CellSize;
                 var Position = [spawnX, spawnY];
                 var GetGrid = Building.SpwnGrid(runtime, Position);
-                GirdBossInstance.addChild(GetGrid, SceneGraphAddChildOpts)
+                GirdBossInstance.addChild(GetGrid, {
+                    transformY: true,
+                    transformX: true,
+                })
+                console.log(GetGrid.getParent());
             }
         }
 
@@ -327,6 +327,7 @@ export class Building {
         PlayerInstance?.addChild(GetGridBoss!, {
             transformX: true,
             transformY: true,
+
         })
     }
 }
