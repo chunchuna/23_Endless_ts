@@ -63,16 +63,18 @@ export class Building {
             AllBuildings.forEach((buils) => {
                 buils.behaviors.Drag.isEnabled = true;
             });
-            // Listen for double-click event on building groups
+            // Listen for lick event on building groups
             (EventHnadlerInstance?.addEventListener)("[doubleclick-buildinggroup]", (e) => {
                 var getBuilding = e.buildings;
                 console.log(getBuilding);
-                if (getBuilding) {
+                if (getBuilding && runtime.globalVars.ISBuildingMode) {
                     getBuilding.destroy();
                 }
             });
             // Set the light layer invisible
             Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
+            // Set UI
+            runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
         });
         // Handling the building mode toggle off event
         await (EventHnadlerInstance?.addEventListener)("[buildingmode-toggle-off]", () => {
@@ -92,6 +94,8 @@ export class Building {
             });
             // Set the light layer visible
             Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
+            // Set UI
+            runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
         });
         //Drag and drop event
         await (EventHnadlerInstance?.addEventListener)("[build-dragstart]", (e) => {
@@ -211,22 +215,37 @@ export class Building {
     static SpwnGrid(runtime, Postion) {
         var GridInstance = runtime.objects.Grid.createInstance("Ground", Postion[0], Postion[1]);
         console.log("grid");
+        return GridInstance;
     }
     static ClearAllGrid(runtime) {
         for (var Grid of runtime.objects.Grid.instances()) {
             Grid.destroy();
         }
+        for (var GridBoss of runtime.objects.GridBoss.instances()) {
+            GridBoss.destroy();
+        }
     }
     static CreateGridArray(runtime, ArraySize, CellSize) {
         var StartX = Player.GetPlayerInstance(runtime).x - (ArraySize / 2) * CellSize;
         var StartY = Player.GetPlayerInstance(runtime).y - (ArraySize / 2) * CellSize;
+        var GirdBossInstance = runtime.objects.GridBoss.createInstance("Object", StartX, StartY);
+        var SceneGraphAddChildOpts = {
+            transformX: true,
+            transformY: true,
+        };
         for (let x = 0; x < ArraySize; x++) {
             for (let y = 0; y < ArraySize; y++) {
                 var spawnX = StartX + x * CellSize;
                 var spawnY = StartY + y * CellSize;
                 var Position = [spawnX, spawnY];
-                Building.SpwnGrid(runtime, Position);
+                var GetGrid = Building.SpwnGrid(runtime, Position);
+                GirdBossInstance.addChild(GetGrid, SceneGraphAddChildOpts);
             }
         }
+    }
+    static UpdateGridPosition(runtime, Position) {
+        var GetGridBoss = runtime.objects.GridBoss.getFirstInstance();
+        GetGridBoss.x = Position[0];
+        GetGridBoss.y = Position[1];
     }
 }

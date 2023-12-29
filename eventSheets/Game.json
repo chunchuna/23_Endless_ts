@@ -350,6 +350,34 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "PlayerHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "player",
+									"sid": 915350399249451,
+									"behaviorType": "8DirMove"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-moving]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 708837788329524
+						}
+					],
+					"sid": 643460820417666
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "PlayerAnimation",
 					"description": "",
 					"isActiveOnStart": true,
@@ -809,7 +837,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[build-dragfinish]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+									"script": "const Event = new C3.Event(\"[build-dragrunning]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 								}
 							],
 							"sid": 818151481446309
@@ -865,59 +893,7 @@
 					"title": "BuildingContrl",
 					"description": "",
 					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 736314612758512,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "BuildingModeSpButton",
-									"sid": 976464622374762,
-									"parameters": {
-										"animation": "\"Enable\"",
-										"from": "beginning"
-									}
-								}
-							],
-							"sid": 106992462895594
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 119815826689656,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "BuildingModeSpButton",
-									"sid": 483431115262532,
-									"parameters": {
-										"animation": "\"Disable\"",
-										"from": "beginning"
-									}
-								}
-							],
-							"sid": 871204015241782
-						}
-					],
+					"children": [],
 					"sid": 333550554335418
 				}
 			],

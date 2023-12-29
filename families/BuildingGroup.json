@@ -23,6 +23,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 769381947504476
+		},
+		{
+			"name": "IsInGrid",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 477452301776292
 		}
 	],
 	"behaviorTypes": [

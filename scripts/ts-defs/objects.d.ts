@@ -19,6 +19,7 @@ declare class IConstructProjectObjects {
 	readonly BuildingModeCreatWall2: IObjectType<InstanceType.BuildingModeCreatWall2>;
 	readonly BuildingModeCreatWall1: IObjectType<InstanceType.BuildingModeCreatWall1>;
 	readonly BuildingModeSpButton: IObjectType<InstanceType.BuildingModeSpButton>;
+	readonly GridBoss: IObjectType<InstanceType.GridBoss>;
 	readonly YsortGroup: IFamily<InstanceType.YsortGroup>;
 	readonly BuildingGroup: IFamily<InstanceType.BuildingGroup>;
 	readonly ButtonGroup: IFamily<InstanceType.ButtonGroup>;

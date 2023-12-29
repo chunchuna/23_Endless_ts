@@ -109,6 +109,8 @@ declare namespace InstanceType {
 		};
 		behaviors: __BuildingModeSpButtonBehaviors<this>;
 	}
+	class GridBoss extends ISpriteInstance {
+	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {
 			ThisY: number,

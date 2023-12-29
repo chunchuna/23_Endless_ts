@@ -1,12 +1,15 @@
+import { Building } from "./Building.js";
 export class Player {
     static Update() {
     }
-    static Init() {
+    static async Init(runtime) {
+        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+        await (EventHnadlerInstance?.addEventListener)("[player-moving]", (e) => {
+            var PlayerPosition = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
+            Building.UpdateGridPosition(runtime, PlayerPosition);
+        });
     }
-    static GetPlayerInstance(runtime) {
-        return runtime.objects.player.getFirstInstance();
-    }
-    static PlayerMoveByWASD(runtime) {
+    static Input(runtime) {
         const { keyboard, objects: { player } } = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors["8DirMove"];
@@ -20,5 +23,8 @@ export class Player {
             if (keyboard?.isKeyDown(key))
                 simulMover?.simulateControl(value);
         });
+    }
+    static GetPlayerInstance(runtime) {
+        return runtime.objects.player.getFirstInstance();
     }
 }
