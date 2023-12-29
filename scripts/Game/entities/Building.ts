@@ -329,5 +329,6 @@ export class Building {
             transformY: true,
 
         })
+        console.log("asdadasdasdsa"+GetGridBoss?.getChildCount());
     }
 }
