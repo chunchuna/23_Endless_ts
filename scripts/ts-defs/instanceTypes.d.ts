@@ -19,7 +19,10 @@ declare namespace InstanceType {
 	}
 	class Ground2 extends ISpriteInstance {
 		instVars: {
-			LocalLayer: string
+			LocalLayer: string,
+			PrePositionX: number,
+			PrePositionY: number,
+			IsInGrid: boolean
 		};
 		behaviors: __Ground2Behaviors<this>;
 	}
@@ -31,21 +34,12 @@ declare namespace InstanceType {
 		instVars: {
 			ThisY: number,
 			LocalLayerName: string,
-			LocalLayer: string
+			LocalLayer: string,
+			PrePositionX: number,
+			PrePositionY: number,
+			IsInGrid: boolean
 		};
 		behaviors: __wallBehaviors<this>;
-	}
-	class __wall2Behaviors<InstType> {
-		Drag: IDragDropBehaviorInstance<InstType>;
-		实体: ISolidBehaviorInstance<InstType>;
-	}
-	class wall2 extends ISpriteInstance {
-		instVars: {
-			ThisY: number,
-			LocalLayerName: string,
-			LocalLayer: string
-		};
-		behaviors: __wall2Behaviors<this>;
 	}
 	class __MainCameraBehaviors<InstType> {
 		CameraFlow: IBehaviorInstance<InstType>;
@@ -89,6 +83,11 @@ declare namespace InstanceType {
 		};
 		behaviors: __TreeBehaviors<this>;
 	}
+	class Grid extends ISpriteInstance {
+		instVars: {
+			IsCanPlace: boolean
+		};
+	}
 	class ControlIntroductionText extends ITextInstance {
 		effects: {
 			BetterOutline: IEffectInstance
@@ -110,8 +109,6 @@ declare namespace InstanceType {
 		};
 		behaviors: __BuildingModeSpButtonBehaviors<this>;
 	}
-	class Grid extends ISpriteInstance {
-	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {
 			ThisY: number,
@@ -123,7 +120,10 @@ declare namespace InstanceType {
 	}
 	class BuildingGroup extends ISpriteInstance {
 		instVars: {
-			LocalLayer: string
+			LocalLayer: string,
+			PrePositionX: number,
+			PrePositionY: number,
+			IsInGrid: boolean
 		};
 		behaviors: __BuildingGroupBehaviors<this>;
 	}

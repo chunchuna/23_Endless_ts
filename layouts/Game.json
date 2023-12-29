@@ -600,7 +600,9 @@
 								"live-preview": false
 							},
 							"uid": 4,
-							"instanceVariables": {},
+							"instanceVariables": {
+								"IsCanPlace": true
+							},
 							"behaviors": {},
 							"world": {
 								"x": 662,
@@ -608,7 +610,7 @@
 								"width": 256,
 								"height": 256,
 								"originX": 0.5,
-								"originY": 0.5,
+								"originY": 1,
 								"color": [
 									1,
 									1,

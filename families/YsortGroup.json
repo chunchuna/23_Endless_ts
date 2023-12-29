@@ -23,7 +23,6 @@
 	"members": [
 		"player",
 		"wall",
-		"wall2",
 		"Tree"
 	]
 }

@@ -1,20 +1,29 @@
 import { Layer } from "../utils/Layer.js";
 import { Player } from "./Player.js";
 import { ObjectYsort } from "./Ysort.js";
+var Grid = InstanceType.Grid;
+import { GameMath } from "../utils/Math.js";
 var SpwnTypeEnum;
 (function (SpwnTypeEnum) {
     SpwnTypeEnum[SpwnTypeEnum["Mouse"] = 0] = "Mouse";
     SpwnTypeEnum[SpwnTypeEnum["NearPlayer"] = 1] = "NearPlayer";
+    SpwnTypeEnum[SpwnTypeEnum["CustomPosition"] = 2] = "CustomPosition";
 })(SpwnTypeEnum || (SpwnTypeEnum = {}));
 export class Building {
-    static SelectedCreatBuildingType;
+    static SelectedCreatBuildingType; // What is the type of building selected by the current player?
     static Update(runtime) {
-        // Use Grid place
-        for (var buildings of runtime.objects.BuildingGroup.instances()) {
-            var postion = Building.SetPositionRound(runtime, buildings.x, buildings.y);
-            buildings.x = postion[0];
-            buildings.y = postion[1];
+        // Set all placed objects within the rule 256: 256
+        for (var Buildings of runtime.objects.BuildingGroup.instances()) {
+            var Postion = Building.SetPositionRound(runtime, Buildings.x, Buildings.y);
+            Buildings.x = Postion[0];
+            Buildings.y = Postion[1];
         }
+        var AllGrids = Building.GetAllGrids(runtime);
+        AllGrids.forEach((Grid) => {
+            var Postion = Building.SetPositionRound(runtime, Grid.x, Grid.y);
+            Grid.x = Postion[0];
+            Grid.y = Postion[1];
+        });
     }
     static async Init(runtime) {
         // When a building is generated
@@ -29,9 +38,6 @@ export class Building {
         await (EventHnadlerInstance?.addEventListener)("[build-spwan]", (e) => {
             if (e.walltype == "wall1") {
                 Building.SpwnStuff(runtime, runtime.objects.wall, SpwnTypeEnum.NearPlayer);
-            }
-            if (e.walltype == "wall2") {
-                Building.SpwnStuff(runtime, runtime.objects.wall2, SpwnTypeEnum.NearPlayer);
             }
         });
         // When click the button to switch the building mode
@@ -51,7 +57,7 @@ export class Building {
             var BuildingLayer = Layer.GetLayer(runtime, "BuildingLayer");
             Layer.SetLayerVisibel(runtime, BuildingLayer, true);
             Building.SetAllBuildingsToLayer(runtime, "BuildingLayer", "null");
-            // Enable drag behavior for buildings  
+            // Enable drag behavior for buildings
             // [bug -> If a building is created after that, it cannot be dragged by default]
             var AllBuildings = Building.GetAllBuildings(runtime);
             AllBuildings.forEach((buils) => {
@@ -87,7 +93,22 @@ export class Building {
             // Set the light layer visible
             Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
         });
-        //Grid event related
+        //Drag and drop event
+        await (EventHnadlerInstance?.addEventListener)("[build-dragstart]", (e) => {
+        });
+        await (EventHnadlerInstance?.addEventListener)("[build-dragrunning]", (e) => {
+        });
+        await (EventHnadlerInstance?.addEventListener)("[build-dragfinish]", (e) => {
+            var BuildingInstance = e.buildings;
+            // if (!BuildingInstance.instVars.IsInGrid) {
+            //     BuildingInstance.x = BuildingInstance.instVars.PrePositionX;
+            //     BuildingInstance.y = BuildingInstance.instVars.PrePositionY;
+            // }
+            var GetCloseGrid = Building.GetClosestGrid(BuildingInstance, Building.GetAllGrids(runtime));
+            BuildingInstance.x = GetCloseGrid.x;
+            BuildingInstance.y = GetCloseGrid.y;
+        });
+        // Grids
         Building.SelectedCreatBuildingType = runtime.objects.wall;
         await (EventHnadlerInstance?.addEventListener)("[build-MouseOverGrid]", (e) => {
             var IsMouseOver = e.MouseOver;
@@ -101,8 +122,34 @@ export class Building {
             var IsMouseOver = e.MouseOver;
             var GetGrid = e.ThisGrid[0];
             var InstanceClass = Building.SelectedCreatBuildingType;
-            Building.SpwnStuff(runtime, InstanceClass, SpwnTypeEnum.Mouse);
+            if (!GetGrid.instVars.IsCanPlace)
+                return;
+            var GetCretedBuilding = Building.SpwnStuff(runtime, InstanceClass, SpwnTypeEnum.CustomPosition);
+            GetCretedBuilding.x = GetGrid.getImagePointX(0);
+            GetCretedBuilding.y = GetGrid.getImagePointY(0);
         });
+        await (EventHnadlerInstance?.addEventListener)("[build-GridOverPlayer]", (e) => {
+            var IsMouseOver = e.MouseOver;
+            var GetGrid = e.ThisGrid[0];
+            GetGrid.instVars.IsCanPlace = false;
+        });
+        await (EventHnadlerInstance?.addEventListener)("[!build-GridOverPlayer]", (e) => {
+            var IsMouseOver = e.MouseOver;
+            var GetGrid = e.ThisGrid[0];
+            GetGrid.instVars.IsCanPlace = true;
+        });
+    }
+    static GetClosestGrid(building, grids) {
+        let closestGrid = null;
+        let minDistance = Number.MAX_VALUE;
+        for (let grid of grids) {
+            let distance = GameMath.calculateDistance(building.x, building.y, grid.x, grid.y);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestGrid = grid;
+            }
+        }
+        return closestGrid;
     }
     static SpwnStuff(runtime, buildingStuffClass, SpwnType) {
         var objectClass = buildingStuffClass;
@@ -125,6 +172,9 @@ export class Building {
             var mouseY = runtime.mouse?.getMouseY(layer?.name) ?? 0;
             objectInstance.x = mouseX;
             objectInstance.y = mouseY;
+        }
+        if (SpwnType == SpwnTypeEnum.CustomPosition) {
+            return objectInstance;
         }
     }
     static SetAllBuildingsToLayer(runtime, LayerName, Type) {
@@ -150,6 +200,13 @@ export class Building {
             allBuildings.push(buildings);
         }
         return allBuildings;
+    }
+    static GetAllGrids(runtime) {
+        let allGrids = [];
+        for (let grid of runtime.objects.Grid.instances()) {
+            allGrids.push(grid);
+        }
+        return allGrids;
     }
     static SpwnGrid(runtime, Postion) {
         var GridInstance = runtime.objects.Grid.createInstance("Ground", Postion[0], Postion[1]);

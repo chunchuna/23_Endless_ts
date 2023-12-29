@@ -497,9 +497,9 @@
 										{
 											"id": "on-object-clicked",
 											"objectClass": "Mouse",
-											"sid": 981707398904435,
+											"sid": 446817121782005,
 											"parameters": {
-												"mouse-button": "left",
+												"mouse-button": "right",
 												"click-type": "clicked",
 												"object-clicked": "Grid"
 											}
@@ -518,6 +518,60 @@
 												}
 											],
 											"sid": 264458194734287
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 526118950723525,
+											"parameters": {
+												"object": "Grid"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 824461947641852,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-overlapping-another-object",
+													"objectClass": "Grid",
+													"sid": 613059570831398,
+													"parameters": {
+														"object": "player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[build-GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 652205006693174
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 991388922180495
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[!build-GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 856371144461625
 										}
 									]
 								}
@@ -667,10 +721,10 @@
 								{
 									"id": "on-object-clicked",
 									"objectClass": "Mouse",
-									"sid": 660334687384793,
+									"sid": 790028430275115,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "double-clicked",
+										"mouse-button": "middle",
+										"click-type": "clicked",
 										"object-clicked": "BuildingGroup"
 									}
 								}
@@ -705,6 +759,60 @@
 							],
 							"sid": 641389880047509,
 							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-drag-start",
+									"objectClass": "BuildingGroup",
+									"sid": 480203449900036,
+									"behaviorType": "Drag"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[build-dragstart]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+								}
+							],
+							"sid": 766008427844509
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-drop",
+									"objectClass": "BuildingGroup",
+									"sid": 274405624763183,
+									"behaviorType": "Drag"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[build-dragfinish]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+								}
+							],
+							"sid": 933225396529938
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-dragging",
+									"objectClass": "BuildingGroup",
+									"sid": 230118492257820,
+									"behaviorType": "Drag"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[build-dragfinish]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+								}
+							],
+							"sid": 818151481446309
 						}
 					],
 					"sid": 413711549514839
@@ -758,256 +866,6 @@
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-clicked",
-									"objectClass": "BuildingModeButton",
-									"sid": 195062506679569
-								}
-							],
-							"actions": [
-								{
-									"id": "toggle-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 797242038136752,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"sid": 715801625955170,
-							"disabled": true,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-object-clicked",
-									"objectClass": "Mouse",
-									"sid": 630761771118583,
-									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "BuildingModeSpButton"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "toggle-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 934648039159142,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"sid": 762771379169680,
-							"disabled": true,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 642449664590008,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-default-color",
-									"objectClass": "BuildingGroup",
-									"sid": 841008852862846,
-									"parameters": {
-										"color": "rgbEx(70, 70, 100)"
-									}
-								}
-							],
-							"sid": 247163460630237,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 973610185654963,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-default-color",
-									"objectClass": "BuildingGroup",
-									"sid": 413226473904705,
-									"parameters": {
-										"color": "rgbEx(100, 100, 100)"
-									}
-								}
-							],
-							"sid": 377067609545529,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 631959844045427,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "BuildingGroup",
-									"sid": 235264598726591,
-									"behaviorType": "Drag",
-									"parameters": {
-										"state": "enabled"
-									}
-								}
-							],
-							"sid": 290665283312929,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 514096449873167,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "BuildingGroup",
-									"sid": 402623075970945,
-									"behaviorType": "Drag",
-									"parameters": {
-										"state": "disabled"
-									}
-								}
-							],
-							"sid": 376133801454580,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 649093336670497,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 701306482018168,
-							"disabled": true,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-object-clicked",
-											"objectClass": "Mouse",
-											"sid": 308557310766700,
-											"parameters": {
-												"mouse-button": "left",
-												"click-type": "double-clicked",
-												"object-clicked": "BuildingGroup"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "destroy",
-											"objectClass": "BuildingGroup",
-											"sid": 780690029998502
-										}
-									],
-									"sid": 346453969815823,
-									"disabled": true
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 671160189890234,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 922119400792206,
-									"parameters": {
-										"layer": "\"Light\"",
-										"visibility": "invisible"
-									}
-								}
-							],
-							"sid": 130989478526529,
-							"disabled": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 549117663575612,
-									"parameters": {
-										"variable": "ISBuildingMode"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 975744130951976,
-									"parameters": {
-										"layer": "\"Light\"",
-										"visibility": "visible"
-									}
-								}
-							],
-							"sid": 600276384846960,
-							"disabled": true
-						},
 						{
 							"eventType": "block",
 							"conditions": [

@@ -108,9 +108,7 @@
 	],
 	"uniqueId": "817sxb8q3mj",
 	"objectTypes": {
-		"items": [
-			"Grid"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -118,7 +116,6 @@
 					"player",
 					"Ground2",
 					"wall",
-					"wall2",
 					"MainCamera",
 					"Mouse",
 					"Browser",
@@ -127,7 +124,8 @@
 					"TextIconExport",
 					"Light",
 					"EventHnadler",
-					"Tree"
+					"Tree",
+					"Grid"
 				],
 				"subfolders": [],
 				"name": "GameObject"
@@ -196,7 +194,7 @@
 				{
 					"name": "main-chunchun的MacBook Air.js",
 					"type": "application/javascript",
-					"sid": 799024805178448,
+					"sid": 639652107287857,
 					"script-info": {
 						"purpose": "none"
 					}
@@ -209,7 +207,7 @@
 						{
 							"items": [
 								{
-									"name": "GamePlay_Game.js",
+									"name": "game.js",
 									"type": "application/javascript",
 									"sid": 524128889265759,
 									"script-info": {

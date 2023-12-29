@@ -4,12 +4,12 @@ import { IntroduceTextInstance } from "../entities/IntroduceText.js";
 import { Player } from "../entities/Player.js";
 import { WallInstance } from "../entities/Wall.js";
 import { ObjectYsort } from "../entities/Ysort.js";
-export class gameplay {
+export class game {
     static Update(runtime) {
         [
             Building.Update,
             Player.PlayerMoveByWASD,
-            WallInstance.UpdateWall1State,
+            WallInstance.Update,
         ].forEach((func) => func(runtime));
     }
     static Init(runtime) {

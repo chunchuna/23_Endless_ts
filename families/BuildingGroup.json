@@ -9,6 +9,20 @@
 			"desc": "",
 			"show": true,
 			"sid": 193480312108164
+		},
+		{
+			"name": "PrePositionX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 837276374708791
+		},
+		{
+			"name": "PrePositionY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 769381947504476
 		}
 	],
 	"behaviorTypes": [
@@ -21,7 +35,6 @@
 	"effectTypes": [],
 	"members": [
 		"wall",
-		"wall2",
 		"Ground2"
 	]
 }
