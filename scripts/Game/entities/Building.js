@@ -245,7 +245,12 @@ export class Building {
     }
     static UpdateGridPosition(runtime, Position) {
         var GetGridBoss = runtime.objects.GridBoss.getFirstInstance();
-        GetGridBoss.x = Position[0];
-        GetGridBoss.y = Position[1];
+        // GetGridBoss!.x=Position[0];
+        // GetGridBoss!.y=Position[1];
+        var PlayerInstance = Player.GetPlayerInstance(runtime);
+        PlayerInstance?.addChild(GetGridBoss, {
+            transformX: true,
+            transformY: true,
+        });
     }
 }
