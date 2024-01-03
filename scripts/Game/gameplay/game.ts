@@ -18,7 +18,7 @@ export class game {
             Building.Init,
             ObjectYsort.Init,
             Collectable.Init,
-            IntroduceTextInstance.TextUpdate,
+            IntroduceTextInstance.Init,
             Player.Init,
         ].forEach((func) => func(runtime));
     }
