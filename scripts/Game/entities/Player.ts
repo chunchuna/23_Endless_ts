@@ -1,4 +1,4 @@
-import {Building} from "./Building.js";
+import { Building } from "./Building.js";
 
 export class Player {
 
@@ -9,16 +9,17 @@ export class Player {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-moving]", (e: any) => {
+            //Constantly reset the position of the grid as players move
             var PlayerPosition = [Player.GetPlayerInstance(runtime)!.x, Player.GetPlayerInstance(runtime)!.y] as [number, number];
-            if (runtime.globalVars.ISBuildingMode && runtime.objects.GridBoss.getFirstInstance())
-                Building.UpdateGridPosition(runtime, PlayerPosition)
+            if (runtime.globalVars.ISBuildingMode)
+                Building.UpdateGridPositionByPlayer(runtime)
         });
 
     }
 
     public static Input(runtime: IRuntime) {
 
-        const {keyboard, objects: {player}} = runtime;
+        const { keyboard, objects: { player } } = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors["8DirMove"];
         const keyMap = {

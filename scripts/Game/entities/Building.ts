@@ -1,8 +1,8 @@
-import {Layer} from "../utils/Layer.js";
-import {Player} from "./Player.js";
-import {ObjectYsort} from "./Ysort.js";
+import { Layer } from "../utils/Layer.js";
+import { Player } from "./Player.js";
+import { ObjectYsort } from "./Ysort.js";
 import Grid = InstanceType.Grid;
-import {GameMath} from "../utils/Math.js";
+import { GameMath } from "../utils/Math.js";
 
 enum SpwnTypeEnum { //The type of building, in what way is the building generated?
     Mouse, //Near the mouse
@@ -73,7 +73,7 @@ export class Building {
             var Postion = [Player.GetPlayerInstance(runtime)!.x, Player.GetPlayerInstance(runtime)!.y]
 
             //Building.SpwnGrid(runtime, Postion);
-            Building.CreateGridArray(runtime, 5, 256)
+            Building.CreateGridArrayByPlayer(runtime, 5, 256)
 
 
             // Set the building layer visible
@@ -298,37 +298,29 @@ export class Building {
         }
     }
 
-    private static CreateGridArray(runtime: IRuntime, ArraySize: number, CellSize: number) {
+    private static CreateGridArrayByPlayer(runtime: IRuntime, ArraySize: number, CellSize: number) {
         var StartX: number = Player.GetPlayerInstance(runtime)!.x - (ArraySize / 2) * CellSize;
         var StartY: number = Player.GetPlayerInstance(runtime)!.y - (ArraySize / 2) * CellSize;
-        var GirdBossInstance = runtime.objects.GridBoss.createInstance("Object", StartX, StartY);
+        //var GirdBossInstance = runtime.objects.GridBoss.createInstance("Object", StartX, StartY);
         for (let x = 0; x < ArraySize; x++) {
             for (let y = 0; y < ArraySize; y++) {
                 var spawnX = StartX + x * CellSize;
                 var spawnY = StartY + y * CellSize;
                 var Position = [spawnX, spawnY];
                 var GetGrid = Building.SpwnGrid(runtime, Position);
-                GirdBossInstance.addChild(GetGrid, {
-                    transformY: true,
-                    transformX: true,
-                })
-                console.log(GetGrid.getParent());
+
             }
         }
 
 
     }
 
-    public static UpdateGridPosition(runtime: IRuntime, Position: [number, number]) {
-        var GetGridBoss = runtime.objects.GridBoss.getFirstInstance();
-        // GetGridBoss!.x=Position[0];
-        // GetGridBoss!.y=Position[1];
-        var PlayerInstance = Player.GetPlayerInstance(runtime);
-        PlayerInstance?.addChild(GetGridBoss!, {
-            transformX: true,
-            transformY: true,
+    public static UpdateGridPositionByPlayer(runtime: IRuntime,) {
+        var IsGridHas = runtime.objects.Grid.getFirstInstance();
+        if (IsGridHas != null) {
+            Building.ClearAllGrid(runtime);
+            Building.CreateGridArrayByPlayer(runtime, 5, 256);
 
-        })
-        console.log("asdadasdasdsa"+GetGridBoss?.getChildCount());
+        }
     }
 }

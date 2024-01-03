@@ -5,9 +5,10 @@ export class Player {
     static async Init(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         await (EventHnadlerInstance?.addEventListener)("[player-moving]", (e) => {
+            //Constantly reset the position of the grid as players move
             var PlayerPosition = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
-            if (runtime.globalVars.ISBuildingMode && runtime.objects.GridBoss.getFirstInstance())
-                Building.UpdateGridPosition(runtime, PlayerPosition);
+            if (runtime.globalVars.ISBuildingMode)
+                Building.UpdateGridPositionByPlayer(runtime);
         });
     }
     static Input(runtime) {

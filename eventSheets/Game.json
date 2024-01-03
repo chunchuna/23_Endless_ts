@@ -33,16 +33,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "CollectableEffectiveRange",
-			"type": "number",
-			"initialValue": "300",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 501118511175534
-		},
-		{
-			"eventType": "variable",
 			"name": "CollectablePlayerDmg",
 			"type": "number",
 			"initialValue": "1",
@@ -50,6 +40,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 302434207393778
+		},
+		{
+			"eventType": "variable",
+			"name": "CollectableEffectiveRange",
+			"type": "number",
+			"initialValue": "300",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 808155663731012
 		},
 		{
 			"eventType": "group",
