@@ -22,6 +22,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Camera3D",
+			"name": "3D相机",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Keyboard",
 			"author": "Scirra",
@@ -31,6 +38,13 @@
 			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Shape3D",
+			"name": "3D形状",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -47,6 +61,14 @@
 			"name": "Text",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "skymen_mask",
+			"name": "[Clipping Mask]",
+			"author": "reddog, skymen",
+			"bundled": true,
+			"version": "1.0.0.4"
 		},
 		{
 			"type": "behavior",
@@ -134,14 +156,18 @@
 					"Tree",
 					"Grid",
 					"GridBoss",
-					"PathFindPoint"
+					"PathFindPoint",
+					"3DCamera",
+					"Player3Dbox",
+					"Tree3Dbox"
 				],
 				"subfolders": [],
 				"name": "GameObject"
 			},
 			{
 				"items": [
-					"ControlIntroductionText"
+					"ControlIntroductionText",
+					"GameGuideText"
 				],
 				"subfolders": [],
 				"name": "Text"
@@ -155,6 +181,16 @@
 				],
 				"subfolders": [],
 				"name": "Button"
+			},
+			{
+				"items": [
+					"ListWindoBackground",
+					"ListWindowScrollbackgropund",
+					"ListWindowClippingMaskVisible",
+					"GameGuideCloseButton"
+				],
+				"subfolders": [],
+				"name": "UI"
 			}
 		]
 	},
@@ -171,7 +207,8 @@
 	},
 	"layouts": {
 		"items": [
-			"Game"
+			"Game",
+			"Res"
 		],
 		"subfolders": []
 	},
@@ -265,6 +302,14 @@
 									"name": "Collectable.js",
 									"type": "application/javascript",
 									"sid": 853553527259814,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "GameGuideWindow.js",
+									"type": "application/javascript",
+									"sid": 670866338005235,
 									"script-info": {
 										"purpose": "none"
 									}
@@ -456,11 +501,11 @@
 		"sampling": "nearest",
 		"downscaling": "medium",
 		"renderingMode": "auto",
-		"anisotropicFiltering": "auto",
+		"anisotropicFiltering": "16x",
 		"zNear": 1,
 		"zFar": 10000,
 		"maxSpriteSheetSize": 2048,
-		"loaderStyle": "splash",
+		"loaderStyle": "progress",
 		"preloadSounds": true,
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",

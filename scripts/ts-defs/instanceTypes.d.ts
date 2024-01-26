@@ -7,6 +7,7 @@ declare namespace InstanceType {
 		MoveShakeSine: ISineBehaviorInstance<InstType>;
 		BreathSine: ISineBehaviorInstance<InstType>;
 		PathFind: IPathfindingBehaviorInstance<InstType>;
+		DirMove: IMoveToBehaviorInstance<InstType>;
 	}
 	class player extends ISpriteInstance {
 		instVars: {
@@ -98,6 +99,8 @@ declare namespace InstanceType {
 			BetterOutline: IEffectInstance
 		};
 	}
+	class GameGuideText extends ITextInstance {
+	}
 	class BuildingModeButton extends IButtonInstance {
 	}
 	class BuildingModeCreatWall2 extends IButtonInstance {
@@ -113,6 +116,28 @@ declare namespace InstanceType {
 			LocalSizeY: number
 		};
 		behaviors: __BuildingModeSpButtonBehaviors<this>;
+	}
+	class ListWindoBackground extends ISpriteInstance {
+	}
+	class __ListWindowScrollbackgropundBehaviors<InstType> {
+		拖放: IDragDropBehaviorInstance<InstType>;
+	}
+	class ListWindowScrollbackgropund extends ISpriteInstance {
+		behaviors: __ListWindowScrollbackgropundBehaviors<this>;
+	}
+	class ListWindowClippingMaskVisible extends IWorldInstance {
+	}
+	class __GameGuideCloseButtonBehaviors<InstType> {
+		ButtonBreath: ISineBehaviorInstance<InstType>;
+	}
+	class GameGuideCloseButton extends ISpriteInstance {
+		instVars: {
+			LocalSizeX: number,
+			LocalSizeY: number
+		};
+		behaviors: __GameGuideCloseButtonBehaviors<this>;
+	}
+	class Player3Dbox extends I3DShapeInstance {
 	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {

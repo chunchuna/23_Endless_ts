@@ -17,10 +17,16 @@ declare class IConstructProjectObjects {
 	readonly GridBoss: IObjectType<InstanceType.GridBoss>;
 	readonly PathFindPoint: IObjectType<InstanceType.PathFindPoint>;
 	readonly ControlIntroductionText: IObjectType<InstanceType.ControlIntroductionText>;
+	readonly GameGuideText: IObjectType<InstanceType.GameGuideText>;
 	readonly BuildingModeButton: IObjectType<InstanceType.BuildingModeButton>;
 	readonly BuildingModeCreatWall2: IObjectType<InstanceType.BuildingModeCreatWall2>;
 	readonly BuildingModeCreatWall1: IObjectType<InstanceType.BuildingModeCreatWall1>;
 	readonly BuildingModeSpButton: IObjectType<InstanceType.BuildingModeSpButton>;
+	readonly ListWindoBackground: IObjectType<InstanceType.ListWindoBackground>;
+	readonly ListWindowScrollbackgropund: IObjectType<InstanceType.ListWindowScrollbackgropund>;
+	readonly ListWindowClippingMaskVisible: IObjectType<InstanceType.ListWindowClippingMaskVisible>;
+	readonly GameGuideCloseButton: IObjectType<InstanceType.GameGuideCloseButton>;
+	readonly Player3Dbox: IObjectType<InstanceType.Player3Dbox>;
 	readonly YsortGroup: IFamily<InstanceType.YsortGroup>;
 	readonly BuildingGroup: IFamily<InstanceType.BuildingGroup>;
 	readonly ButtonGroup: IFamily<InstanceType.ButtonGroup>;

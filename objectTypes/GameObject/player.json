@@ -24,6 +24,11 @@
 			"behaviorId": "Pathfinding",
 			"name": "PathFind",
 			"sid": 745227226083932
+		},
+		{
+			"behaviorId": "MoveTo",
+			"name": "DirMove",
+			"sid": 190345583922466
 		}
 	],
 	"effectTypes": [],

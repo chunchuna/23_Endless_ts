@@ -369,6 +369,17 @@
 										"direct-movement": "to-destination",
 										"enabled": true
 									}
+								},
+								"DirMove": {
+									"properties": {
+										"max-speed": 200,
+										"acceleration": 600,
+										"deceleration": 600,
+										"rotate-speed": 0,
+										"set-angle": false,
+										"stop-on-solids": false,
+										"enabled": true
+									}
 								}
 							},
 							"world": {
@@ -378,6 +389,206 @@
 								"height": 209,
 								"originX": 0.5333333333333333,
 								"originY": 0.9617224880382775,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Player3Dbox",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": false,
+								"face-front": true,
+								"face-left": true,
+								"face-right": true,
+								"face-top": true,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 22,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 5240,
+								"y": 5546,
+								"width": 252.36283403068686,
+								"height": 252.36283403068686,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Tree3Dbox",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": false,
+								"face-front": false,
+								"face-left": false,
+								"face-right": false,
+								"face-top": false,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 25,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 4655,
+								"y": 6501,
+								"width": 311.9599333247781,
+								"height": 311.9599333247781,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Tree3Dbox",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": false,
+								"face-front": false,
+								"face-left": false,
+								"face-right": false,
+								"face-top": false,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 26,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 6019,
+								"y": 6387,
+								"width": 311.9599333247781,
+								"height": 311.9599333247781,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Tree3Dbox",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": false,
+								"face-front": false,
+								"face-left": false,
+								"face-right": false,
+								"face-top": false,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 27,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 3795,
+								"y": 6799,
+								"width": 311.9599333247781,
+								"height": 311.9599333247781,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Tree3Dbox",
+							"properties": {
+								"shape": "box",
+								"z-height": 15,
+								"initially-visible": true,
+								"face-back": false,
+								"face-front": false,
+								"face-left": false,
+								"face-right": false,
+								"face-top": false,
+								"face-bottom": true,
+								"z-tiling-factor": 8,
+								"object-back": -1,
+								"object-front": -1,
+								"object-left": -1,
+								"object-right": -1,
+								"object-top": -1,
+								"object-bottom": -1
+							},
+							"uid": 28,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 3627,
+								"y": 6108,
+								"width": 311.9599333247781,
+								"height": 311.9599333247781,
+								"originX": 0.5,
+								"originY": 0.5,
 								"color": [
 									1,
 									1,
@@ -463,7 +674,7 @@
 									"effectId": "multiply",
 									"name": "正片叠底",
 									"instance": {
-										"isEnabled": true,
+										"isEnabled": false,
 										"parameters": {}
 									}
 								}
@@ -483,7 +694,7 @@
 								0.3058823529411765,
 								1
 							],
-							"isTransparent": false,
+							"isTransparent": true,
 							"parallaxX": 1,
 							"parallaxY": 1,
 							"scaleRate": 1,
@@ -796,6 +1007,40 @@
 			"overriden": 0,
 			"subLayers": [
 				{
+					"name": "GameGuideWindow",
+					"overriden": 1,
+					"subLayers": [],
+					"instances": [],
+					"sid": 781933852967820,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
 					"name": "HUD2",
 					"overriden": 0,
 					"subLayers": [],
@@ -870,7 +1115,7 @@
 					"parallaxY": 0,
 					"scaleRate": 1,
 					"forceOwnTexture": false,
-					"renderingMode": "3d",
+					"renderingMode": "2d",
 					"drawOrder": "z-order",
 					"useRenderCells": false,
 					"blendMode": "normal",
@@ -966,7 +1211,7 @@
 					"parallaxY": 0,
 					"scaleRate": 1,
 					"forceOwnTexture": false,
-					"renderingMode": "3d",
+					"renderingMode": "2d",
 					"drawOrder": "z-order",
 					"useRenderCells": false,
 					"blendMode": "normal",
@@ -997,7 +1242,7 @@
 			"parallaxY": 0,
 			"scaleRate": 1,
 			"forceOwnTexture": false,
-			"renderingMode": "3d",
+			"renderingMode": "2d",
 			"drawOrder": "z-order",
 			"useRenderCells": false,
 			"blendMode": "normal",

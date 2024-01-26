@@ -7,7 +7,11 @@ export class IntroduceTextInstance {
 
 
     public static Init(runtime: IRuntime) {
+
+
         var ControlIntroductionTextInstance: ITextInstance | null = runtime.objects.ControlIntroductionText.getFirstInstance();
+        ControlIntroductionTextInstance!.isVisible=false;
+        
 
         var EvnentHandlerInstance = runtime.objects.EventHnadler.getFirstInstance();
 

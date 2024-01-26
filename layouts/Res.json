@@ -1,0 +1,332 @@
+{
+	"name": "Res",
+	"layers": [
+		{
+			"name": "GameGuideWindow",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [
+				{
+					"type": "ListWindoBackground",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 6,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 908,
+						"y": 489,
+						"width": 1000.8230764422876,
+						"height": 808.8230764422876,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0.5
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ListWindowClippingMaskVisible",
+					"properties": {
+						"start": true,
+						"visible": true,
+						"hotspot-x": 0.5,
+						"hotspot-y": 0.5
+					},
+					"uid": 20,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 904,
+						"y": 462.5,
+						"width": 985,
+						"height": 610,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "ListWindowScrollbackgropund",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 9,
+					"instanceVariables": {},
+					"behaviors": {
+						"拖放": {
+							"properties": {
+								"axes": "vertical-only",
+								"enabled": true
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 9,
+						"children": [
+							{
+								"uid": 17,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 906,
+						"y": 2093.5,
+						"width": 903,
+						"height": 3861,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0.75
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "GameGuideText",
+					"properties": {
+						"text": "\n【*按下P键可以呼出本窗口查看说明】\n=====================================================\n欢迎来到无尽沙盒DEMO测试版本！\n操作方式：\nWASD移动，或者鼠标右键点击移动\n按下B或者点击右上角的斧头进入建筑模式\n\n建筑模式下，在方格内部点击右键生成墙壁；\n可以拖拽墙壁更换位置；\n和鼠标中键点击删除墙壁；\n\n*后续的版本建筑系统应该会被删除，用其他的方式代替当前的建筑系统。\n\n更新日志：v101\n=====================================================\n1/修复了建筑模式的部分bug\n2/新增了游戏帮助弹窗\n3/新增了角色自动寻路\n\nWelcome to the endless sandboxie DEMO test version!\nMode of operation:\nWASD Mobile, or right mouse button click Mobile.\nPress B or click the axe in the upper right corner to enter building mode.\n\nIn architectural mode, right-click inside the box to generate a wall.\nYou can drag the wall to change position.\nAnd middle mouse button click to delete the wall.\n\n* subsequent versions of the building system should be deleted to replace the current building system in other ways.\n\nUpdate log: v101.\n-.\n1 / fixed part of bug in building mode.\n2 / added game help pop-up window.\n3 / added role auto-pathfinding",
+						"enable-bbcode": true,
+						"font": "Arial",
+						"size": 25,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "character",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 17,
+					"instanceVariables": {},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 9,
+						"uid": 17,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 475,
+						"y": 164,
+						"width": 860,
+						"height": 3840,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ListWindowClippingMaskVisible",
+					"properties": {
+						"start": false,
+						"visible": true,
+						"hotspot-x": 0.5,
+						"hotspot-y": 0.5
+					},
+					"uid": 19,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 904,
+						"y": 464,
+						"width": 985,
+						"height": 610,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "GameGuideCloseButton",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 21,
+					"instanceVariables": {
+						"LocalSizeX": 60,
+						"LocalSizeY": 60
+					},
+					"behaviors": {
+						"ButtonBreath": {
+							"properties": {
+								"movement": "size",
+								"wave": "sine",
+								"period": 1,
+								"period-random": 0,
+								"period-offset": 0,
+								"period-offset-random": 0,
+								"magnitude": 30,
+								"magnitude-random": 0,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 1368,
+						"y": 121,
+						"width": 59.587213096899724,
+						"height": 56.892523982680814,
+						"originX": 0.5,
+						"originY": 0.5048076923076923,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				}
+			],
+			"sid": 327240471789459,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 0,
+			"parallaxY": 0,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": true
+		}
+	],
+	"sid": 429700839953981,
+	"nonworld-instances": [],
+	"effectTypes": [],
+	"width": 3840,
+	"height": 2160,
+	"unboundedScrolling": false,
+	"vpX": 0.5,
+	"vpY": 0.5,
+	"projection": "perspective",
+	"eventSheet": null
+}

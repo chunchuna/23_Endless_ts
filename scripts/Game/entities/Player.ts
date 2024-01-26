@@ -2,7 +2,15 @@ import { Building } from "./Building.js";
 
 export class Player {
 
-    public static Update() {
+    public static Update(runtime: IRuntime) {
+
+        var Player3Dbox = runtime.objects.Player3Dbox.getFirstInstance();
+        var PlayerInstance = Player.GetPlayerInstance(runtime);
+        Player3Dbox!.x =PlayerInstance!.x;
+        Player3Dbox!.y =PlayerInstance!.y;
+
+
+
     }
 
     public static async Init(runtime: IRuntime) {
@@ -25,11 +33,17 @@ export class Player {
         });
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-pathfind-arrive]", (e: any) => {
-            // Send this event when pathfind finds a path for special operations, such as drawing path points, etc.
+
             Player.ClearDrawPlayerPathFindPoint(runtime);
             if (runtime.globalVars.ISBuildingMode)
                 Building.UpdateGridPositionByPlayer(runtime)
 
+        });
+
+        await (EventHnadlerInstance?.addEventListener as any)("[player-dirmove-arrive]", (e: any) => {
+            Player.ClearDrawPlayerPathFindPoint(runtime);
+            if (runtime.globalVars.ISBuildingMode)
+                Building.UpdateGridPositionByPlayer(runtime)
 
 
         });
@@ -64,8 +78,10 @@ export class Player {
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-mouseleftclick]", (e: any) => {
             if (runtime.globalVars.ISBuildingMode) return;
-            Player.PlayerPathFindMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1])
+            // Player.PlayerPathFindMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1])
             Player.ClearDrawPlayerPathFindPoint(runtime);
+            Player.PlayerDirMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1]);
+
 
         });
 
@@ -106,5 +122,19 @@ export class Player {
         }
 
     }
+
+    private static PlayerDirMove(runtime: IRuntime, PositionX: number, PositionY: number) {
+        var PlayerInstance = Player.GetPlayerInstance(runtime);
+        var DirMoveBehavior: IMoveToBehaviorInstance<InstanceType.player> | undefined = PlayerInstance?.behaviors.DirMove;
+        DirMoveBehavior?.moveToPosition(PositionX, PositionY);
+        Player.DrawPlayerDirMovePoint(runtime, PositionX, PositionY)
+    }
+
+    public static DrawPlayerDirMovePoint(runtime: IRuntime, PositionX: number, PositionY: number) {
+        var PlayerInstance = Player.GetPlayerInstance(runtime);
+        var PathFindPoint = runtime.objects.PathFindPoint.createInstance("Ground", PositionX, PositionY);
+
+    }
+
 
 }

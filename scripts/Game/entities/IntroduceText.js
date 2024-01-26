@@ -5,6 +5,7 @@ export class IntroduceTextInstance {
     };
     static Init(runtime) {
         var ControlIntroductionTextInstance = runtime.objects.ControlIntroductionText.getFirstInstance();
+        ControlIntroductionTextInstance.isVisible = false;
         var EvnentHandlerInstance = runtime.objects.EventHnadler.getFirstInstance();
         (EvnentHandlerInstance?.addEventListener)("[buildingmode-toggle-on]", () => {
             // when building mode is on

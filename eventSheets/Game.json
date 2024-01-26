@@ -116,11 +116,28 @@
 							"id": "move-to-position",
 							"objectClass": "MainCamera",
 							"sid": 710240396291690,
+							"disabled": true,
 							"behaviorType": "MoveTo",
 							"parameters": {
 								"x": "player.x",
 								"y": "player.Y",
 								"mode": "direct"
+							}
+						},
+						{
+							"id": "look-at-position",
+							"objectClass": "3DCamera",
+							"sid": 350535685031737,
+							"parameters": {
+								"cam-x": "player.X",
+								"cam-y": "player.Y+500",
+								"cam-z": "100",
+								"look-x": "player.X",
+								"look-y": "player.Y",
+								"look-z": "0",
+								"up-x": "0",
+								"up-y": "1",
+								"up-z": "0"
 							}
 						}
 					],
@@ -140,6 +157,7 @@
 							"id": "set-position",
 							"objectClass": "MainCamera",
 							"sid": 422930966743804,
+							"disabled": true,
 							"parameters": {
 								"x": "player.X",
 								"y": "player.Y"
@@ -149,6 +167,7 @@
 							"id": "set-opacity",
 							"objectClass": "MainCamera",
 							"sid": 803012767157678,
+							"disabled": true,
 							"parameters": {
 								"opacity": "0"
 							}
@@ -285,7 +304,8 @@
 							}
 						}
 					],
-					"sid": 670377316750579
+					"sid": 670377316750579,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -310,7 +330,8 @@
 							}
 						}
 					],
-					"sid": 603386706418269
+					"sid": 603386706418269,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -335,7 +356,8 @@
 							}
 						}
 					],
-					"sid": 491280764752323
+					"sid": 491280764752323,
+					"disabled": true
 				}
 			],
 			"sid": 850766073921133
@@ -429,6 +451,24 @@
 								}
 							],
 							"sid": 124258312719463
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-arrived",
+									"objectClass": "player",
+									"sid": 265270904238171,
+									"behaviorType": "DirMove"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-dirmove-arrive]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 682488867604189
 						}
 					],
 					"sid": 643460820417666
@@ -470,6 +510,12 @@
 											"objectClass": "player",
 											"sid": 488169163395621,
 											"behaviorType": "PathFind"
+										},
+										{
+											"id": "is-moving",
+											"objectClass": "player",
+											"sid": 146730184793756,
+											"behaviorType": "DirMove"
 										}
 									],
 									"actions": [
@@ -1263,6 +1309,68 @@
 				}
 			],
 			"sid": 680611042585633
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "GameGuideWindow",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "GameGuideWindowHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 684063213316540,
+									"parameters": {
+										"key": 80
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[guide-callwindow]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 443029718306557
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 174559743509835,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "GameGuideCloseButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[guide-cliseCloseButton]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 354503627541375
+						}
+					],
+					"sid": 864273517511959
+				}
+			],
+			"sid": 126575053163313
 		}
 	],
 	"sid": 378470522758805

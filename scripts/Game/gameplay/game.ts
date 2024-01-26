@@ -5,12 +5,14 @@ import { Player } from "../entities/Player.js";
 import { WallInstance } from "../entities/Wall.js";
 import { ObjectYsort } from "../entities/Ysort.js";
 import player = InstanceType.player;
+import { GameGuideWindow } from "../entities/GameGuideWindow.js";
 export class game {
     public static Update(runtime: IRuntime) {
         [
             Building.Update,
             Player.InputUpdate,
             WallInstance.Update,
+            Player.Update,
         ].forEach((func) => func(runtime));
     }
     public static Init(runtime: IRuntime) {
@@ -20,6 +22,7 @@ export class game {
             Collectable.Init,
             IntroduceTextInstance.Init,
             Player.Init,
+            GameGuideWindow.Init,
 
         ].forEach((func) => func(runtime));
     }
