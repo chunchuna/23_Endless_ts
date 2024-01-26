@@ -4,7 +4,7 @@ export class WallInstance {
             for (let Walls_2 of runtime.objects.wall.instances()) {
                 if (Walls_1.getChildAt(0)?.testOverlap(Walls_2)) {
                     if (Walls_2 != Walls_1) {
-                        Walls_1.setAnimation("Line");
+                        //Walls_1.setAnimation("Line")
                         Walls_2.setAnimation("Line");
                     }
                     else {
