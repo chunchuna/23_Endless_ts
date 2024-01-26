@@ -116,7 +116,6 @@
 							"id": "move-to-position",
 							"objectClass": "MainCamera",
 							"sid": 710240396291690,
-							"disabled": true,
 							"behaviorType": "MoveTo",
 							"parameters": {
 								"x": "player.x",
@@ -128,6 +127,7 @@
 							"id": "look-at-position",
 							"objectClass": "3DCamera",
 							"sid": 951898025376556,
+							"disabled": true,
 							"parameters": {
 								"cam-x": "player.X",
 								"cam-y": "player.Y+1000",
@@ -157,7 +157,6 @@
 							"id": "set-position",
 							"objectClass": "MainCamera",
 							"sid": 422930966743804,
-							"disabled": true,
 							"parameters": {
 								"x": "player.X",
 								"y": "player.Y"
@@ -167,7 +166,6 @@
 							"id": "set-opacity",
 							"objectClass": "MainCamera",
 							"sid": 803012767157678,
-							"disabled": true,
 							"parameters": {
 								"opacity": "0"
 							}
@@ -304,8 +302,7 @@
 							}
 						}
 					],
-					"sid": 670377316750579,
-					"disabled": true
+					"sid": 670377316750579
 				},
 				{
 					"eventType": "block",
@@ -330,8 +327,7 @@
 							}
 						}
 					],
-					"sid": 603386706418269,
-					"disabled": true
+					"sid": 603386706418269
 				},
 				{
 					"eventType": "block",
@@ -356,8 +352,7 @@
 							}
 						}
 					],
-					"sid": 491280764752323,
-					"disabled": true
+					"sid": 491280764752323
 				}
 			],
 			"sid": 850766073921133
