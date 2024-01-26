@@ -137,9 +137,7 @@
 	],
 	"uniqueId": "817sxb8q3mj",
 	"objectTypes": {
-		"items": [
-			"WallMask"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -161,7 +159,8 @@
 					"PathFindPoint",
 					"3DCamera",
 					"Player3Dbox",
-					"Tree3Dbox"
+					"Tree3Dbox",
+					"WallMask"
 				],
 				"subfolders": [],
 				"name": "GameObject"
