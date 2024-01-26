@@ -376,12 +376,13 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-click",
+									"id": "on-object-clicked",
 									"objectClass": "Mouse",
-									"sid": 132943940114693,
+									"sid": 546305554390371,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked"
+										"mouse-button": "right",
+										"click-type": "clicked",
+										"object-clicked": "Ground1"
 									}
 								}
 							],

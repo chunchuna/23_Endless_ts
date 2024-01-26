@@ -71,6 +71,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Pathfinding",
+			"name": "寻路",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Sin",
 			"name": "正弦",
 			"author": "Scirra",
@@ -126,7 +133,8 @@
 					"EventHnadler",
 					"Tree",
 					"Grid",
-					"GridBoss"
+					"GridBoss",
+					"PathFindPoint"
 				],
 				"subfolders": [],
 				"name": "GameObject"
