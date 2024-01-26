@@ -137,7 +137,9 @@
 	],
 	"uniqueId": "817sxb8q3mj",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"WallMask"
+		],
 		"subfolders": [
 			{
 				"items": [

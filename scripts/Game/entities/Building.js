@@ -166,7 +166,7 @@ export class Building {
             return;
         }
         var objectInstance;
-        objectInstance = objectClass.createInstance(layer.name, -1000, -1000);
+        objectInstance = objectClass.createInstance(layer.name, -1000, -1000, true, "wallwithmask");
         if (SpwnType == SpwnTypeEnum.NearPlayer) {
             var PlayerInstance = runtime.objects.player.getFirstInstance();
             if (PlayerInstance) {

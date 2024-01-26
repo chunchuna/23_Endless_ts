@@ -1366,6 +1366,15 @@
 				}
 			],
 			"sid": 126575053163313
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Wall",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [],
+			"sid": 997343278978204
 		}
 	],
 	"sid": 378470522758805

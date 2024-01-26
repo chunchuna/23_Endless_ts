@@ -13,6 +13,7 @@ export class game {
             Player.InputUpdate,
             WallInstance.Update,
             Player.Update,
+            WallInstance.Update,
         ].forEach((func) => func(runtime));
     }
     public static Init(runtime: IRuntime) {
