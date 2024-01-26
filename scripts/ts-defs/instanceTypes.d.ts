@@ -6,6 +6,7 @@ declare namespace InstanceType {
 		"8DirMove": I8DirectionBehaviorInstance<InstType>;
 		MoveShakeSine: ISineBehaviorInstance<InstType>;
 		BreathSine: ISineBehaviorInstance<InstType>;
+		PathFind: IPathfindingBehaviorInstance<InstType>;
 	}
 	class player extends ISpriteInstance {
 		instVars: {
@@ -88,6 +89,10 @@ declare namespace InstanceType {
 			IsCanPlace: boolean
 		};
 	}
+	class GridBoss extends ISpriteInstance {
+	}
+	class PathFindPoint extends ISpriteInstance {
+	}
 	class ControlIntroductionText extends ITextInstance {
 		effects: {
 			BetterOutline: IEffectInstance
@@ -108,8 +113,6 @@ declare namespace InstanceType {
 			LocalSizeY: number
 		};
 		behaviors: __BuildingModeSpButtonBehaviors<this>;
-	}
-	class GridBoss extends ISpriteInstance {
 	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {

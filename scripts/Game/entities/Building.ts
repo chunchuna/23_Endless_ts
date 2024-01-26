@@ -204,9 +204,12 @@ export class Building {
 
         for (let grid of grids) {
             let distance = GameMath.calculateDistance(building.x, building.y, grid.x, grid.y);
-            if (distance < minDistance) {
+            if (distance < minDistance && grid.instVars.IsCanPlace) {
                 minDistance = distance;
                 closestGrid = grid;
+
+            } else {
+                console.log("can not find closest grid")
             }
         }
 

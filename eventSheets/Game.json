@@ -371,6 +371,63 @@
 								}
 							],
 							"sid": 708837788329524
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-click",
+									"objectClass": "Mouse",
+									"sid": 132943940114693,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-mouseleftclick]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 634603501694089
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-path-found",
+									"objectClass": "player",
+									"sid": 171500996215662,
+									"behaviorType": "PathFind"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-pathfind-findpos]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 646108175725766
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-arrived",
+									"objectClass": "player",
+									"sid": 977290589384324,
+									"behaviorType": "PathFind"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-pathfind-arrive]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 124258312719463
 						}
 					],
 					"sid": 643460820417666
@@ -406,6 +463,12 @@
 											"objectClass": "player",
 											"sid": 285671045673939,
 											"behaviorType": "8DirMove"
+										},
+										{
+											"id": "is-moving-along-path",
+											"objectClass": "player",
+											"sid": 488169163395621,
+											"behaviorType": "PathFind"
 										}
 									],
 									"actions": [
@@ -419,7 +482,8 @@
 											}
 										}
 									],
-									"sid": 327164229367290
+									"sid": 327164229367290,
+									"isOrBlock": true
 								},
 								{
 									"eventType": "block",

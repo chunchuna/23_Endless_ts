@@ -112,7 +112,37 @@
 							"name": "Ground",
 							"overriden": 0,
 							"subLayers": [],
-							"instances": [],
+							"instances": [
+								{
+									"type": "PathFindPoint",
+									"properties": {
+										"initially-visible": true,
+										"initial-animation": "Animation 1",
+										"initial-frame": 0,
+										"enable-collisions": true,
+										"live-preview": false
+									},
+									"uid": 5,
+									"instanceVariables": {},
+									"behaviors": {},
+									"world": {
+										"x": 1015,
+										"y": -405,
+										"width": 64,
+										"height": 64,
+										"originX": 0.5,
+										"originY": 0.5,
+										"color": [
+											1,
+											1,
+											1,
+											1
+										],
+										"angle": 0,
+										"zElevation": 0
+									}
+								}
+							],
 							"sid": 431953774042226,
 							"effectTypes": [],
 							"isInitiallyVisible": true,
@@ -323,6 +353,21 @@
 										"magnitude-random": 0,
 										"enabled": true,
 										"live-preview": false
+									}
+								},
+								"PathFind": {
+									"properties": {
+										"cell-size": 1,
+										"cell-border": 20,
+										"obstacles": "solids",
+										"max-speed": 800,
+										"acceleration": 1000,
+										"deceleration": 2000,
+										"rotate-speed": 135,
+										"rotate-object": false,
+										"diagonals": true,
+										"direct-movement": "to-destination",
+										"enabled": true
 									}
 								}
 							},

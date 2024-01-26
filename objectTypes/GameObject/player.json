@@ -19,6 +19,11 @@
 			"behaviorId": "Sin",
 			"name": "BreathSine",
 			"sid": 498632587441404
+		},
+		{
+			"behaviorId": "Pathfinding",
+			"name": "PathFind",
+			"sid": 745227226083932
 		}
 	],
 	"effectTypes": [],

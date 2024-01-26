@@ -6,10 +6,10 @@ import { WallInstance } from "../entities/Wall.js";
 import { ObjectYsort } from "../entities/Ysort.js";
 import player = InstanceType.player;
 export class game {
-     public static Update(runtime: IRuntime) {
+    public static Update(runtime: IRuntime) {
         [
             Building.Update,
-            Player.Input,
+            Player.InputUpdate,
             WallInstance.Update,
         ].forEach((func) => func(runtime));
     }
@@ -20,6 +20,7 @@ export class game {
             Collectable.Init,
             IntroduceTextInstance.Init,
             Player.Init,
+
         ].forEach((func) => func(runtime));
     }
 }

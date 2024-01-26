@@ -9,7 +9,7 @@ export class game {
     static Update(runtime) {
         [
             Building.Update,
-            Player.Input,
+            Player.InputUpdate,
             WallInstance.Update,
         ].forEach((func) => func(runtime));
     }

@@ -3,6 +3,6 @@ declare class IConstructProjectGlobalVariables {
 	CameraZoomValue: number;
 	CameraZoomTaget: number;
 	ISBuildingMode: boolean;
-	CollectableEffectiveRange: number;
 	CollectablePlayerDmg: number;
+	CollectableEffectiveRange: number;
 }

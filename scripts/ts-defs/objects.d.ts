@@ -14,12 +14,13 @@ declare class IConstructProjectObjects {
 	readonly EventHnadler: IObjectType<InstanceType.EventHnadler>;
 	readonly Tree: IObjectType<InstanceType.Tree>;
 	readonly Grid: IObjectType<InstanceType.Grid>;
+	readonly GridBoss: IObjectType<InstanceType.GridBoss>;
+	readonly PathFindPoint: IObjectType<InstanceType.PathFindPoint>;
 	readonly ControlIntroductionText: IObjectType<InstanceType.ControlIntroductionText>;
 	readonly BuildingModeButton: IObjectType<InstanceType.BuildingModeButton>;
 	readonly BuildingModeCreatWall2: IObjectType<InstanceType.BuildingModeCreatWall2>;
 	readonly BuildingModeCreatWall1: IObjectType<InstanceType.BuildingModeCreatWall1>;
 	readonly BuildingModeSpButton: IObjectType<InstanceType.BuildingModeSpButton>;
-	readonly GridBoss: IObjectType<InstanceType.GridBoss>;
 	readonly YsortGroup: IFamily<InstanceType.YsortGroup>;
 	readonly BuildingGroup: IFamily<InstanceType.BuildingGroup>;
 	readonly ButtonGroup: IFamily<InstanceType.ButtonGroup>;
