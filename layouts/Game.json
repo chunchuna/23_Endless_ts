@@ -175,132 +175,6 @@
 					],
 					"instances": [
 						{
-							"type": "Tree",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 18,
-							"instanceVariables": {
-								"ThisY": 0,
-								"LocalLayerName": "",
-								"TypeName": "Tree",
-								"TypeID": 0,
-								"Heath": 5,
-								"GoodsName": "TreeWood",
-								"GoodsNumber": 5,
-								"IsRandomQuantity": false,
-								"RandomRangeX": 0,
-								"RandomRangeY": 0,
-								"ParticleName": "TreeCutParticle",
-								"Distance": 0
-							},
-							"behaviors": {
-								"ShakeSine": {
-									"properties": {
-										"movement": "horizontal",
-										"wave": "sine",
-										"period": 0.2,
-										"period-random": 0,
-										"period-offset": 0,
-										"period-offset-random": 0,
-										"magnitude": 5,
-										"magnitude-random": 0,
-										"enabled": false,
-										"live-preview": false
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								}
-							},
-							"world": {
-								"x": 5951,
-								"y": 5868,
-								"width": 681.5313639151173,
-								"height": 681.5313639151173,
-								"originX": 0.504,
-								"originY": 0.884,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Tree",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 16,
-							"instanceVariables": {
-								"ThisY": 0,
-								"LocalLayerName": "",
-								"TypeName": "Tree",
-								"TypeID": 0,
-								"Heath": 5,
-								"GoodsName": "TreeWood",
-								"GoodsNumber": 5,
-								"IsRandomQuantity": false,
-								"RandomRangeX": 0,
-								"RandomRangeY": 0,
-								"ParticleName": "TreeCutParticle",
-								"Distance": 0
-							},
-							"behaviors": {
-								"ShakeSine": {
-									"properties": {
-										"movement": "horizontal",
-										"wave": "sine",
-										"period": 0.2,
-										"period-random": 0,
-										"period-offset": 0,
-										"period-offset-random": 0,
-										"magnitude": 5,
-										"magnitude-random": 0,
-										"enabled": false,
-										"live-preview": false
-									}
-								},
-								"Solid": {
-									"properties": {
-										"enabled": true,
-										"tags": ""
-									}
-								}
-							},
-							"world": {
-								"x": 4456,
-								"y": 6115,
-								"width": 681.5313639151173,
-								"height": 681.5313639151173,
-								"originX": 0.504,
-								"originY": 0.884,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
 							"type": "player",
 							"properties": {
 								"initially-visible": true,
@@ -393,7 +267,7 @@
 									1,
 									1,
 									1,
-									1
+									0
 								],
 								"angle": 0,
 								"zElevation": 0
@@ -406,10 +280,10 @@
 								"z-height": 15,
 								"initially-visible": true,
 								"face-back": false,
-								"face-front": true,
-								"face-left": true,
-								"face-right": true,
-								"face-top": true,
+								"face-front": false,
+								"face-left": false,
+								"face-right": false,
+								"face-top": false,
 								"face-bottom": true,
 								"z-tiling-factor": 8,
 								"object-back": -1,
@@ -459,132 +333,12 @@
 								"object-top": -1,
 								"object-bottom": -1
 							},
-							"uid": 25,
-							"instanceVariables": {},
-							"behaviors": {},
-							"world": {
-								"x": 4655,
-								"y": 6501,
-								"width": 311.9599333247781,
-								"height": 311.9599333247781,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Tree3Dbox",
-							"properties": {
-								"shape": "box",
-								"z-height": 15,
-								"initially-visible": true,
-								"face-back": false,
-								"face-front": false,
-								"face-left": false,
-								"face-right": false,
-								"face-top": false,
-								"face-bottom": true,
-								"z-tiling-factor": 8,
-								"object-back": -1,
-								"object-front": -1,
-								"object-left": -1,
-								"object-right": -1,
-								"object-top": -1,
-								"object-bottom": -1
-							},
-							"uid": 26,
-							"instanceVariables": {},
-							"behaviors": {},
-							"world": {
-								"x": 6019,
-								"y": 6387,
-								"width": 311.9599333247781,
-								"height": 311.9599333247781,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Tree3Dbox",
-							"properties": {
-								"shape": "box",
-								"z-height": 15,
-								"initially-visible": true,
-								"face-back": false,
-								"face-front": false,
-								"face-left": false,
-								"face-right": false,
-								"face-top": false,
-								"face-bottom": true,
-								"z-tiling-factor": 8,
-								"object-back": -1,
-								"object-front": -1,
-								"object-left": -1,
-								"object-right": -1,
-								"object-top": -1,
-								"object-bottom": -1
-							},
-							"uid": 27,
-							"instanceVariables": {},
-							"behaviors": {},
-							"world": {
-								"x": 3795,
-								"y": 6799,
-								"width": 311.9599333247781,
-								"height": 311.9599333247781,
-								"originX": 0.5,
-								"originY": 0.5,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Tree3Dbox",
-							"properties": {
-								"shape": "box",
-								"z-height": 15,
-								"initially-visible": true,
-								"face-back": false,
-								"face-front": false,
-								"face-left": false,
-								"face-right": false,
-								"face-top": false,
-								"face-bottom": true,
-								"z-tiling-factor": 8,
-								"object-back": -1,
-								"object-front": -1,
-								"object-left": -1,
-								"object-right": -1,
-								"object-top": -1,
-								"object-bottom": -1
-							},
 							"uid": 28,
 							"instanceVariables": {},
 							"behaviors": {},
 							"world": {
-								"x": 3627,
-								"y": 6108,
+								"x": 4590,
+								"y": 5646,
 								"width": 311.9599333247781,
 								"height": 311.9599333247781,
 								"originX": 0.5,
@@ -596,7 +350,7 @@
 									1
 								],
 								"angle": 0,
-								"zElevation": 0
+								"zElevation": 50
 							}
 						}
 					],
@@ -679,7 +433,7 @@
 									}
 								}
 							],
-							"isInitiallyVisible": true,
+							"isInitiallyVisible": false,
 							"isInitiallyInteractive": true,
 							"isHTMLElementsLayer": false,
 							"color": [
@@ -1033,7 +787,7 @@
 					"parallaxY": 0,
 					"scaleRate": 1,
 					"forceOwnTexture": false,
-					"renderingMode": "3d",
+					"renderingMode": "2d",
 					"drawOrder": "z-order",
 					"useRenderCells": false,
 					"blendMode": "normal",

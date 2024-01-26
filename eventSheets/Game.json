@@ -127,11 +127,11 @@
 						{
 							"id": "look-at-position",
 							"objectClass": "3DCamera",
-							"sid": 350535685031737,
+							"sid": 951898025376556,
 							"parameters": {
 								"cam-x": "player.X",
-								"cam-y": "player.Y+500",
-								"cam-z": "100",
+								"cam-y": "player.Y+1000",
+								"cam-z": "200",
 								"look-x": "player.X",
 								"look-y": "player.Y",
 								"look-z": "0",

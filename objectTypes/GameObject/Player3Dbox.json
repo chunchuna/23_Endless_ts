@@ -76,14 +76,14 @@
 						"tag": ""
 					},
 					{
-						"width": 120,
-						"height": 120,
+						"width": 135,
+						"height": 209,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1258067,
+						"imageSpriteId": 7194590,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""

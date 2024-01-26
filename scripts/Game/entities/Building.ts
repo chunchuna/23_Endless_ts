@@ -102,7 +102,7 @@ export class Building {
             })
 
             // Set the light layer invisible
-            Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
+            //Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
 
             // Set UI
             runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
@@ -131,7 +131,7 @@ export class Building {
 
 
             // Set the light layer visible
-            Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
+            //Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
 
             // Set UI
             runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
