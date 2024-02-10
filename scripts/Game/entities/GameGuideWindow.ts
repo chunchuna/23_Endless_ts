@@ -1,8 +1,6 @@
 export class GameGuideWindow {
     public static Init(runtime: IRuntime) {
         GameGuideWindow.Input(runtime);
-
-
     }
 
     private static async Input(runtime: IRuntime) {
@@ -11,14 +9,11 @@ export class GameGuideWindow {
 
         await (EventHnadlerInstance?.addEventListener as any)("[guide-callwindow]", (e: any) => {
             GameGuideWindow.SwitchWindow(runtime);
-
         });
 
         await (EventHnadlerInstance?.addEventListener as any)("[guide-cliseCloseButton]", (e: any) => {
             GameGuideWindow.CloseWindow(runtime);
-
         });
-
     }
 
     public static GetLayer(runtime: IRuntime) {
@@ -34,8 +29,6 @@ export class GameGuideWindow {
         } else {
             GuideTextInstance.text = Content;
         }
-
-
     }
 
     public static OpenWindow(runtime: IRuntime) {

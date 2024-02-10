@@ -1,10 +1,7 @@
 import { Building } from "./Building.js";
+import { Grid } from "./Grid.js";
 export class Player {
     static Update(runtime) {
-        var Player3Dbox = runtime.objects.Player3Dbox.getFirstInstance();
-        var PlayerInstance = Player.GetPlayerInstance(runtime);
-        Player3Dbox.x = PlayerInstance.x;
-        Player3Dbox.y = PlayerInstance.y;
     }
     static async Init(runtime) {
         Player.InputInit(runtime);
@@ -13,7 +10,7 @@ export class Player {
             //Constantly reset the position of the grid as players move
             var PlayerPosition = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime);
+                Grid.UpdateGridPositionByPlayer(runtime);
         });
         await (EventHnadlerInstance?.addEventListener)("[player-pathfind-findpos]", (e) => {
             // Send this event when pathfind finds a path for special operations, such as drawing path points, etc.
@@ -22,12 +19,12 @@ export class Player {
         await (EventHnadlerInstance?.addEventListener)("[player-pathfind-arrive]", (e) => {
             Player.ClearDrawPlayerPathFindPoint(runtime);
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime);
+                Grid.UpdateGridPositionByPlayer(runtime);
         });
         await (EventHnadlerInstance?.addEventListener)("[player-dirmove-arrive]", (e) => {
             Player.ClearDrawPlayerPathFindPoint(runtime);
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime);
+                Grid.UpdateGridPositionByPlayer(runtime);
         });
     }
     static async InputUpdate(runtime) {

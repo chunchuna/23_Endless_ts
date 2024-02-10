@@ -574,148 +574,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "variable",
-					"name": "BuidlingGidSize",
-					"type": "number",
-					"initialValue": "256",
-					"comment": "",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 379367073746348
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "BuildGrid",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "group",
-							"disabled": false,
-							"title": "GridHandler",
-							"description": "",
-							"isActiveOnStart": true,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "Mouse",
-											"sid": 944091739267661,
-											"parameters": {
-												"object": "Grid"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 167329250820366,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"type": "script",
-													"script": "const Event = new C3.Event(\"[build-MouseOverGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-												}
-											],
-											"sid": 275493578758718
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-object-clicked",
-											"objectClass": "Mouse",
-											"sid": 446817121782005,
-											"parameters": {
-												"mouse-button": "right",
-												"click-type": "clicked",
-												"object-clicked": "Grid"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 227437570573165,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"type": "script",
-													"script": "const Event = new C3.Event(\"[build-MouseClickGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-												}
-											],
-											"sid": 264458194734287
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 526118950723525,
-											"parameters": {
-												"object": "Grid"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 824461947641852,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-overlapping-another-object",
-													"objectClass": "Grid",
-													"sid": 613059570831398,
-													"parameters": {
-														"object": "player"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "script",
-													"script": "const Event = new C3.Event(\"[build-GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-												}
-											],
-											"sid": 652205006693174
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 991388922180495
-												}
-											],
-											"actions": [
-												{
-													"type": "script",
-													"script": "const Event = new C3.Event(\"[!build-GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-												}
-											],
-											"sid": 856371144461625
-										}
-									]
-								}
-							],
-							"sid": 166622367405680
-						}
-					],
-					"sid": 144311338081709
-				},
-				{
 					"eventType": "group",
 					"disabled": false,
 					"title": "BuildingHandler",
@@ -976,17 +834,7 @@
 									"sid": 914650906401907
 								}
 							],
-							"actions": [
-								{
-									"id": "set-position",
-									"objectClass": "BuildingGroup",
-									"sid": 252345647924103,
-									"parameters": {
-										"x": "round(Self.X/BuidlingGidSize)*BuidlingGidSize",
-										"y": "round(Self.Y/BuidlingGidSize)*BuidlingGidSize"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 334585489499635,
 							"disabled": true
 						}
@@ -1334,7 +1182,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[guide-callwindow]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"[key_PressPKey]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 443029718306557
@@ -1366,6 +1214,158 @@
 				}
 			],
 			"sid": 126575053163313
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Grid",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "BuidlingGidSize",
+					"type": "number",
+					"initialValue": "256",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 157123875150685
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "BuildGrid",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "GridHandler",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 712134224157657,
+											"parameters": {
+												"object": "Grid"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 420919418698329,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[Grid_MouseOverGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 921022216048992
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 577666540507274,
+											"parameters": {
+												"mouse-button": "right",
+												"click-type": "clicked",
+												"object-clicked": "Grid"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 958246043462319,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[Grid_MouseClickGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 559756579509216
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 119339623856704,
+											"parameters": {
+												"object": "Grid"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 719118434698250,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-overlapping-another-object",
+													"objectClass": "Grid",
+													"sid": 629937590596789,
+													"parameters": {
+														"object": "player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[Grid_GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 682722965944160
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 491480147174166
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"script": "const Event = new C3.Event(\"[!Grid_GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+												}
+											],
+											"sid": 126363276684986
+										}
+									]
+								}
+							],
+							"sid": 893205541513576
+						}
+					],
+					"sid": 284615204829137
+				}
+			],
+			"sid": 242316327142358
 		},
 		{
 			"eventType": "group",

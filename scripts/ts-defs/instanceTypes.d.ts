@@ -94,6 +94,14 @@ declare namespace InstanceType {
 	}
 	class PathFindPoint extends ISpriteInstance {
 	}
+	class _3DCamera extends IInstance {
+	}
+	class Player3Dbox extends I3DShapeInstance {
+	}
+	class Tree3Dbox extends I3DShapeInstance {
+	}
+	class WallMask extends ISpriteInstance {
+	}
 	class ControlIntroductionText extends ITextInstance {
 		effects: {
 			BetterOutline: IEffectInstance
@@ -136,8 +144,6 @@ declare namespace InstanceType {
 			LocalSizeY: number
 		};
 		behaviors: __GameGuideCloseButtonBehaviors<this>;
-	}
-	class Player3Dbox extends I3DShapeInstance {
 	}
 	class YsortGroup extends ISpriteInstance {
 		instVars: {

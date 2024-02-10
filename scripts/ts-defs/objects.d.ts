@@ -16,6 +16,10 @@ declare class IConstructProjectObjects {
 	readonly Grid: IObjectType<InstanceType.Grid>;
 	readonly GridBoss: IObjectType<InstanceType.GridBoss>;
 	readonly PathFindPoint: IObjectType<InstanceType.PathFindPoint>;
+	readonly "3DCamera": I3DCameraObjectType<InstanceType._3DCamera>;
+	readonly Player3Dbox: IObjectType<InstanceType.Player3Dbox>;
+	readonly Tree3Dbox: IObjectType<InstanceType.Tree3Dbox>;
+	readonly WallMask: IObjectType<InstanceType.WallMask>;
 	readonly ControlIntroductionText: IObjectType<InstanceType.ControlIntroductionText>;
 	readonly GameGuideText: IObjectType<InstanceType.GameGuideText>;
 	readonly BuildingModeButton: IObjectType<InstanceType.BuildingModeButton>;
@@ -26,7 +30,6 @@ declare class IConstructProjectObjects {
 	readonly ListWindowScrollbackgropund: IObjectType<InstanceType.ListWindowScrollbackgropund>;
 	readonly ListWindowClippingMaskVisible: IObjectType<InstanceType.ListWindowClippingMaskVisible>;
 	readonly GameGuideCloseButton: IObjectType<InstanceType.GameGuideCloseButton>;
-	readonly Player3Dbox: IObjectType<InstanceType.Player3Dbox>;
 	readonly YsortGroup: IFamily<InstanceType.YsortGroup>;
 	readonly BuildingGroup: IFamily<InstanceType.BuildingGroup>;
 	readonly ButtonGroup: IFamily<InstanceType.ButtonGroup>;

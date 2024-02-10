@@ -1,15 +1,9 @@
 import { Building } from "./Building.js";
+import {Grid} from "./Grid.js";
 
 export class Player {
 
     public static Update(runtime: IRuntime) {
-
-        var Player3Dbox = runtime.objects.Player3Dbox.getFirstInstance();
-        var PlayerInstance = Player.GetPlayerInstance(runtime);
-        Player3Dbox!.x =PlayerInstance!.x;
-        Player3Dbox!.y =PlayerInstance!.y;
-
-
 
     }
 
@@ -22,7 +16,7 @@ export class Player {
             //Constantly reset the position of the grid as players move
             var PlayerPosition = [Player.GetPlayerInstance(runtime)!.x, Player.GetPlayerInstance(runtime)!.y] as [number, number];
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime)
+                Grid.UpdateGridPositionByPlayer(runtime)
         });
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-pathfind-findpos]", (e: any) => {
@@ -36,14 +30,14 @@ export class Player {
 
             Player.ClearDrawPlayerPathFindPoint(runtime);
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime)
+                Grid.UpdateGridPositionByPlayer(runtime)
 
         });
 
         await (EventHnadlerInstance?.addEventListener as any)("[player-dirmove-arrive]", (e: any) => {
             Player.ClearDrawPlayerPathFindPoint(runtime);
             if (runtime.globalVars.ISBuildingMode)
-                Building.UpdateGridPositionByPlayer(runtime)
+                Grid.UpdateGridPositionByPlayer(runtime)
 
 
         });
