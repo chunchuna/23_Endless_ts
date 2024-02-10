@@ -584,64 +584,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 721739780492756,
-									"parameters": {
-										"key": 97
-									}
-								},
-								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 440394460357552,
-									"parameters": {
-										"key": 49
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"script": "const Event = new C3.Event(\"[build-spwan]\");\nEvent.walltype=\"wall1\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-								}
-							],
-							"sid": 385315744929610,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 460474415749651,
-									"parameters": {
-										"key": 50
-									}
-								},
-								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 542450991633140,
-									"parameters": {
-										"key": 98
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"script": "const Event = new C3.Event(\"[build-spwan]\");\nEvent.walltype=\"wall2\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
-								}
-							],
-							"sid": 552488708593174,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
 									"sid": 740130738170712,

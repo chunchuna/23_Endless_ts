@@ -6,6 +6,7 @@ import { WallInstance } from "../entities/Wall.js";
 import { ObjectYsort } from "../entities/Ysort.js";
 import { GameGuideWindow } from "../entities/GameGuideWindow.js";
 import { Grid } from "../entities/Grid.js";
+import { DebugMessage } from "../entities/DebugMessage.js";
 export class game {
     static Update(runtime) {
         [
@@ -15,6 +16,7 @@ export class game {
             Player.Update,
             WallInstance.Update,
             Grid.Update,
+            new DebugMessage().Update,
         ].forEach((func) => func(runtime));
     }
     static Init(runtime) {
@@ -26,6 +28,7 @@ export class game {
             Player.Init,
             GameGuideWindow.Init,
             Grid.Init,
+            new DebugMessage().Init,
         ].forEach((func) => func(runtime));
     }
 }

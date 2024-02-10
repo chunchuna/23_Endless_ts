@@ -19,7 +19,6 @@ export class Building {
         Building.RoundInstances(runtime, runtime.objects.BuildingGroup.instances());
         Building.RoundInstances(runtime, runtime.objects.Grid.instances());
 
-
     }
 
     public static async Init(runtime: IRuntime) {
@@ -27,9 +26,6 @@ export class Building {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         Building.Event(runtime)
         Building.SelectedCreatBuildingType = runtime.objects.wall;
-
-        
-
 
     }
 
