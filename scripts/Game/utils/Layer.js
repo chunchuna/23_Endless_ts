@@ -1,4 +1,14 @@
-export class Layer {
+import { ConstructSystem } from "./ConstructSystem.js";
+export class Layer extends ConstructSystem {
+    async Init(runtime) {
+        super.Init(runtime);
+    }
+    Update(runtime) {
+        super.Update(runtime);
+    }
+    async Event(runtime) {
+    }
+    /** Fcuntion **/
     static SetLayerVisibel(runtime, Layer, type) {
         if (Layer instanceof Boolean) {
             console.log("Layer is empty");

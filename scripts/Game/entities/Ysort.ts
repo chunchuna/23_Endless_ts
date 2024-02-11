@@ -1,5 +1,4 @@
 export class ObjectYsort {
-    
 
     public static Init(runtime: IRuntime) {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
@@ -10,10 +9,7 @@ export class ObjectYsort {
             e.instance.instVars["LocalLayerName"] = e.instance.layer.name;
         });
     }
-
-    /*
-     修复y轴排序子在物体切换不同layer时出现的一些问题
-    */
+    
     public static YsortFixbug(runtime: IRuntime) {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
         for (let YsortGroups of YsortGroupClass) {

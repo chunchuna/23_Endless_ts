@@ -1,23 +1,12 @@
-export class ConstructSystem {
-    private IsUpdate: boolean = false;
-
-    public Init(runtime: IRuntime) {
-        console.log(ConstructSystem.name + "Init")
-        new ConstructSystem().Event(runtime);
-
+export abstract class ConstructSystem {
+    public async Init(runtime: IRuntime) {
     }
 
     public Update(runtime: IRuntime) {
-        if (!this.IsUpdate) {
-            console.log(ConstructSystem.name + "Update")
-            this.IsUpdate = true;
-        }
-        
-
     }
 
-    public Event(runtime: IRuntime) {
-        console.log(ConstructSystem.name + "Event")
+    public static async Event(runtime: IRuntime) {
+        
     }
 
 }

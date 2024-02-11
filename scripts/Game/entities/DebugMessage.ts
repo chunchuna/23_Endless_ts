@@ -1,35 +1,98 @@
 import {ConstructSystem} from "../utils/ConstructSystem.js";
 
+/** Message Type define **/
+enum MesType {
+    Normal,
+    Error,
+    Warm,
+}
+
+
 export class DebugMessage extends ConstructSystem {
 
-    Init(runtime: IRuntime) {
-        super.Init(runtime);
+
+    get FirstMessageStartPosition(): number[] {
+        return this._FirstMessageStartPosition;
     }
 
-    Update(runtime: IRuntime) {
+    set FirstMessageStartPosition(value: number[]) {
+        this._FirstMessageStartPosition = value;
+    }
+
+    get MessagePositionInterval(): number {
+        return this._MessagePositionInterval;
+    }
+
+    set MessagePositionInterval(value: number) {
+        this._MessagePositionInterval = value;
+    }
+
+    get MaxQueueMessageCount(): number {
+        return this._MaxQueueMessageCount;
+    }
+
+    set MaxQueueMessageCount(value: number) {
+        this._MaxQueueMessageCount = value;
+    }
+
+
+    /** var **/
+    private _MaxQueueMessageCount: number = 50;
+    private _FirstMessageStartPosition: number[] = [0, 0];
+    private _MessagePositionInterval: number = 20;
+
+
+    /** Message INstance Class **/
+    private MessageInstanceClass: any = null;
+
+
+    public async Init(runtime: IRuntime) {
+        super.Init(runtime);
+        DebugMessage.Event(runtime);
+    }
+
+    public Update(runtime: IRuntime) {
         //super.Update(runtime);
     }
 
-    Event(runtime: IRuntime) {
-        //super.Event(runtime);
-    }
-
-    private static CreatMessage(runtime: IRuntime) {
+    public static async Event(runtime: IRuntime): Promise<void> {
 
     }
 
+    /** Event **/
 
-    private static PutMessage(runtime: IRuntime) {
+
+    /** Funtion **/
+
+    public static SeedMessage(runtime: IRuntime, Content: string, Type: MesType) {
+
+        var MessageInstance = this.CreateMessageInstance(runtime, Type)
+        this.AddMessageInstanceToQueen(runtime, MessageInstance);
 
     }
 
-    private static CheckMessageListNumber() {
+    private static CreateMessageInstance(runtime: IRuntime, Type: MesType) {
 
     }
 
-    private static ClearMessageListNumber() {
+    private static AddMessageInstanceToQueen(runtime: IRuntime, MessageInstance: any) {
 
     }
 
+    private static GetMessageQueueInstanceCount() {
+
+    }
+
+    private static ClearAllMessagesInQueue() {
+
+    }
+
+    private static GetAllMessageInstancesInQueen() {
+
+    }
+
+    private static MessageMoveUpOnce(runtime: IRuntime, MoveInstance: number, MessageInstance: any) {
+
+    }
 
 }

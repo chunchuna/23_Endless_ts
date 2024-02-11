@@ -8,9 +8,6 @@ export class ObjectYsort {
             e.instance.instVars["LocalLayerName"] = e.instance.layer.name;
         });
     }
-    /*
-     �޸�y���������������л���ͬlayerʱ���ֵ�һЩ����
-    */
     static YsortFixbug(runtime) {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
         for (let YsortGroups of YsortGroupClass) {

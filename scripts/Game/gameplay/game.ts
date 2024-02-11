@@ -13,12 +13,12 @@ export class game {
     public static Update(runtime: IRuntime) {
         [
             Building.Update,
-            Player.InputUpdate,
             WallInstance.Update,
-            Player.Update,
+            new Player().Update,
             WallInstance.Update,
             Grid.Update,
             new DebugMessage().Update,
+            new Collectable().Update,
         ].forEach((func) => func(runtime));
 
 
@@ -28,9 +28,8 @@ export class game {
         [
             Building.Init,
             ObjectYsort.Init,
-            Collectable.Init,
-            IntroduceTextInstance.Init,
-            Player.Init,
+            new Collectable().Init,
+            new Player().Init,
             GameGuideWindow.Init,
             Grid.Init,
             new DebugMessage().Init,

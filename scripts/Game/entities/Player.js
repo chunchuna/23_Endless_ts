@@ -1,34 +1,45 @@
 import { Building } from "./Building.js";
 import { Grid } from "./Grid.js";
-export class Player {
-    static Update(runtime) {
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+export class Player extends ConstructSystem {
+    async Init(runtime) {
+        super.Init(runtime);
+        Player.Event(runtime);
     }
-    static async Init(runtime) {
-        Player.InputInit(runtime);
+    static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+        await (EventHnadlerInstance?.addEventListener)("[player-mouseleftclick]", (e) => {
+            Player.OnMouseLeftClick(runtime);
+        });
         await (EventHnadlerInstance?.addEventListener)("[player-moving]", (e) => {
-            //Constantly reset the position of the grid as players move
-            var PlayerPosition = [Player.GetPlayerInstance(runtime).x, Player.GetPlayerInstance(runtime).y];
-            if (runtime.globalVars.ISBuildingMode)
-                Grid.UpdateGridPositionByPlayer(runtime);
-        });
-        await (EventHnadlerInstance?.addEventListener)("[player-pathfind-findpos]", (e) => {
-            // Send this event when pathfind finds a path for special operations, such as drawing path points, etc.
-            Player.DrawPlayerPathFindPoint(runtime);
-        });
-        await (EventHnadlerInstance?.addEventListener)("[player-pathfind-arrive]", (e) => {
-            Player.ClearDrawPlayerPathFindPoint(runtime);
-            if (runtime.globalVars.ISBuildingMode)
-                Grid.UpdateGridPositionByPlayer(runtime);
+            Player.OnPlayerMoving(runtime);
         });
         await (EventHnadlerInstance?.addEventListener)("[player-dirmove-arrive]", (e) => {
-            Player.ClearDrawPlayerPathFindPoint(runtime);
-            if (runtime.globalVars.ISBuildingMode)
-                Grid.UpdateGridPositionByPlayer(runtime);
+            Player.OnPlayerIsArriveMoverTarget(runtime);
         });
     }
+    Update(runtime) {
+        super.Update(runtime);
+        Player.InputUpdate(runtime);
+    }
+    /** Event **/
+    static OnMouseLeftClick(runtime) {
+        var MouseInstance = runtime.mouse;
+        if (runtime.globalVars.ISBuildingMode)
+            return;
+        // Player.PlayerPathFindMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1])
+        Player.ClearDrawPlayerPathFindPoint(runtime);
+        Player.PlayerDirMove(runtime, MouseInstance.getMousePosition("Object")[0], MouseInstance.getMousePosition("Object")[1]);
+    }
+    static OnPlayerMoving(runtime) {
+        if (runtime.globalVars.ISBuildingMode)
+            Grid.UpdateGridPositionByPlayer(runtime);
+    }
+    static OnPlayerIsArriveMoverTarget(runtime) {
+        this.ClearDrawPlayerPathFindPoint(runtime);
+    }
+    /** Function **/
     static async InputUpdate(runtime) {
-        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         const { keyboard, objects: { player } } = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors["8DirMove"];
@@ -41,17 +52,6 @@ export class Player {
         Object.entries(keyMap).forEach(([key, value]) => {
             if (keyboard?.isKeyDown(key))
                 simulMover?.simulateControl(value);
-        });
-    }
-    static async InputInit(runtime) {
-        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        var MouseInstance = runtime.mouse;
-        await (EventHnadlerInstance?.addEventListener)("[player-mouseleftclick]", (e) => {
-            if (runtime.globalVars.ISBuildingMode)
-                return;
-            // Player.PlayerPathFindMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1])
-            Player.ClearDrawPlayerPathFindPoint(runtime);
-            Player.PlayerDirMove(runtime, MouseInstance.getMousePosition("Object")[0], MouseInstance.getMousePosition("Object")[1]);
         });
     }
     static GetPlayerInstance(runtime) {
@@ -87,6 +87,7 @@ export class Player {
     }
     static DrawPlayerDirMovePoint(runtime, PositionX, PositionY) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);
+        this.ClearDrawPlayerPathFindPoint(runtime);
         var PathFindPoint = runtime.objects.PathFindPoint.createInstance("Ground", PositionX, PositionY);
     }
 }

@@ -1,23 +1,33 @@
-export class Collectable {
-    static Update(runtime) {
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+export class Collectable extends ConstructSystem {
+    Update(runtime) {
     }
-    static async Init(runtime) {
+    async Init(runtime) {
+        Collectable.Event(runtime);
+    }
+    static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         await (EventHnadlerInstance?.addEventListener)("OnMouseOverCollectableGroup", () => {
-            document.body.style.cursor = 'pointer';
+            Collectable.OnMouseOverColGroup(runtime);
         });
         await (EventHnadlerInstance?.addEventListener)("OnMouseClickOneceCollectableGroup", (e) => {
-            const getCollectableStuff = e.detail[0];
-            if (getCollectableStuff.instVars["Distance"] > runtime.globalVars.CollectableEffectiveRange)
-                return;
-            if (getCollectableStuff.instVars["Heath"] > 0) {
-                getCollectableStuff.instVars["Heath"] -= 1;
-                Collectable.CollectableStuffShakeOnece(runtime, getCollectableStuff);
-            }
-            else if (getCollectableStuff.instVars["Heath"] <= 0) {
-                getCollectableStuff.destroy();
-            }
+            Collectable.OnMouseClickColGroup(runtime, e);
         });
+    }
+    static OnMouseClickColGroup(runtime, e) {
+        const getCollectableStuff = e.detail[0];
+        if (getCollectableStuff.instVars["Distance"] > runtime.globalVars.CollectableEffectiveRange)
+            return;
+        if (getCollectableStuff.instVars["Heath"] > 0) {
+            getCollectableStuff.instVars["Heath"] -= 1;
+            Collectable.CollectableStuffShakeOnece(runtime, getCollectableStuff);
+        }
+        else if (getCollectableStuff.instVars["Heath"] <= 0) {
+            getCollectableStuff.destroy();
+        }
+    }
+    static OnMouseOverColGroup(runtime) {
+        document.body.style.cursor = 'pointer';
     }
     static CollectableStuffShakeOnece(runtime, CollectableInstance) {
         const Instance = CollectableInstance;

@@ -1,10 +1,11 @@
 export class GameGuideWindow {
     public static Init(runtime: IRuntime) {
         GameGuideWindow.Input(runtime);
+        GameGuideWindow.Event(runtime);
     }
 
-    private static async Input(runtime: IRuntime) {
 
+    public static async Event(runtime: IRuntime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
         await (EventHnadlerInstance?.addEventListener as any)("[guide-callwindow]", (e: any) => {
@@ -16,7 +17,13 @@ export class GameGuideWindow {
         });
     }
 
-    public static GetLayer(runtime: IRuntime) {
+
+    private static async Input(runtime: IRuntime) {
+
+
+    }
+
+    public static GetGuideWindowLayer(runtime: IRuntime) {
         return runtime.getLayout("Game").getLayer("GameGuideWindow");
     }
 
@@ -32,19 +39,19 @@ export class GameGuideWindow {
     }
 
     public static OpenWindow(runtime: IRuntime) {
-        var Layer = GameGuideWindow.GetLayer(runtime)
+        var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
         Layer!.isVisible = true;
 
     }
 
     public static CloseWindow(runtime: IRuntime) {
-        var Layer = GameGuideWindow.GetLayer(runtime)
+        var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
         Layer!.isVisible = false;
 
     }
 
     public static SwitchWindow(runtime: IRuntime) {
-        var Layer = GameGuideWindow.GetLayer(runtime)
+        var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
         Layer!.isVisible = !Layer!.isVisible;
 
     }
