@@ -3,6 +3,7 @@ import {Player} from "./Player.js";
 import {ObjectYsort} from "./Ysort.js";
 import {GameMath} from "../utils/Math.js";
 import {Grid} from "./Grid.js";
+import {ConstructSystem} from "../utils/ConstructSystem.js";
 
 enum SpwnTypeEnum { //The type of building, in what way is the building generated?
     Mouse, //Near the mouse
@@ -10,22 +11,42 @@ enum SpwnTypeEnum { //The type of building, in what way is the building generate
     CustomPosition, //Instead of setting the location where the building is generated, return [ building itself]
 }
 
-export class Building {
 
-    public static SelectedCreatBuildingType: IObjectType<InstanceType.BuildingGroup>; // What is the type of building selected by the current player?
+export class Building extends ConstructSystem {
+
+    static get SelectedCreatBuildingType(): IObjectType<InstanceType.BuildingGroup> {
+        return this._SelectedCreatBuildingType;
+    }
+
+    static set SelectedCreatBuildingType(value: IObjectType<InstanceType.BuildingGroup>) {
+        this._SelectedCreatBuildingType = value;
+    }
+
+    static get BuildMaxGridCount(): number {
+        return this._BuildMaxGridCount;
+    }
+
+    static set BuildMaxGridCount(value: number) {
+        this._BuildMaxGridCount = value;
+    }
+
+    /** var **/
+    private static _SelectedCreatBuildingType: IObjectType<InstanceType.BuildingGroup>; // What is the type of building selected by the current player?
+    /** Build mod max grid count **/
+    private static _BuildMaxGridCount = 15;
 
 
-    public static Update(runtime: IRuntime) {
+    public Update(runtime: IRuntime) {
         Building.RoundInstances(runtime, runtime.objects.BuildingGroup.instances());
         Building.RoundInstances(runtime, runtime.objects.Grid.instances());
 
     }
 
-    public static async Init(runtime: IRuntime) {
+    public async Init(runtime: IRuntime) {
 
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         Building.Event(runtime)
-        Building.SelectedCreatBuildingType = runtime.objects.wall;
+        Building._SelectedCreatBuildingType = runtime.objects.wall;
 
     }
 
@@ -67,7 +88,7 @@ export class Building {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
         console.log("building mode on")
         /** creat grid on player postion **/
-        Grid.CreateGridArrayByPlayer(runtime, 5, 256)
+        Grid.CreateGridArrayByPlayer(runtime, Building.BuildMaxGridCount, 256)
         Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "BuildingLayer"), true);
         Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
@@ -100,7 +121,7 @@ export class Building {
         var IsMouseOver: boolean = e.MouseOver;
         var GetGrid: InstanceType.Grid = e.ThisGrid[0];
         /** set building **/
-        var InstanceClass = Building.SelectedCreatBuildingType;
+        var InstanceClass = Building._SelectedCreatBuildingType;
 
         if (!GetGrid.instVars.IsCanPlace) return;
 

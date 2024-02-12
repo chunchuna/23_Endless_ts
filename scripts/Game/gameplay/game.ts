@@ -12,13 +12,13 @@ import {DebugMessage} from "../entities/DebugMessage.js";
 export class game {
     public static Update(runtime: IRuntime) {
         [
-            Building.Update,
-            WallInstance.Update,
+            new Building().Update,
+            new WallInstance().Update,
             new Player().Update,
-            WallInstance.Update,
             Grid.Update,
             new DebugMessage().Update,
             new Collectable().Update,
+            new IntroduceTextInstance().Update,
         ].forEach((func) => func(runtime));
 
 
@@ -26,13 +26,15 @@ export class game {
 
     public static Init(runtime: IRuntime) {
         [
-            Building.Init,
+            new Building().Init,
             ObjectYsort.Init,
             new Collectable().Init,
             new Player().Init,
             GameGuideWindow.Init,
             Grid.Init,
             new DebugMessage().Init,
+            new IntroduceTextInstance().Init,
+            new WallInstance().Init,
 
         ].forEach((func) => func(runtime));
 

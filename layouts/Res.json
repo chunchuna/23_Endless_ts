@@ -647,10 +647,10 @@
 						}
 					},
 					"world": {
-						"x": 802,
-						"y": 417,
+						"x": 806,
+						"y": 148,
 						"width": 100,
-						"height": 740,
+						"height": 202,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

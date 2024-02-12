@@ -48,7 +48,7 @@ export class Player extends ConstructSystem {
 
     private static OnPlayerMoving(runtime: IRuntime) {
         if (runtime.globalVars.ISBuildingMode)
-            Grid.UpdateGridPositionByPlayer(runtime)
+            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount)
 
     }
 

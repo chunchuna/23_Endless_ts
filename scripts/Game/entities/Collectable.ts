@@ -42,6 +42,8 @@ export class Collectable extends ConstructSystem {
     }
 
 
+    /** Function **/
+
     private static CollectableStuffShakeOnece(runtime: IRuntime, CollectableInstance: InstanceType.CollectableGroup) {
         const Instance = CollectableInstance;
         if (!Instance) return;

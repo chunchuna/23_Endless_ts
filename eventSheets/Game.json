@@ -464,6 +464,24 @@
 								}
 							],
 							"sid": 682488867604189
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "player",
+									"sid": 128763770745459,
+									"behaviorType": "DirMove"
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[player-moving]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+								}
+							],
+							"sid": 906552497921767
 						}
 					],
 					"sid": 643460820417666
@@ -1124,7 +1142,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[key_PressPKey]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"[OnPressPkey]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 443029718306557
@@ -1146,7 +1164,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[guide-cliseCloseButton]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"[GuideWindow->OnClickCloseButton]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 354503627541375
@@ -1315,7 +1333,46 @@
 			"title": "Wall",
 			"description": "",
 			"isActiveOnStart": true,
-			"children": [],
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "WallHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "WallMask",
+									"sid": 947811098255147,
+									"parameters": {
+										"object": "wall"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 630278951617385,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "script",
+											"script": "const wall =runtime.objects.wall.getPickedInstances();\nconst wallmask=runtime.objects.WallMask.getPickedInstances();\nconst Event = new C3.Event(\"[OnMaskTestOverWall]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEvent.wall=wall;\nEvent.mask=wallmask;\nEventHandler.dispatchEvent(Event)\n"
+										}
+									],
+									"sid": 236323847348540
+								}
+							]
+						}
+					],
+					"sid": 616354061412056
+				}
+			],
 			"sid": 997343278978204
 		}
 	],

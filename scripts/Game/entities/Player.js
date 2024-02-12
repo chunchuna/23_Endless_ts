@@ -33,7 +33,7 @@ export class Player extends ConstructSystem {
     }
     static OnPlayerMoving(runtime) {
         if (runtime.globalVars.ISBuildingMode)
-            Grid.UpdateGridPositionByPlayer(runtime);
+            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount);
     }
     static OnPlayerIsArriveMoverTarget(runtime) {
         this.ClearDrawPlayerPathFindPoint(runtime);

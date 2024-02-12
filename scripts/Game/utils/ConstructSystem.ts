@@ -4,9 +4,6 @@ export abstract class ConstructSystem {
 
     public Update(runtime: IRuntime) {
     }
-
-    public static async Event(runtime: IRuntime) {
-        
-    }
+    
 
 }

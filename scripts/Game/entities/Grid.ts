@@ -104,12 +104,12 @@ export class Grid {
         }
     }
 
-    public static CreateGridArrayByPlayer(runtime: IRuntime, ArraySize: number, CellSize: number) {
-        var StartX: number = Player.GetPlayerInstance(runtime)!.x - (ArraySize / 2) * CellSize;
-        var StartY: number = Player.GetPlayerInstance(runtime)!.y - (ArraySize / 2) * CellSize;
+    public static CreateGridArrayByPlayer(runtime: IRuntime, GridCount: number, CellSize: number) {
+        var StartX: number = Player.GetPlayerInstance(runtime)!.x - (GridCount / 2) * CellSize;
+        var StartY: number = Player.GetPlayerInstance(runtime)!.y - (GridCount / 2) * CellSize;
         //var GirdBossInstance = runtime.objects.GridBoss.createInstance("Object", StartX, StartY);
-        for (let x = 0; x < ArraySize; x++) {
-            for (let y = 0; y < ArraySize; y++) {
+        for (let x = 0; x < GridCount; x++) {
+            for (let y = 0; y < GridCount; y++) {
                 var spawnX = StartX + x * CellSize;
                 var spawnY = StartY + y * CellSize;
                 var Position = [spawnX, spawnY];
@@ -120,11 +120,11 @@ export class Grid {
 
     }
 
-    public static UpdateGridPositionByPlayer(runtime: IRuntime,) {
+    public static UpdateGridPositionByPlayer(runtime: IRuntime, GridCount: number) {
         var IsGridHas = runtime.objects.Grid.getFirstInstance();
         if (IsGridHas != null) {
             Grid.ClearAllGrid(runtime);
-            Grid.CreateGridArrayByPlayer(runtime, 5, 256);
+            Grid.CreateGridArrayByPlayer(runtime, GridCount, 256);
 
         }
     }

@@ -3,6 +3,4 @@ export class ConstructSystem {
     }
     Update(runtime) {
     }
-    static async Event(runtime) {
-    }
 }

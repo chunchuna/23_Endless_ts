@@ -5,10 +5,10 @@ export class GameGuideWindow {
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("[guide-callwindow]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("[OnPressPkey]", (e) => {
             GameGuideWindow.SwitchWindow(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[guide-cliseCloseButton]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("[GuideWindow->OnClickCloseButton]", (e) => {
             GameGuideWindow.CloseWindow(runtime);
         });
     }
@@ -35,6 +35,7 @@ export class GameGuideWindow {
         Layer.isVisible = false;
     }
     static SwitchWindow(runtime) {
+        console.log("click p ");
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime);
         Layer.isVisible = !Layer.isVisible;
     }

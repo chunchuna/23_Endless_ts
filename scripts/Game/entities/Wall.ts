@@ -1,27 +1,102 @@
-export class WallInstance {
+import {ConstructSystem} from "../utils/ConstructSystem.js";
 
-    public static Update(runtime: IRuntime) {
+export class WallInstance extends ConstructSystem {
+    static get WallInstanceClass(): any {
+        return this._WallInstanceClass;
+    }
 
-        for (let Walls_1 of runtime.objects.wall.instances()) {
-            for (let Walls_2 of runtime.objects.wall.instances()) {
-                if (Walls_1.getChildAt(0)?.testOverlap(Walls_2)) {
+    static set WallInstanceClass(value: any) {
+        this._WallInstanceClass = value;
+    }
 
-                    if (Walls_2 != Walls_1) {
-                        //Walls_1.setAnimation("Line")
-                        Walls_2.setAnimation("Line")
-                    } else {
-                        Walls_1.setAnimation("Normal")
-                        Walls_2.setAnimation("Normal")
-                    }
+    static get WallMasInstanceClass(): any {
+        return this._WallMasInstanceClass;
+    }
+
+    static set WallMasInstanceClass(value: any) {
+        this._WallMasInstanceClass = value;
+    }
+
+
+    private static _WallInstanceClass = null;
+    private static _WallMasInstanceClass = null;
+
+    async Init(runtime: IRuntime): Promise<void> {
+        super.Init(runtime);
+        WallInstance.Event(runtime);
+        WallInstance.SetInstanceClass(runtime);
+
+    }
+
+    Update(runtime: IRuntime) {
+        super.Update(runtime);
+        WallInstance.WallAnimationUpdate(runtime);
+    }
+
+    private static async Event(runtime: IRuntime) {
+        var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+
+        await (EventHnadlerInstance?.addEventListener as any)("[OnMaskTestOverWall]", (e: any) => {
+            //this.OnMaskTestOverLapWall(runtime, e);
+        })
+
+        await (EventHnadlerInstance?.addEventListener as any)("[OnUnMaskTestOverWall]", (e: any) => {
+            //this.OnUnMaskTestOverlapWall(runtime, e);
+        })
+
+
+    }
+
+
+    private static SetInstanceClass(runtime: IRuntime) {
+        WallInstance.WallInstanceClass = runtime.objects.wall;
+        WallInstance.WallMasInstanceClass = runtime.objects.WallMask;
+    }
+
+    private static WallAnimationUpdate(runtime: IRuntime) {
+
+        for (var wallInstance of WallInstance.WallInstanceClass.instances()) {
+            for (var wallMaskInstance of WallInstance.WallMasInstanceClass.instances()) {
+                if (wallMaskInstance.testOverlap(wallInstance)) {
+                    wallInstance.setAnimation("Line")
+                    setTimeout(() => {
+                        wallInstance.setAnimation("Normal")
+                    }, 50)
                 }
-
             }
-
         }
 
     }
-    public static Init(runtime: IRuntime) {
+
+
+    private static OnWallInstanceBeCreated(runtime: IRuntime) {
 
     }
+
+
+    private static OnUnMaskTestOverlapWall(runtime: IRuntime, e: any) {
+    }
+
+
+    private static OnMaskTestOverLapWall(runtime: IRuntime, e: any) {
+        var WallInstanceArray: InstanceType.wall[] = e.wall;
+        var MaskWallInstanceArray: InstanceType.wall[] = e.mask;
+        WallInstanceArray.forEach((wallInstance: InstanceType.wall) => {
+            MaskWallInstanceArray.forEach((MaskInstance: InstanceType.WallMask) => {
+                var MaskParentWallInstance = MaskInstance.getParent();
+                if (wallInstance == MaskParentWallInstance) {
+                } else {
+                    wallInstance.setAnimation("Line")
+                    setTimeout(() => {
+                        wallInstance.setAnimation("Normal")
+                    }, 50)
+                }
+
+            });
+        });
+
+
+    }
+
 
 }

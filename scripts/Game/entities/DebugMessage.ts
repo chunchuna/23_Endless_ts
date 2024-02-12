@@ -10,7 +10,6 @@ enum MesType {
 
 export class DebugMessage extends ConstructSystem {
 
-
     get FirstMessageStartPosition(): number[] {
         return this._FirstMessageStartPosition;
     }
@@ -55,7 +54,7 @@ export class DebugMessage extends ConstructSystem {
         //super.Update(runtime);
     }
 
-    public static async Event(runtime: IRuntime): Promise<void> {
+    public static async Event(runtime: IRuntime) {
 
     }
 

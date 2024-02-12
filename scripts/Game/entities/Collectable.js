@@ -29,6 +29,7 @@ export class Collectable extends ConstructSystem {
     static OnMouseOverColGroup(runtime) {
         document.body.style.cursor = 'pointer';
     }
+    /** Function **/
     static CollectableStuffShakeOnece(runtime, CollectableInstance) {
         const Instance = CollectableInstance;
         if (!Instance)
