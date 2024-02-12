@@ -24,7 +24,7 @@ export class WallInstance extends ConstructSystem {
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
         WallInstance.Event(runtime);
-        WallInstance.SetInstanceClass(runtime);
+        WallInstance.SetUpInstanceClass(runtime);
 
     }
 
@@ -48,7 +48,7 @@ export class WallInstance extends ConstructSystem {
     }
 
 
-    private static SetInstanceClass(runtime: IRuntime) {
+    private static SetUpInstanceClass(runtime: IRuntime) {
         WallInstance.WallInstanceClass = runtime.objects.wall;
         WallInstance.WallMasInstanceClass = runtime.objects.WallMask;
     }

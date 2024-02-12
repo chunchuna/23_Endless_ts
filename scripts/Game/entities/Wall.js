@@ -17,7 +17,7 @@ export class WallInstance extends ConstructSystem {
     async Init(runtime) {
         super.Init(runtime);
         WallInstance.Event(runtime);
-        WallInstance.SetInstanceClass(runtime);
+        WallInstance.SetUpInstanceClass(runtime);
     }
     Update(runtime) {
         super.Update(runtime);
@@ -32,7 +32,7 @@ export class WallInstance extends ConstructSystem {
             //this.OnUnMaskTestOverlapWall(runtime, e);
         });
     }
-    static SetInstanceClass(runtime) {
+    static SetUpInstanceClass(runtime) {
         WallInstance.WallInstanceClass = runtime.objects.wall;
         WallInstance.WallMasInstanceClass = runtime.objects.WallMask;
     }
