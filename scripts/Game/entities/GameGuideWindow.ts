@@ -1,6 +1,6 @@
 export class GameGuideWindow {
     public static Init(runtime: IRuntime) {
-        GameGuideWindow.Input(runtime);
+
         GameGuideWindow.Event(runtime);
     }
 
@@ -8,21 +8,25 @@ export class GameGuideWindow {
     public static async Event(runtime: IRuntime) {
 
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
+        await (EventHnadlerInstance?.addEventListener as any)("[OnPresskey]", (e: any) => {
+            this.Input(runtime, e)
 
-        await (EventHnadlerInstance?.addEventListener as any)("[OnPressPkey]", (e: any) => {
-            GameGuideWindow.SwitchWindow(runtime);
         });
-
         await (EventHnadlerInstance?.addEventListener as any)("[GuideWindow->OnClickCloseButton]", (e: any) => {
-            GameGuideWindow.CloseWindow(runtime);
+            this.OnClickCloseButton(runtime)
         });
     }
 
-
-    private static async Input(runtime: IRuntime) {
-
-
+    private static Input(runtime: IRuntime, e: any) {
+        if (e.key == "Pkey") {
+            GameGuideWindow.SwitchWindow(runtime);
+        }
     }
+
+    private static OnClickCloseButton(runtime: IRuntime) {
+        GameGuideWindow.CloseWindow(runtime);
+    }
+
 
     public static GetGuideWindowLayer(runtime: IRuntime) {
         return runtime.getLayout("Game").getLayer("GameGuideWindow");

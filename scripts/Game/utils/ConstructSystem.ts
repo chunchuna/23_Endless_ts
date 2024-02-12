@@ -4,6 +4,4 @@ export abstract class ConstructSystem {
 
     public Update(runtime: IRuntime) {
     }
-    
-
 }
