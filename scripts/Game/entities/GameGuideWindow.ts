@@ -1,9 +1,16 @@
-export class GameGuideWindow {
-    public static Init(runtime: IRuntime) {
+import {ConstructSystem} from "../utils/ConstructSystem.js";
 
+export class GameGuideWindow extends ConstructSystem {
+
+
+    async Init(runtime: IRuntime): Promise<void> {
+        super.Init(runtime);
         GameGuideWindow.Event(runtime);
     }
 
+    Update(runtime: IRuntime) {
+        super.Update(runtime);
+    }
 
     public static async Event(runtime: IRuntime) {
 

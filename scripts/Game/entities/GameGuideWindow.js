@@ -1,6 +1,11 @@
-export class GameGuideWindow {
-    static Init(runtime) {
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+export class GameGuideWindow extends ConstructSystem {
+    async Init(runtime) {
+        super.Init(runtime);
         GameGuideWindow.Event(runtime);
+    }
+    Update(runtime) {
+        super.Update(runtime);
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();

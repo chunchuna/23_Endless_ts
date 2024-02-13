@@ -1131,26 +1131,6 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 684063213316540,
-									"parameters": {
-										"key": 80
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"script": "const Event = new C3.Event(\"[OnPressPkey]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-								}
-							],
-							"sid": 443029718306557
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
 									"id": "on-object-clicked",
 									"objectClass": "Mouse",
 									"sid": 174559743509835,
@@ -1340,40 +1320,60 @@
 					"title": "WallHandler",
 					"description": "",
 					"isActiveOnStart": true,
+					"children": [],
+					"sid": 616354061412056
+				}
+			],
+			"sid": 997343278978204
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Input",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "InputHandler",
+					"description": "",
+					"isActiveOnStart": true,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "WallMask",
-									"sid": 947811098255147,
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 420738446317723,
 									"parameters": {
-										"object": "wall"
+										"key": 80
 									}
 								}
 							],
-							"actions": [],
-							"sid": 630278951617385,
-							"children": [
+							"actions": [
 								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"type": "script",
-											"script": "const wall =runtime.objects.wall.getPickedInstances();\nconst wallmask=runtime.objects.WallMask.getPickedInstances();\nconst Event = new C3.Event(\"[OnMaskTestOverWall]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEvent.wall=wall;\nEvent.mask=wallmask;\nEventHandler.dispatchEvent(Event)\n"
-										}
-									],
-									"sid": 236323847348540
+									"type": "script",
+									"script": "const Event = new C3.Event(\"[OnPresskey]\");\nEvent.key=\"Pkey\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
-							]
+							],
+							"sid": 624402762027454
 						}
 					],
-					"sid": 616354061412056
+					"sid": 318110881959035
 				}
 			],
-			"sid": 997343278978204
+			"sid": 225334706970389
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "RoundObjectPosition",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [],
+			"sid": 418392395088305
 		}
 	],
 	"sid": 378470522758805

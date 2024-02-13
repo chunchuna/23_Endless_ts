@@ -338,14 +338,6 @@
 						{
 							"items": [
 								{
-									"name": "EventHandler.js",
-									"type": "application/javascript",
-									"sid": 885257389405237,
-									"script-info": {
-										"purpose": "none"
-									}
-								},
-								{
 									"name": "Layer.js",
 									"type": "application/javascript",
 									"sid": 863793785333644,

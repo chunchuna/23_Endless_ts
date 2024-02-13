@@ -7,6 +7,7 @@ import {ObjectYsort} from "../entities/Ysort.js";
 import {GameGuideWindow} from "../entities/GameGuideWindow.js";
 import {Grid} from "../entities/Grid.js";
 import {DebugMessage} from "../entities/DebugMessage.js";
+import {EventSystem} from "../utils/EventSystem.js";
 
 
 export class game {
@@ -19,6 +20,8 @@ export class game {
             new DebugMessage().Update,
             new Collectable().Update,
             new IntroduceTextInstance().Update,
+            new GameGuideWindow().Update,
+            new EventSystem().Update,
         ].forEach((func) => func(runtime));
 
 
@@ -30,11 +33,13 @@ export class game {
             ObjectYsort.Init,
             new Collectable().Init,
             new Player().Init,
-            GameGuideWindow.Init,
+            new GameGuideWindow().Init,
             Grid.Init,
             new DebugMessage().Init,
             new IntroduceTextInstance().Init,
             new WallInstance().Init,
+            new EventSystem().Init
+
 
         ].forEach((func) => func(runtime));
 
