@@ -10,7 +10,9 @@ export class EventSystem extends ConstructSystem {
     static _EventHandlerInstanceClass = null;
     async Init(runtime) {
         super.Init(runtime);
+        /** must frist set up **/
         EventSystem.SetInstanceClass(runtime);
+        /** init **/
         EventSystem.Event(runtime);
         /** example
          var e = EventSystem.CreatEvent(runtime, "OnGameSatrt")
@@ -21,9 +23,11 @@ export class EventSystem extends ConstructSystem {
         super.Update(runtime);
     }
     static Event(runtime) {
-        EventSystem.TouchEvent(runtime, "OnGameSatrt", (e) => {
-            console.log("game start");
-        });
+        /** example
+         EventSystem.TouchEvent(runtime, "OnGameSatrt", (e: any) => {
+            console.log("game start")
+        })
+         **/
     }
     static SetInstanceClass(runtime) {
         this.EventHandlerInstanceClass = runtime.objects.EventHnadler;
@@ -38,7 +42,11 @@ export class EventSystem extends ConstructSystem {
         EventInstance.dispatchEvent(Event);
     }
     static async TouchEvent(runtime, EventName, Function) {
-        await this.EventHandlerInstanceClass.getFirstInstance().addEventListener(EventName, (e) => [
+        var EventHandlerInstance = this.EventHandlerInstanceClass.getFirstInstance();
+        if (EventHandlerInstance == null || EventHandlerInstance == undefined) {
+            console.error("Can Not Get EventHandlerInstance,Plaease Set Up an EventHandler Instance in game");
+        }
+        await EventHandlerInstance.addEventListener(EventName, (e) => [
             Function(e)
         ]);
     }
