@@ -1,17 +1,26 @@
-import { game } from "./Game/gameplay/game.js";
+import {game} from "./Game/gameplay/game.js";
+import {EventSystem} from "./Game/utils/EventSystem.js";
 
 runOnStartup(async runtime => {
     runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
 });
+
 async function OnBeforeProjectStart(runtime: IRuntime) {
-    RegisterEvent(runtime);
+    BindRoom(runtime);
 }
-async function RegisterEvent(runtime: IRuntime) {
-    const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstInstance();
-    await (EventHnadlerInstance?.addEventListener as any)("event_gametick", () => {
+
+async function BindRoom(runtime: IRuntime) {
+    //const EventHnadlerInstance = runtime.objects.EventHnadler.getFirstInstance();
+
+    /** Game Room **/
+
+    await EventSystem.TouchEvent(runtime, "Game->Tick", (e: any) => {
         game.Update(runtime);
-    });
-    await (EventHnadlerInstance?.addEventListener as any)("event_gamestart", () => {
+    })
+
+    await EventSystem.TouchEvent(runtime, "Game->Init", (e: any) => {
         game.Init(runtime);
-    });
+    })
+
+
 }

@@ -38,10 +38,16 @@ export class EventSystem extends ConstructSystem {
         return EventIns;
     }
     static DispEvent(runtime, Event) {
+        if (this.EventHandlerInstanceClass == null) {
+            this.SetInstanceClass(runtime);
+        }
         var EventInstance = this.EventHandlerInstanceClass.getFirstInstance();
         EventInstance.dispatchEvent(Event);
     }
     static async TouchEvent(runtime, EventName, Function) {
+        if (this.EventHandlerInstanceClass == null) {
+            this.SetInstanceClass(runtime);
+        }
         var EventHandlerInstance = this.EventHandlerInstanceClass.getFirstInstance();
         if (EventHandlerInstance == null || EventHandlerInstance == undefined) {
             console.error("Can Not Get EventHandlerInstance,Plaease Set Up an EventHandler Instance in game");

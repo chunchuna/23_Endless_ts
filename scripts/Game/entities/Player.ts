@@ -1,6 +1,22 @@
 import {Building} from "./Building.js";
 import {Grid} from "./Grid.js";
 import {ConstructSystem} from "../utils/ConstructSystem.js";
+import {EventSystem} from "../utils/EventSystem.js";
+
+
+enum InputKey {
+    ForwardKey = "KeyW",
+    BackKey = "KeyS",
+    MoveLeftKey = "KeyA",
+    MoveRightKey = "KeyD",
+}
+
+enum MoveType {
+    Forward = "Forward",
+    Back = "Back",
+    MoveLeft = "MoveLeft",
+    MoveRight = "MoveRight",
+}
 
 export class Player extends ConstructSystem {
 
@@ -10,6 +26,7 @@ export class Player extends ConstructSystem {
         Player.Event(runtime);
 
     }
+
 
     public static async Event(runtime: IRuntime): Promise<void> {
 
@@ -26,6 +43,12 @@ export class Player extends ConstructSystem {
         await (EventHnadlerInstance?.addEventListener as any)("[player-dirmove-arrive]", (e: any) => {
             Player.OnPlayerIsArriveMoverTarget(runtime);
         });
+
+        await EventSystem.TouchEvent(runtime, "OnIsPressKey", (e: any) => {
+            this.OnInput(runtime, e)
+        })
+
+
     }
 
     Update(runtime: IRuntime) {
@@ -42,7 +65,7 @@ export class Player extends ConstructSystem {
         if (runtime.globalVars.ISBuildingMode) return;
         // Player.PlayerPathFindMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1])
         Player.ClearDrawPlayerPathFindPoint(runtime);
-        Player.PlayerDirMove(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1]);
+        Player.MoveCharacterByMoveTo(runtime, MouseInstance!.getMousePosition("Object")[0], MouseInstance!.getMousePosition("Object")[1]);
 
     }
 
@@ -57,15 +80,62 @@ export class Player extends ConstructSystem {
 
     }
 
+    private static OnInput(runtime: IRuntime, e: any) {
+
+        if (e = InputKey.ForwardKey) {
+            Player.MoveCharaterBySimulation(runtime, MoveType.Forward)
+
+        }
+        if (e = InputKey.BackKey) {
+            Player.MoveCharaterBySimulation(runtime, MoveType.Back)
+
+        }
+        if (e = InputKey.MoveLeftKey) {
+            Player.MoveCharaterBySimulation(runtime, MoveType.MoveLeft)
+
+        }
+        if (e = InputKey.MoveRightKey) {
+            Player.MoveCharaterBySimulation(runtime, MoveType.MoveRight)
+
+        }
+    }
+
 
     /** Function **/
 
+
+    private static HandleKeyboardEvent(runtime: IRuntime, event: any) {
+        var keyboard = runtime.keyboard;
+        if (event.type === "keydown") {
+            var key = event.code;
+        }
+    }
+
+
+    private static MoveCharaterBySimulation(runtime: IRuntime, MoveType_: string) {
+        var player = Player.GetPlayerInstance(runtime)!;
+        var MoveSimulation = player.behaviors.SimulationMove!;
+
+
+        if (MoveType_ == MoveType.Forward) {
+            MoveSimulation.simulateControl("up");
+        }
+        if (MoveType_ == MoveType.Back) {
+            MoveSimulation.simulateControl("down");
+        }
+        if (MoveType_ == MoveType.MoveLeft) {
+            MoveSimulation.simulateControl("left");
+        }
+        if (MoveType_ == MoveType.MoveRight) {
+            MoveSimulation.simulateControl("right");
+        }
+    }
 
 
     public static async InputUpdate(runtime: IRuntime) {
         const {keyboard, objects: {player}} = runtime;
         const playerInstance = player.getFirstInstance();
-        const simulMover = playerInstance?.behaviors["8DirMove"];
+        const simulMover = playerInstance?.behaviors.SimulationMove;
         const keyMap = {
             KeyA: "left",
             KeyD: "right",
@@ -85,7 +155,7 @@ export class Player extends ConstructSystem {
     }
 
 
-    public static async PlayerPathFindMove(runtime: IRuntime, PositionX: number, PositionY: number) {
+    public static async MoveCharacterByPathFind(runtime: IRuntime, PositionX: number, PositionY: number) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);
         var PathFindBehavior: IPathfindingBehaviorInstance<InstanceType.player> | undefined = PlayerInstance?.behaviors.PathFind;
         //PathFindBehavior?.map.regenerateMap(); // Cause serious performance problems
@@ -115,7 +185,7 @@ export class Player extends ConstructSystem {
 
     }
 
-    private static PlayerDirMove(runtime: IRuntime, PositionX: number, PositionY: number) {
+    private static MoveCharacterByMoveTo(runtime: IRuntime, PositionX: number, PositionY: number) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);
         var DirMoveBehavior: IMoveToBehaviorInstance<InstanceType.player> | undefined = PlayerInstance?.behaviors.DirMove;
         DirMoveBehavior?.moveToPosition(PositionX, PositionY);

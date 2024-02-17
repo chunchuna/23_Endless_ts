@@ -1,10 +1,13 @@
 import { GameMath } from "../utils/Math.js";
 import { Player } from "./Player.js";
-export class Grid {
-    static Init(runtime) {
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+export class Grid extends ConstructSystem {
+    async Init(runtime) {
+        super.Init(runtime);
         Grid.Event(runtime);
     }
-    static Update(runtime) {
+    Update(runtime) {
+        super.Update(runtime);
     }
     /** Event **/
     static async Event(runtime) {
@@ -39,6 +42,8 @@ export class Grid {
         var GetGrid = e.ThisGrid[0];
         GetGrid.setAnimation("MouseOver");
         setTimeout(() => {
+            if (GetGrid == null || GetGrid == undefined)
+                return;
             GetGrid.setAnimation("Normal");
         }, 50);
     }

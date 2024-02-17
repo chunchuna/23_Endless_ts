@@ -53,20 +53,5 @@ export class WallInstance extends ConstructSystem {
     static OnUnMaskTestOverlapWall(runtime, e) {
     }
     static OnMaskTestOverLapWall(runtime, e) {
-        var WallInstanceArray = e.wall;
-        var MaskWallInstanceArray = e.mask;
-        WallInstanceArray.forEach((wallInstance) => {
-            MaskWallInstanceArray.forEach((MaskInstance) => {
-                var MaskParentWallInstance = MaskInstance.getParent();
-                if (wallInstance == MaskParentWallInstance) {
-                }
-                else {
-                    wallInstance.setAnimation("Line");
-                    setTimeout(() => {
-                        wallInstance.setAnimation("Normal");
-                    }, 50);
-                }
-            });
-        });
     }
 }

@@ -7,7 +7,7 @@
 	"behaviorTypes": [
 		{
 			"behaviorId": "EightDir",
-			"name": "8DirMove",
+			"name": "SimulationMove",
 			"sid": 573136608847244
 		},
 		{

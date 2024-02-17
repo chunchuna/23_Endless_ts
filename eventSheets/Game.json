@@ -179,7 +179,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "CameraZoom",
+			"title": "LayerZoom",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -367,6 +367,15 @@
 				{
 					"eventType": "group",
 					"disabled": false,
+					"title": "PlayerInputHandler",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [],
+					"sid": 665001899327819
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
 					"title": "PlayerHandler",
 					"description": "",
 					"isActiveOnStart": true,
@@ -378,7 +387,7 @@
 									"id": "is-moving",
 									"objectClass": "player",
 									"sid": 915350399249451,
-									"behaviorType": "8DirMove"
+									"behaviorType": "SimulationMove"
 								}
 							],
 							"actions": [
@@ -516,7 +525,7 @@
 											"id": "is-moving",
 											"objectClass": "player",
 											"sid": 285671045673939,
-											"behaviorType": "8DirMove"
+											"behaviorType": "SimulationMove"
 										},
 										{
 											"id": "is-moving-along-path",
@@ -1088,7 +1097,12 @@
 					"actions": [
 						{
 							"type": "script",
-							"script": "const Event = new C3.Event(\"event_gametick\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Tick\")\nEventSystem.DispEvent(runtime,e)"
+						},
+						{
+							"type": "script",
+							"script": "const Event = new C3.Event(\"Game->Tick\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)",
+							"disabled": true
 						}
 					],
 					"sid": 300190105241006
@@ -1105,7 +1119,12 @@
 					"actions": [
 						{
 							"type": "script",
-							"script": "const Event = new C3.Event(\"event_gamestart\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Init\")\nEventSystem.DispEvent(runtime,e)"
+						},
+						{
+							"type": "script",
+							"script": "const Event = new C3.Event(\"Game->Init\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)",
+							"disabled": true
 						}
 					],
 					"sid": 818472511165917
@@ -1336,7 +1355,7 @@
 				{
 					"eventType": "group",
 					"disabled": false,
-					"title": "InputHandler",
+					"title": "InputHandlerPress",
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [

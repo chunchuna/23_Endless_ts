@@ -79,22 +79,7 @@ export class WallInstance extends ConstructSystem {
 
 
     private static OnMaskTestOverLapWall(runtime: IRuntime, e: any) {
-        var WallInstanceArray: InstanceType.wall[] = e.wall;
-        var MaskWallInstanceArray: InstanceType.wall[] = e.mask;
-        WallInstanceArray.forEach((wallInstance: InstanceType.wall) => {
-            MaskWallInstanceArray.forEach((MaskInstance: InstanceType.WallMask) => {
-                var MaskParentWallInstance = MaskInstance.getParent();
-                if (wallInstance == MaskParentWallInstance) {
-                } else {
-                    wallInstance.setAnimation("Line")
-                    setTimeout(() => {
-                        wallInstance.setAnimation("Normal")
-                    }, 50)
-                }
-
-            });
-        });
-
+        
 
     }
 

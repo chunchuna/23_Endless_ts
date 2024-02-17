@@ -189,7 +189,7 @@
 								"LocalLayerName": ""
 							},
 							"behaviors": {
-								"8DirMove": {
+								"SimulationMove": {
 									"properties": {
 										"max-speed": 200,
 										"acceleration": 600,

@@ -3,7 +3,7 @@ declare namespace InstanceType {
 	class Ground1 extends ISpriteInstance {
 	}
 	class __playerBehaviors<InstType> {
-		"8DirMove": I8DirectionBehaviorInstance<InstType>;
+		SimulationMove: I8DirectionBehaviorInstance<InstType>;
 		MoveShakeSine: ISineBehaviorInstance<InstType>;
 		BreathSine: ISineBehaviorInstance<InstType>;
 		PathFind: IPathfindingBehaviorInstance<InstType>;

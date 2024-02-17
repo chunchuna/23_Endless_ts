@@ -12,10 +12,8 @@ export class Layer extends ConstructSystem {
 
     async Event(runtime: IRuntime) {
     }
-
-
+    
     /** Fcuntion **/
-
     public static SetLayerVisibel(runtime: IRuntime, Layer: IAnyProjectLayer | boolean | any, type: boolean) {
         if (Layer instanceof Boolean) {
             console.log("Layer is empty")

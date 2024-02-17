@@ -13,15 +13,16 @@ import {EventSystem} from "../utils/EventSystem.js";
 export class game {
     public static Update(runtime: IRuntime) {
         [
+            new EventSystem().Update,
             new Building().Update,
             new WallInstance().Update,
             new Player().Update,
-            Grid.Update,
+            new Grid().Update,
             new DebugMessage().Update,
             new Collectable().Update,
             new IntroduceTextInstance().Update,
             new GameGuideWindow().Update,
-            new EventSystem().Update,
+
         ].forEach((func) => func(runtime));
 
 
@@ -29,16 +30,16 @@ export class game {
 
     public static Init(runtime: IRuntime) {
         [
+            new EventSystem().Init,
             new Building().Init,
-            ObjectYsort.Init,
+            new ObjectYsort().Init,
             new Collectable().Init,
             new Player().Init,
             new GameGuideWindow().Init,
-            Grid.Init,
+            new Grid().Init,
             new DebugMessage().Init,
             new IntroduceTextInstance().Init,
             new WallInstance().Init,
-            new EventSystem().Init
 
 
         ].forEach((func) => func(runtime));
