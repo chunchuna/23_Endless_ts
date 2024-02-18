@@ -75,7 +75,7 @@ export class DebugMessage extends ConstructSystem {
         var Event = EventSystem.CreatEvent(runtime, "OnDebugMessageSend");
         EventSystem.DispEvent(runtime, Event);
     }
-    static sm(Content, Type) {
+    static sm(Content, Type = MesType.Error) {
         if (DebugMessage.runtime)
             this.SeedMessage(DebugMessage.runtime, Content, Type);
     }

@@ -115,7 +115,7 @@ export class DebugMessage extends ConstructSystem {
 
     }
 
-    public static sm(Content: string, Type: MesType) {
+    public static sm(Content: string, Type: MesType = MesType.Error) {
         if (DebugMessage.runtime)
             this.SeedMessage(DebugMessage.runtime, Content, Type);
     }
