@@ -1,9 +1,8 @@
 import { Layer } from "../utils/Layer.js";
-import { Player } from "./Player.js";
 import { ObjectYsort } from "./Ysort.js";
-import { GameMath } from "../utils/Math.js";
 import { Grid } from "./Grid.js";
 import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { DebugMessage, MesType } from "./DebugMessage.js";
 var SpwnTypeEnum;
 (function (SpwnTypeEnum) {
     SpwnTypeEnum[SpwnTypeEnum["Mouse"] = 0] = "Mouse";
@@ -74,6 +73,7 @@ export class Building extends ConstructSystem {
                 getBuilding.destroy();
             }
         });
+        DebugMessage.sm("Building ON", MesType.Warm);
     }
     static OnBuildModeOff(runtime) {
         console.log("building mode off");
@@ -82,6 +82,7 @@ export class Building extends ConstructSystem {
         ObjectYsort.YsortFixbug(runtime);
         Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
+        DebugMessage.sm("Building Off", MesType.Warm);
     }
     static OnClickGrid(runtime, e) {
         if (!runtime.globalVars.ISBuildingMode)

@@ -22,6 +22,7 @@ declare class IConstructProjectObjects {
 	readonly WallMask: IObjectType<InstanceType.WallMask>;
 	readonly ControlIntroductionText: IObjectType<InstanceType.ControlIntroductionText>;
 	readonly GameGuideText: IObjectType<InstanceType.GameGuideText>;
+	readonly DebugMessageText: IObjectType<InstanceType.DebugMessageText>;
 	readonly BuildingModeButton: IObjectType<InstanceType.BuildingModeButton>;
 	readonly BuildingModeCreatWall2: IObjectType<InstanceType.BuildingModeCreatWall2>;
 	readonly BuildingModeCreatWall1: IObjectType<InstanceType.BuildingModeCreatWall1>;

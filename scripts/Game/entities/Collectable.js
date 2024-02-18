@@ -1,4 +1,5 @@
 import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { DebugMessage, MesType } from "./DebugMessage.js";
 export class Collectable extends ConstructSystem {
     Update(runtime) {
     }
@@ -53,7 +54,9 @@ export class Collectable extends ConstructSystem {
         }
         if (Heath <= 0) {
             Collect.destroy();
+            DebugMessage.sm("Collect destroyed", MesType.Warm);
         }
+        DebugMessage.sm("Hit Collect Onece", MesType.Warm);
     }
     static CreatGiftForCollecting(runtime, Collect) {
     }

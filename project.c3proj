@@ -168,7 +168,8 @@
 			{
 				"items": [
 					"ControlIntroductionText",
-					"GameGuideText"
+					"GameGuideText",
+					"DebugMessageText"
 				],
 				"subfolders": [],
 				"name": "Text"
@@ -357,6 +358,22 @@
 									"name": "ConstructSystem.js",
 									"type": "application/javascript",
 									"sid": 986516284821793,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "EventSystem.js",
+									"type": "application/javascript",
+									"sid": 809019643775835,
+									"script-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "Input.js",
+									"type": "application/javascript",
+									"sid": 336834622893280,
 									"script-info": {
 										"purpose": "none"
 									}

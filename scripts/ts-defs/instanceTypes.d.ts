@@ -109,6 +109,8 @@ declare namespace InstanceType {
 	}
 	class GameGuideText extends ITextInstance {
 	}
+	class DebugMessageText extends ITextInstance {
+	}
 	class BuildingModeButton extends IButtonInstance {
 	}
 	class BuildingModeCreatWall2 extends IButtonInstance {
