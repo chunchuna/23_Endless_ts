@@ -1098,11 +1098,6 @@
 						{
 							"type": "script",
 							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Tick\")\nEventSystem.DispEvent(runtime,e)"
-						},
-						{
-							"type": "script",
-							"script": "const Event = new C3.Event(\"Game->Tick\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)",
-							"disabled": true
 						}
 					],
 					"sid": 300190105241006
@@ -1120,11 +1115,6 @@
 						{
 							"type": "script",
 							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Init\")\nEventSystem.DispEvent(runtime,e)"
-						},
-						{
-							"type": "script",
-							"script": "const Event = new C3.Event(\"Game->Init\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)",
-							"disabled": true
 						}
 					],
 					"sid": 818472511165917

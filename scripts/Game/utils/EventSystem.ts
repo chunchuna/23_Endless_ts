@@ -1,5 +1,9 @@
 import {ConstructSystem} from "./ConstructSystem.js";
 
+/** tell ide this is a global var **/
+declare var C3: any;
+
+
 export class EventSystem extends ConstructSystem {
     static get EventHandlerInstanceClass(): any {
         return this._EventHandlerInstanceClass;
@@ -45,8 +49,6 @@ export class EventSystem extends ConstructSystem {
 
 
     public static CreatEvent(runtime: IRuntime, EventName: string) {
-
-        //var C3 = runtime.callFunction("Function->GetC3");
         var EventIns = new C3.Event(EventName);
         return EventIns
     }

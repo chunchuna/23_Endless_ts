@@ -33,7 +33,6 @@ export class EventSystem extends ConstructSystem {
         this.EventHandlerInstanceClass = runtime.objects.EventHnadler;
     }
     static CreatEvent(runtime, EventName) {
-        //var C3 = runtime.callFunction("Function->GetC3");
         var EventIns = new C3.Event(EventName);
         return EventIns;
     }

@@ -2,13 +2,14 @@ import {Building} from "./Building.js";
 import {Grid} from "./Grid.js";
 import {ConstructSystem} from "../utils/ConstructSystem.js";
 import {EventSystem} from "../utils/EventSystem.js";
+import {Input, KeyCode} from "../utils/Input.js";
 
 
 enum InputKey {
-    ForwardKey = "KeyW",
-    BackKey = "KeyS",
-    MoveLeftKey = "KeyA",
-    MoveRightKey = "KeyD",
+    ForwardKey = 87,
+    BackKey = 83,
+    MoveLeftKey = 65,
+    MoveRightKey = 68,
 }
 
 enum MoveType {
@@ -17,6 +18,7 @@ enum MoveType {
     MoveLeft = "MoveLeft",
     MoveRight = "MoveRight",
 }
+
 
 export class Player extends ConstructSystem {
 
@@ -44,16 +46,16 @@ export class Player extends ConstructSystem {
             Player.OnPlayerIsArriveMoverTarget(runtime);
         });
 
-        await EventSystem.TouchEvent(runtime, "OnIsPressKey", (e: any) => {
-            this.OnInput(runtime, e)
-        })
+        //await runtime.addEventListener("keydown", (e) => {
+        //})
 
 
     }
 
     Update(runtime: IRuntime) {
         super.Update(runtime);
-        Player.InputUpdate(runtime);
+        Player.InputUpdate(runtime)
+
     }
 
 
@@ -82,34 +84,23 @@ export class Player extends ConstructSystem {
 
     private static OnInput(runtime: IRuntime, e: any) {
 
-        if (e = InputKey.ForwardKey) {
+        /** move **/
+        if (e === InputKey.ForwardKey) {
             Player.MoveCharaterBySimulation(runtime, MoveType.Forward)
-
         }
-        if (e = InputKey.BackKey) {
+        if (e === InputKey.BackKey) {
             Player.MoveCharaterBySimulation(runtime, MoveType.Back)
-
         }
-        if (e = InputKey.MoveLeftKey) {
+        if (e === InputKey.MoveLeftKey) {
             Player.MoveCharaterBySimulation(runtime, MoveType.MoveLeft)
-
         }
-        if (e = InputKey.MoveRightKey) {
+        if (e === InputKey.MoveRightKey) {
             Player.MoveCharaterBySimulation(runtime, MoveType.MoveRight)
-
         }
     }
 
 
     /** Function **/
-
-
-    private static HandleKeyboardEvent(runtime: IRuntime, event: any) {
-        var keyboard = runtime.keyboard;
-        if (event.type === "keydown") {
-            var key = event.code;
-        }
-    }
 
 
     private static MoveCharaterBySimulation(runtime: IRuntime, MoveType_: string) {
@@ -131,8 +122,8 @@ export class Player extends ConstructSystem {
         }
     }
 
-
-    public static async InputUpdate(runtime: IRuntime) {
+    /** out-of-date **/
+    public static async InputUpdate_outofdate(runtime: IRuntime) {
         const {keyboard, objects: {player}} = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors.SimulationMove;
@@ -146,6 +137,25 @@ export class Player extends ConstructSystem {
             if (keyboard?.isKeyDown(key)) simulMover?.simulateControl(value as SimulateControlType8Direction);
         });
 
+    }
+
+    public static async InputUpdate(runtime: IRuntime) {
+
+        var keyboard = runtime.keyboard!;
+        var PlayerInstance = Player.GetPlayerInstance(runtime);
+        var SimulMoverBehavior = PlayerInstance?.behaviors.SimulationMove;
+
+        if (!keyboard || !PlayerInstance || !SimulMoverBehavior) {
+            return;
+        }
+
+        var AllKeys = Object.values(KeyCode);
+
+        AllKeys.forEach((keyCode) => {
+            if (keyboard.isKeyDown(keyCode)) {
+                this.OnInput(runtime, keyCode)
+            }
+        });
     }
 
 
