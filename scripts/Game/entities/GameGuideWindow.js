@@ -1,4 +1,5 @@
 import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { LayerManager } from "../utils/Layer.js";
 export class GameGuideWindow extends ConstructSystem {
     async Init(runtime) {
         super.Init(runtime);
@@ -25,7 +26,7 @@ export class GameGuideWindow extends ConstructSystem {
         GameGuideWindow.CloseWindow(runtime);
     }
     static GetGuideWindowLayer(runtime) {
-        return runtime.getLayout("Game").getLayer("GameGuideWindow");
+        return LayerManager.GetLayer(runtime, "GameGuideWindow");
     }
     static SetGuideContent(runtime, Content) {
         var GuideTextInstance = runtime.objects.GameGuideText.getFirstInstance();
@@ -38,15 +39,21 @@ export class GameGuideWindow extends ConstructSystem {
     }
     static OpenWindow(runtime) {
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime);
+        if (typeof Layer === "boolean")
+            return;
         Layer.isVisible = true;
     }
     static CloseWindow(runtime) {
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime);
+        if (typeof Layer === "boolean")
+            return;
         Layer.isVisible = false;
     }
     static SwitchWindow(runtime) {
         console.log("click p ");
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime);
+        if (typeof Layer === "boolean")
+            return;
         Layer.isVisible = !Layer.isVisible;
     }
 }

@@ -1,5 +1,5 @@
 {
-	"name": "Game",
+	"name": "EGame",
 	"events": [
 		{
 			"eventType": "variable",
@@ -50,6 +50,50 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 808155663731012
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Script",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 435734655127653
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Tick\")\nEventSystem.DispEvent(runtime,e)"
+						}
+					],
+					"sid": 571687215367357
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 353426526467027
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Init\")\nEventSystem.DispEvent(runtime,e)"
+						}
+					],
+					"sid": 992276228849288
+				}
+			],
+			"sid": 621379300882642
 		},
 		{
 			"eventType": "group",
@@ -300,6 +344,15 @@
 								"layer": "\"BuildingLayer\"",
 								"scale": "CameraZoomValue"
 							}
+						},
+						{
+							"id": "set-layer-scale",
+							"objectClass": "System",
+							"sid": 621225352887868,
+							"parameters": {
+								"layer": "\"Draw\"",
+								"scale": "CameraZoomValue"
+							}
 						}
 					],
 					"sid": 670377316750579
@@ -408,7 +461,7 @@
 									"parameters": {
 										"mouse-button": "right",
 										"click-type": "clicked",
-										"object-clicked": "Ground1"
+										"object-clicked": "DafultGround"
 									}
 								}
 							],
@@ -1081,50 +1134,6 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Script",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-tick",
-							"objectClass": "System",
-							"sid": 386146825090856
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Tick\")\nEventSystem.DispEvent(runtime,e)"
-						}
-					],
-					"sid": 300190105241006
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 587829565223178
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"script": "var e =EventSystem.CreatEvent(runtime,\"Game->Init\")\nEventSystem.DispEvent(runtime,e)"
-						}
-					],
-					"sid": 818472511165917
-				}
-			],
-			"sid": 680611042585633
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
 			"title": "GameGuideWindow",
 			"description": "",
 			"isActiveOnStart": true,
@@ -1383,6 +1392,60 @@
 			"isActiveOnStart": true,
 			"children": [],
 			"sid": 418392395088305
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Draw",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 552870055602944
+						}
+					],
+					"actions": [
+						{
+							"id": "line",
+							"objectClass": "DrawingCanvas",
+							"sid": 149047484825521,
+							"parameters": {
+								"x1": "player.X",
+								"y1": "player.Y",
+								"x2": "Tree.X",
+								"y2": "Tree.Y",
+								"color": "rgba(0, 0, 0, 100)",
+								"line-thickness": "3",
+								"line-cap": "square"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 366288061620618,
+							"parameters": {
+								"seconds": "0.2"
+							}
+						},
+						{
+							"id": "clear-canvas",
+							"objectClass": "DrawingCanvas",
+							"sid": 730914336247877,
+							"parameters": {
+								"color": "rgba(0, 0, 0, 0)"
+							}
+						}
+					],
+					"sid": 288405865971044,
+					"disabled": true
+				}
+			],
+			"sid": 977058259099234
 		}
 	],
 	"sid": 378470522758805

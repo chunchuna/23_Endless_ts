@@ -1,5 +1,7 @@
-import {ConstructSystem} from "../utils/ConstructSystem.js";
+import { ConstructSystem } from "../utils/ConstructSystem.js";
 import YsortGroup = InstanceType.YsortGroup;
+import { LayerManager } from "../utils/Layer.js";
+import { DebugMessage } from "./DebugMessage.js";
 
 export class ObjectYsort extends ConstructSystem {
     static get YsorGrouptInstanceClass(): any {
@@ -58,9 +60,13 @@ export class ObjectYsort extends ConstructSystem {
     public static YsortFixbug(runtime: IRuntime) {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
         for (let YsortGroups of YsortGroupClass) {
-            var Layer: IAnyProjectLayer | null = runtime.getLayout("Game").getLayer(YsortGroups.instVars["LocalLayerName"])
-            if (Layer)
+            var LayerName = YsortGroups.instVars["LocalLayerName"]
+            var Layer = LayerManager.GetLayer(runtime, LayerName)
+            if (typeof Layer !== "boolean")
                 YsortGroups.moveToLayer(Layer);
+            else {
+                DebugMessage.sm(LayerName+"Layer is invidl")
+            }
         }
     }
 }

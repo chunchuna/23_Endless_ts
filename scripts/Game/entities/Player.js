@@ -3,6 +3,7 @@ import { Grid } from "./Grid.js";
 import { ConstructSystem } from "../utils/ConstructSystem.js";
 import { EventSystem } from "../utils/EventSystem.js";
 import { Input, KeyCode } from "../utils/Input.js";
+import { DebugMessage, MesType } from "./DebugMessage.js";
 var InputKey;
 (function (InputKey) {
     InputKey[InputKey["ForwardKey"] = 87] = "ForwardKey";
@@ -18,9 +19,17 @@ var MoveType;
     MoveType["MoveRight"] = "MoveRight";
 })(MoveType || (MoveType = {}));
 export class Player extends ConstructSystem {
+    static get PLayerInstanceClass() {
+        return this._PLayerInstanceClass;
+    }
+    static set PLayerInstanceClass(value) {
+        this._PLayerInstanceClass = value;
+    }
+    static _PLayerInstanceClass = null;
     async Init(runtime) {
         super.Init(runtime);
         Player.Event(runtime);
+        Player.SetInstanceClass(runtime);
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
@@ -72,6 +81,9 @@ export class Player extends ConstructSystem {
         }
     }
     /** Function **/
+    static SetInstanceClass(runtime) {
+        this.PLayerInstanceClass = runtime.objects.player;
+    }
     static MoveCharaterBySimulation(runtime, MoveType_) {
         var player = Player.GetPlayerInstance(runtime);
         var MoveSimulation = player.behaviors.SimulationMove;
@@ -119,7 +131,7 @@ export class Player extends ConstructSystem {
         });
     }
     static GetPlayerInstance(runtime) {
-        return runtime.objects.player.getFirstInstance();
+        return this.PLayerInstanceClass.getFirstInstance();
     }
     static async MoveCharacterByPathFind(runtime, PositionX, PositionY) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);

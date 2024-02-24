@@ -1,4 +1,4 @@
-import {Layer} from "../utils/Layer.js";
+import {LayerManager} from "../utils/Layer.js";
 import {ObjectYsort} from "./Ysort.js";
 import {Grid} from "./Grid.js";
 import {ConstructSystem} from "../utils/ConstructSystem.js";
@@ -33,6 +33,7 @@ export class Building extends ConstructSystem {
     private static _SelectedCreatBuildingType: IObjectType<InstanceType.BuildingGroup>; // What is the type of building selected by the current player?
     /** Build mod max grid count **/
     private static _BuildMaxGridCount = 15;
+
 
 
     public Update(runtime: IRuntime) {
@@ -88,8 +89,8 @@ export class Building extends ConstructSystem {
         console.log("building mode on")
         /** creat grid on player postion **/
         Grid.CreateGridArrayByPlayer(runtime, Building.BuildMaxGridCount, 256)
-        Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "BuildingLayer"), true);
-        Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), false);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
 
 
@@ -110,9 +111,9 @@ export class Building extends ConstructSystem {
 
         console.log("building mode off")
         Grid.ClearAllGrid(runtime)
-        Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "BuildingLayer"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), false);
         ObjectYsort.YsortFixbug(runtime);
-        Layer.SetLayerVisibel(runtime, Layer.GetLayer(runtime, "Light"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), true);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
 
         DebugMessage.sm("Building Off", MesType.Warm)

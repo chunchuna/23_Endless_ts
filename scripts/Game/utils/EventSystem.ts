@@ -19,8 +19,7 @@ export class EventSystem extends ConstructSystem {
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
         /** must frist set up **/
-        EventSystem.SetInstanceClass(runtime);
-
+	EventSystem.SetInstanceClass(runtime);
         /** init **/
         EventSystem.Event(runtime);
 

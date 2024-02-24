@@ -1,6 +1,40 @@
 {
-	"name": "Res",
+	"name": "RRes",
 	"layers": [
+		{
+			"name": "bcakground",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [],
+			"sid": 525524828699368,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.4980392156862745,
+				0.5725490196078431,
+				0.5803921568627451,
+				1
+			],
+			"isTransparent": false,
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
 		{
 			"name": "DebugMessage",
 			"overriden": 0,
@@ -33,7 +67,11 @@
 					},
 					"uid": 36,
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Timer": {
+							"properties": {}
+						}
+					},
 					"world": {
 						"x": 11,
 						"y": -56,

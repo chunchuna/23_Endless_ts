@@ -1,5 +1,5 @@
-import {ConstructSystem} from "../utils/ConstructSystem.js";
-import {EventSystem} from "../utils/EventSystem.js";
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { EventSystem } from "../utils/EventSystem.js";
 
 
 /** Message Type define **/
@@ -11,6 +11,13 @@ export enum MesType {
 
 
 export class DebugMessage extends ConstructSystem {
+    static get MessageTimerDuration(): number {
+        return this._MessageTimerDuration;
+    }
+
+    static set MessageTimerDuration(value: number) {
+        this._MessageTimerDuration = value;
+    }
 
 
     static get MaxQueueMessageCount(): number {
@@ -60,9 +67,11 @@ export class DebugMessage extends ConstructSystem {
     private static _MessagePositionInterval: number = 40;
     private static _MessageQueenList: InstanceType.DebugMessageText[] = [];
 
+    private static _MessageTimerDuration: number = 2;
+
 
     /** Message INstance Class **/
-    private static _MessageInstanceClass: any = null;
+    private static _MessageInstanceClass: IObjectClass<any>;
 
 
     /** system **/
@@ -87,15 +96,44 @@ export class DebugMessage extends ConstructSystem {
         await EventSystem.TouchEvent(runtime, "OnDebugMessageSend", (e: any) => {
             this.OnDebugMessageSend(runtime, e)
         })
-    }
 
+        await this.MessageInstanceClass.addEventListener("instancecreate", (e: any) => {
+            this.OnMessageInstanceBeCreated(runtime, e)
+        })
+
+        for (var DebuMessages_ of this.MessageInstanceClass.instances()) {
+            DebuMessages_.behaviors.Timer.addEventListener("timer", (e: any) => {
+                this.OnMessageTimerArrive(runtime, e, DebuMessages_);
+            })
+        }
+
+
+    }
 
     /** Event **/
 
-    private static OnDebugMessageSend(runtime: IRuntime, e: any) {
-
+    private static OnMessageInstanceBeCreated(runtime: IRuntime, e: any) {
+        /** todo: if run timer for destory message **/
+        //this.SetMessageTimerRun(runtime,e);
+        //console.log(e.instance)
+        this.SetMessageTimerRun(runtime, e.instance)
     }
 
+    private static OnDebugMessageSend(runtime: IRuntime, e: any) {
+    }
+
+    private static OnMessageTimerArrive(runtime: IRuntime, e: any, MessageInstance: InstanceType.DebugMessageText) {
+        if (e.tag === "destory") {
+            MessageInstance.destroy()
+            /**todo: delet from instance list **/
+            var MessageQueenList = this.MessageQueenList;
+            var InstanceIdinQueen = MessageQueenList.indexOf(MessageInstance);
+            if (InstanceIdinQueen != -1) {
+                this.MessageQueenList.splice(InstanceIdinQueen, 1);
+            }
+
+        }
+    }
 
     /** Funtion **/
 
@@ -155,7 +193,6 @@ export class DebugMessage extends ConstructSystem {
 
         var DateSet = hours + ":" + minutes + ":" + seconds
         var ContentWithDate = "「" + DateSet + "」 " + Content;
-        console.log(ContentWithDate)
         return ContentWithDate;
 
     }
@@ -218,6 +255,22 @@ export class DebugMessage extends ConstructSystem {
 
     private static MessageMoveUpOnce(runtime: IRuntime, MessageInstance: InstanceType.DebugMessageText) {
         MessageInstance.y -= this.MessagePositionInterval;
+    }
+
+    private static SetMessageTimerRun(runtime: IRuntime, MessageInstance: InstanceType.DebugMessageText) {
+        var Timer = this.GetTimerBehavior(runtime, MessageInstance);
+        if (Timer.isTimerRunning("Destroy") == false) {
+            Timer.startTimer(this.MessageTimerDuration, "Destory", "once");
+            Timer.addEventListener("timer", (e) => {
+                this.OnMessageTimerArrive(runtime, e, MessageInstance)
+            })
+        }
+
+    }
+
+    private static GetTimerBehavior(runtime: IRuntime, MessageInstance: InstanceType.DebugMessageText) {
+        var TimerBehavior = MessageInstance.behaviors.Timer;
+        return TimerBehavior
     }
 
 }

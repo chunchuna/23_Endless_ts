@@ -8,6 +8,12 @@ export var MesType;
     MesType[MesType["Warm"] = 2] = "Warm";
 })(MesType || (MesType = {}));
 export class DebugMessage extends ConstructSystem {
+    static get MessageTimerDuration() {
+        return this._MessageTimerDuration;
+    }
+    static set MessageTimerDuration(value) {
+        this._MessageTimerDuration = value;
+    }
     static get MaxQueueMessageCount() {
         return this._MaxQueueMessageCount;
     }
@@ -43,8 +49,9 @@ export class DebugMessage extends ConstructSystem {
     static _FirstMessageStartPosition = [22, 1021];
     static _MessagePositionInterval = 40;
     static _MessageQueenList = [];
+    static _MessageTimerDuration = 2;
     /** Message INstance Class **/
-    static _MessageInstanceClass = null;
+    static _MessageInstanceClass;
     /** system **/
     static runtime = null;
     async Init(runtime) {
@@ -61,9 +68,34 @@ export class DebugMessage extends ConstructSystem {
         await EventSystem.TouchEvent(runtime, "OnDebugMessageSend", (e) => {
             this.OnDebugMessageSend(runtime, e);
         });
+        await this.MessageInstanceClass.addEventListener("instancecreate", (e) => {
+            this.OnMessageInstanceBeCreated(runtime, e);
+        });
+        for (var DebuMessages_ of this.MessageInstanceClass.instances()) {
+            DebuMessages_.behaviors.Timer.addEventListener("timer", (e) => {
+                this.OnMessageTimerArrive(runtime, e, DebuMessages_);
+            });
+        }
     }
     /** Event **/
+    static OnMessageInstanceBeCreated(runtime, e) {
+        /** todo: if run timer for destory message **/
+        //this.SetMessageTimerRun(runtime,e);
+        //console.log(e.instance)
+        this.SetMessageTimerRun(runtime, e.instance);
+    }
     static OnDebugMessageSend(runtime, e) {
+    }
+    static OnMessageTimerArrive(runtime, e, MessageInstance) {
+        if (e.tag === "destory") {
+            MessageInstance.destroy();
+            /**todo: delet from instance list **/
+            var MessageQueenList = this.MessageQueenList;
+            var InstanceIdinQueen = MessageQueenList.indexOf(MessageInstance);
+            if (InstanceIdinQueen != -1) {
+                this.MessageQueenList.splice(InstanceIdinQueen, 1);
+            }
+        }
     }
     /** Funtion **/
     static SetInstanceClass(runtime) {
@@ -109,7 +141,6 @@ export class DebugMessage extends ConstructSystem {
         const seconds = currentDate.getSeconds();
         var DateSet = hours + ":" + minutes + ":" + seconds;
         var ContentWithDate = "「" + DateSet + "」 " + Content;
-        console.log(ContentWithDate);
         return ContentWithDate;
     }
     static StandMessage(runtime, Content, Type) {
@@ -157,5 +188,18 @@ export class DebugMessage extends ConstructSystem {
     }
     static MessageMoveUpOnce(runtime, MessageInstance) {
         MessageInstance.y -= this.MessagePositionInterval;
+    }
+    static SetMessageTimerRun(runtime, MessageInstance) {
+        var Timer = this.GetTimerBehavior(runtime, MessageInstance);
+        if (Timer.isTimerRunning("Destroy") == false) {
+            Timer.startTimer(this.MessageTimerDuration, "Destory", "once");
+            Timer.addEventListener("timer", (e) => {
+                this.OnMessageTimerArrive(runtime, e, MessageInstance);
+            });
+        }
+    }
+    static GetTimerBehavior(runtime, MessageInstance) {
+        var TimerBehavior = MessageInstance.behaviors.Timer;
+        return TimerBehavior;
     }
 }

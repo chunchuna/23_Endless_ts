@@ -1,6 +1,6 @@
 import {ConstructSystem} from "./ConstructSystem.js";
 
-export class Layer extends ConstructSystem {
+export class LayerManager extends ConstructSystem {
 
     async Init(runtime: IRuntime) {
         super.Init(runtime);
@@ -23,7 +23,7 @@ export class Layer extends ConstructSystem {
     }
 
     public static GetLayer(runtime: IRuntime, LayerName: string): IAnyProjectLayer | boolean {
-        var Layer = runtime.getLayout("Game").getLayer(LayerName);
+        var Layer = runtime.getLayout("RGame").getLayer(LayerName);
         if (Layer != undefined)
             return Layer
         else {

@@ -1,8 +1,9 @@
-import {Building} from "./Building.js";
-import {Grid} from "./Grid.js";
-import {ConstructSystem} from "../utils/ConstructSystem.js";
-import {EventSystem} from "../utils/EventSystem.js";
-import {Input, KeyCode} from "../utils/Input.js";
+import { Building } from "./Building.js";
+import { Grid } from "./Grid.js";
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { EventSystem } from "../utils/EventSystem.js";
+import { Input, KeyCode } from "../utils/Input.js";
+import { DebugMessage, MesType } from "./DebugMessage.js";
 
 
 enum InputKey {
@@ -21,11 +22,23 @@ enum MoveType {
 
 
 export class Player extends ConstructSystem {
+    static get PLayerInstanceClass(): any {
+        return this._PLayerInstanceClass;
+    }
 
+    static set PLayerInstanceClass(value: any) {
+        this._PLayerInstanceClass = value;
+    }
+
+
+    private static _PLayerInstanceClass = null;
 
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
         Player.Event(runtime);
+        Player.SetInstanceClass(runtime)
+        
+
 
     }
 
@@ -97,11 +110,17 @@ export class Player extends ConstructSystem {
         if (e === InputKey.MoveRightKey) {
             Player.MoveCharaterBySimulation(runtime, MoveType.MoveRight)
         }
+
+
     }
 
 
     /** Function **/
 
+
+    private static SetInstanceClass(runtime: IRuntime) {
+        this.PLayerInstanceClass = runtime.objects.player;
+    }
 
     private static MoveCharaterBySimulation(runtime: IRuntime, MoveType_: string) {
         var player = Player.GetPlayerInstance(runtime)!;
@@ -124,7 +143,7 @@ export class Player extends ConstructSystem {
 
     /** out-of-date **/
     public static async InputUpdate_outofdate(runtime: IRuntime) {
-        const {keyboard, objects: {player}} = runtime;
+        const { keyboard, objects: { player } } = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors.SimulationMove;
         const keyMap = {
@@ -160,7 +179,7 @@ export class Player extends ConstructSystem {
 
 
     public static GetPlayerInstance(runtime: IRuntime) {
-        return runtime.objects.player.getFirstInstance();
+        return this.PLayerInstanceClass.getFirstInstance();
 
     }
 

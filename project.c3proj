@@ -16,14 +16,21 @@
 		{
 			"type": "plugin",
 			"id": "Button",
-			"name": "按钮",
+			"name": "Button",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "plugin",
 			"id": "Camera3D",
-			"name": "3D相机",
+			"name": "3D camera",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "DrawingCanvas",
+			"name": "Drawing canvas",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -44,7 +51,7 @@
 		{
 			"type": "plugin",
 			"id": "Shape3D",
-			"name": "3D形状",
+			"name": "3D shape",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -65,7 +72,7 @@
 		{
 			"type": "plugin",
 			"id": "skymen_mask",
-			"name": "[Clipping Mask]",
+			"name": "Clipping Mask",
 			"author": "reddog, skymen",
 			"bundled": true,
 			"version": "1.0.0.4"
@@ -73,63 +80,70 @@
 		{
 			"type": "behavior",
 			"id": "DragnDrop",
-			"name": "拖放",
+			"name": "Drag & Drop",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "EightDir",
-			"name": "8方向",
+			"name": "8 Direction",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "MoveTo",
-			"name": "移动到",
+			"name": "Move To",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Pathfinding",
-			"name": "寻路",
+			"name": "Pathfinding",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Sin",
-			"name": "正弦",
+			"name": "Sine",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "scrollto",
-			"name": "镜头跟随",
+			"name": "Scroll To",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "solid",
-			"name": "实体",
+			"name": "Solid",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "multiply",
-			"name": "正片叠底",
+			"name": "Multiply",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "skymen_BetterOutline",
-			"name": "[BetterOutline]",
+			"name": "BetterOutline",
 			"author": "skymen",
 			"bundled": true,
 			"version": "1.4.0.3"
@@ -141,7 +155,7 @@
 		"subfolders": [
 			{
 				"items": [
-					"Ground1",
+					"DafultGround",
 					"player",
 					"Ground2",
 					"wall",
@@ -160,7 +174,8 @@
 					"3DCamera",
 					"Player3Dbox",
 					"Tree3Dbox",
-					"WallMask"
+					"WallMask",
+					"DrawingCanvas"
 				],
 				"subfolders": [],
 				"name": "GameObject"
@@ -209,14 +224,14 @@
 	},
 	"layouts": {
 		"items": [
-			"Game",
-			"Res"
+			"RGame",
+			"RRes"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
-			"Game"
+			"EGame"
 		],
 		"subfolders": []
 	},
