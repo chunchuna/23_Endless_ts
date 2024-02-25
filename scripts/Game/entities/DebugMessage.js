@@ -65,7 +65,7 @@ export class DebugMessage extends ConstructSystem {
         //super.Update(runtime);
     }
     static async Event(runtime) {
-        await EventSystem.TouchEvent(runtime, "OnDebugMessageSend", (e) => {
+        await EventSystem.TouchEvent(runtime, "DebugMessage->OnDebugMessageSend", (e) => {
             this.OnDebugMessageSend(runtime, e);
         });
         await this.MessageInstanceClass.addEventListener("instancecreate", (e) => {
@@ -104,7 +104,7 @@ export class DebugMessage extends ConstructSystem {
     static SeedMessage(runtime, Content, Type) {
         var MessageInstance = this.CreateMessageInstance(runtime, Type, Content);
         this.AddMessageInstanceToQueen(runtime, MessageInstance);
-        var Event = EventSystem.CreatEvent(runtime, "OnDebugMessageSend");
+        var Event = EventSystem.CreatEvent(runtime, "DebugMessage->OnDebugMessageSend");
         EventSystem.DispEvent(runtime, Event);
     }
     static sm(Content, Type = MesType.Error) {

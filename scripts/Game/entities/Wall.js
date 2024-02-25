@@ -25,12 +25,6 @@ export class WallInstance extends ConstructSystem {
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("[OnMaskTestOverWall]", (e) => {
-            //this.OnMaskTestOverLapWall(runtime, e);
-        });
-        await (EventHnadlerInstance?.addEventListener)("[OnUnMaskTestOverWall]", (e) => {
-            //this.OnUnMaskTestOverlapWall(runtime, e);
-        });
     }
     static SetUpInstanceClass(runtime) {
         WallInstance.WallInstanceClass = runtime.objects.wall;

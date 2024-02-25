@@ -36,15 +36,6 @@ export class WallInstance extends ConstructSystem {
     private static async Event(runtime: IRuntime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
-        await (EventHnadlerInstance?.addEventListener as any)("[OnMaskTestOverWall]", (e: any) => {
-            //this.OnMaskTestOverLapWall(runtime, e);
-        })
-
-        await (EventHnadlerInstance?.addEventListener as any)("[OnUnMaskTestOverWall]", (e: any) => {
-            //this.OnUnMaskTestOverlapWall(runtime, e);
-        })
-
-
     }
 
 
@@ -79,7 +70,7 @@ export class WallInstance extends ConstructSystem {
 
 
     private static OnMaskTestOverLapWall(runtime: IRuntime, e: any) {
-        
+
 
     }
 

@@ -10,10 +10,10 @@ export class Collectable extends ConstructSystem {
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("OnMouseOverCollectableGroup", () => {
+        await (EventHnadlerInstance?.addEventListener)("Collect->OnMouseOverCollectableGroup", () => {
             Collectable.OnMouseOverColGroup(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("OnMouseClickOneceCollectableGroup", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("Collect->OnMouseClickOneceCollectableGroup", (e) => {
             Collectable.OnMouseClickColGroup(runtime, e);
         });
         runtime.objects.CollectableGroup.addEventListener("instancedestroy", (e) => {

@@ -55,7 +55,7 @@ export class Player extends ConstructSystem {
         await EventSystem.TouchEvent(runtime, "Player->OnPlayerMoveingStop", (e) => {
             this.OnPlayerMoveingStopOnece(runtime, e);
         });
-        await EventSystem.TouchEvent(runtime, "[buildingmode-toggle-on]", (e) => {
+        await EventSystem.TouchEvent(runtime, "Building->ModeOn", (e) => {
             this.OnBuildingModeIsOn(runtime, e);
         });
     }

@@ -1,5 +1,5 @@
-import { ConstructSystem } from "../utils/ConstructSystem.js";
-import { LayerManager } from "../utils/Layer.js";
+import {ConstructSystem} from "../utils/ConstructSystem.js";
+import {LayerManager} from "../utils/Layer.js";
 
 export class GameGuideWindow extends ConstructSystem {
 
@@ -17,7 +17,7 @@ export class GameGuideWindow extends ConstructSystem {
     public static async Event(runtime: IRuntime) {
 
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener as any)("[OnPresskey]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Input->OnPressedKey", (e: any) => {
             this.Input(runtime, e)
 
         });

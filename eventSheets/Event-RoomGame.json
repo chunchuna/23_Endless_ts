@@ -702,7 +702,7 @@
 									"actions": [
 										{
 											"type": "script",
-											"script": "const Event = new C3.Event(\"[buildingmode-toggle-on]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+											"script": "const Event = new C3.Event(\"Building->ModeOn\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 										}
 									],
 									"sid": 617878269979309
@@ -737,7 +737,7 @@
 									"actions": [
 										{
 											"type": "script",
-											"script": "const Event = new C3.Event(\"[buildingmode-toggle-off]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+											"script": "const Event = new C3.Event(\"Building->ModeOff\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 										}
 									],
 									"sid": 984634434647214
@@ -761,7 +761,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[doubleclick-buildinggroup]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+									"script": "const Event = new C3.Event(\"Building->MouseMiddleClick\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 								}
 							],
 							"sid": 106393451046903
@@ -783,7 +783,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[click-buildingmodebutton]\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
+									"script": "const Event = new C3.Event(\"Building->ClickButton\");\nEvent.buildings=runtime.objects.BuildingGroup.getFirstPickedInstance();\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)"
 								}
 							],
 							"sid": 641389880047509,
@@ -1029,7 +1029,8 @@
 									}
 								}
 							],
-							"sid": 745682303290323
+							"sid": 745682303290323,
+							"disabled": true
 						}
 					],
 					"sid": 120649458515114
@@ -1079,7 +1080,7 @@
 									"actions": [
 										{
 											"type": "script",
-											"script": "const Event = new C3.Event(\"OnMouseOverCollectableGroup\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+											"script": "const Event = new C3.Event(\"Collect->OnMouseOverCollectableGroup\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 										}
 									],
 									"sid": 303117720660225
@@ -1103,7 +1104,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "//const Event = new C3.Event(\"OnMouseClickOneceCollectableGroup\",\"123\");\nconst Event = new CustomEvent(\"OnMouseClickOneceCollectableGroup\", { detail: runtime.objects.CollectableGroup.getPickedInstances() });\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "//const Event = new C3.Event(\"OnMouseClickOneceCollectableGroup\",\"123\");\nconst Event = new CustomEvent(\"Collect->OnMouseClickOneceCollectableGroup\", { detail: runtime.objects.CollectableGroup.getPickedInstances() });\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 517207346251855
@@ -1240,7 +1241,7 @@
 											"actions": [
 												{
 													"type": "script",
-													"script": "const Event = new C3.Event(\"[Grid_MouseOverGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+													"script": "const Event = new C3.Event(\"Grid->MouseOverGrid\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 												}
 											],
 											"sid": 921022216048992
@@ -1270,7 +1271,7 @@
 											"actions": [
 												{
 													"type": "script",
-													"script": "const Event = new C3.Event(\"[Grid_MouseClickGrid]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+													"script": "const Event = new C3.Event(\"Grid->MouseClickGrid\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nEvent.MouseOver=true;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 												}
 											],
 											"sid": 559756579509216
@@ -1307,7 +1308,7 @@
 											"actions": [
 												{
 													"type": "script",
-													"script": "const Event = new C3.Event(\"[Grid_GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+													"script": "const Event = new C3.Event(\"Grid->GridOverPlayer\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 												}
 											],
 											"sid": 682722965944160
@@ -1324,7 +1325,7 @@
 											"actions": [
 												{
 													"type": "script",
-													"script": "const Event = new C3.Event(\"[!Grid_GridOverPlayer]\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+													"script": "const Event = new C3.Event(\"!Grid->GridOverPlayer\");\nconst Grid =runtime.objects.Grid.getPickedInstances();\nEvent.ThisGrid=Grid;\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 												}
 											],
 											"sid": 126363276684986

@@ -18,11 +18,11 @@ export class Collectable extends ConstructSystem {
 
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
-        await (EventHnadlerInstance?.addEventListener as any)("OnMouseOverCollectableGroup", () => {
+        await (EventHnadlerInstance?.addEventListener as any)("Collect->OnMouseOverCollectableGroup", () => {
             Collectable.OnMouseOverColGroup(runtime);
         });
 
-        await (EventHnadlerInstance?.addEventListener as any)("OnMouseClickOneceCollectableGroup", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Collect->OnMouseClickOneceCollectableGroup", (e: any) => {
             Collectable.OnMouseClickColGroup(runtime, e);
         });
 

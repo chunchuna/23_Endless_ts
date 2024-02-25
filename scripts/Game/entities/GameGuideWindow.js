@@ -11,7 +11,7 @@ export class GameGuideWindow extends ConstructSystem {
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("[OnPresskey]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("Input->OnPressedKey", (e) => {
             this.Input(runtime, e);
         });
         await (EventHnadlerInstance?.addEventListener)("[GuideWindow->OnClickCloseButton]", (e) => {

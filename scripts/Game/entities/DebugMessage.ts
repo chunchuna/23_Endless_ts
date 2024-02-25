@@ -1,5 +1,5 @@
-import { ConstructSystem } from "../utils/ConstructSystem.js";
-import { EventSystem } from "../utils/EventSystem.js";
+import {ConstructSystem} from "../utils/ConstructSystem.js";
+import {EventSystem} from "../utils/EventSystem.js";
 
 
 /** Message Type define **/
@@ -93,7 +93,7 @@ export class DebugMessage extends ConstructSystem {
     }
 
     public static async Event(runtime: IRuntime) {
-        await EventSystem.TouchEvent(runtime, "OnDebugMessageSend", (e: any) => {
+        await EventSystem.TouchEvent(runtime, "DebugMessage->OnDebugMessageSend", (e: any) => {
             this.OnDebugMessageSend(runtime, e)
         })
 
@@ -147,7 +147,7 @@ export class DebugMessage extends ConstructSystem {
         var MessageInstance = this.CreateMessageInstance(runtime, Type, Content)
         this.AddMessageInstanceToQueen(runtime, MessageInstance);
 
-        var Event = EventSystem.CreatEvent(runtime, "OnDebugMessageSend");
+        var Event = EventSystem.CreatEvent(runtime, "DebugMessage->OnDebugMessageSend");
         EventSystem.DispEvent(runtime, Event);
 
 

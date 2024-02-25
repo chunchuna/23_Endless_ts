@@ -3,6 +3,7 @@ import { ObjectYsort } from "./Ysort.js";
 import { Grid } from "./Grid.js";
 import { ConstructSystem } from "../utils/ConstructSystem.js";
 import { DebugMessage, MesType } from "./DebugMessage.js";
+import { EventSystem } from "../utils/EventSystem.js";
 var SpwnTypeEnum;
 (function (SpwnTypeEnum) {
     SpwnTypeEnum[SpwnTypeEnum["Mouse"] = 0] = "Mouse";
@@ -37,19 +38,19 @@ export class Building extends ConstructSystem {
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await runtime.objects.BuildingGroup.addEventListener("instancecreate", (e) => {
+        runtime.objects.BuildingGroup.addEventListener("instancecreate", (e) => {
             this.OnBuildingCreated(e, runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[click-buildingmodebutton]", (e) => {
+        await EventSystem.TouchEvent(runtime, "Building->ClickButton", (e) => {
             this.OnClickedButton(e, runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[buildingmode-toggle-on]", () => {
+        await EventSystem.TouchEvent(runtime, "Building->ModeOn", () => {
             this.OnBuildModeOn(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[buildingmode-toggle-off]", () => {
+        await EventSystem.TouchEvent(runtime, "Building->ModeOff", () => {
             this.OnBuildModeOff(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[Grid_MouseClickGrid]", (e) => {
+        await EventSystem.TouchEvent(runtime, "Grid->MouseClickGrid", (e) => {
             this.OnClickGrid(runtime, e);
         });
     }
@@ -66,9 +67,9 @@ export class Building extends ConstructSystem {
         LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "BuildingLayer"), true);
         LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "Light"), false);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
-        (EventHnadlerInstance?.addEventListener)("[doubleclick-buildinggroup]", (e) => {
+        (EventHnadlerInstance?.addEventListener)("Building->MouseMiddleClick", (e) => {
             var getBuilding = e.buildings;
-            console.log(getBuilding);
+            //console.log(getBuilding)
             if (getBuilding && runtime.globalVars.ISBuildingMode) {
                 getBuilding.destroy();
             }
@@ -85,6 +86,7 @@ export class Building extends ConstructSystem {
         DebugMessage.sm("Building Off", MesType.Warm);
     }
     static OnClickGrid(runtime, e) {
+        DebugMessage.sm("Grid->ClickGrid");
         if (!runtime.globalVars.ISBuildingMode)
             return;
         var IsMouseOver = e.MouseOver;

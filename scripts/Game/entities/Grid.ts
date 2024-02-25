@@ -19,19 +19,19 @@ export class Grid extends ConstructSystem {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
 
-        await (EventHnadlerInstance?.addEventListener as any)("[Grid_MouseOverGrid]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Grid->MouseOverGrid", (e: any) => {
             this.OnMouseOverGrid(runtime, e);
         })
 
-        await (EventHnadlerInstance?.addEventListener as any)("[Grid_MouseClickGrid]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Grid->MouseClickGrid", (e: any) => {
             this.OnClickGrid(runtime, e);
         })
 
-        await (EventHnadlerInstance?.addEventListener as any)("[Grid_GridOverPlayer]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Grid->GridOverPlayer", (e: any) => {
             this.OnGridOverPlayer(runtime, e);
 
         })
-        await (EventHnadlerInstance?.addEventListener as any)("[!Grid_GridOverPlayer]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("!Grid->GridOverPlayer", (e: any) => {
             this.OnUnGridOverPlayer(runtime, e);
 
         })
