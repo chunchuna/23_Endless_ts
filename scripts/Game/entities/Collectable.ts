@@ -1,5 +1,6 @@
 import {ConstructSystem} from "../utils/ConstructSystem.js";
 import {DebugMessage, MesType} from "./DebugMessage.js";
+import {gl_runtime} from "../../main.js";
 
 export class Collectable extends ConstructSystem {
 
@@ -8,6 +9,8 @@ export class Collectable extends ConstructSystem {
 
     public async Init(runtime: IRuntime) {
         Collectable.Event(runtime);
+        console.log(gl_runtime)
+
     }
 
 
@@ -23,9 +26,10 @@ export class Collectable extends ConstructSystem {
             Collectable.OnMouseClickColGroup(runtime, e);
         });
 
-        await runtime.objects.CollectableGroup.addEventListener("instancedestroy", (e) => {
+        runtime.objects.CollectableGroup.addEventListener("instancedestroy", (e) => {
             this.OnCollectDestory(runtime, e)
         })
+
 
     }
 

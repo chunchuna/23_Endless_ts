@@ -1,10 +1,12 @@
 import { ConstructSystem } from "../utils/ConstructSystem.js";
 import { DebugMessage, MesType } from "./DebugMessage.js";
+import { gl_runtime } from "../../main.js";
 export class Collectable extends ConstructSystem {
     Update(runtime) {
     }
     async Init(runtime) {
         Collectable.Event(runtime);
+        console.log(gl_runtime);
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
@@ -14,7 +16,7 @@ export class Collectable extends ConstructSystem {
         await (EventHnadlerInstance?.addEventListener)("OnMouseClickOneceCollectableGroup", (e) => {
             Collectable.OnMouseClickColGroup(runtime, e);
         });
-        await runtime.objects.CollectableGroup.addEventListener("instancedestroy", (e) => {
+        runtime.objects.CollectableGroup.addEventListener("instancedestroy", (e) => {
             this.OnCollectDestory(runtime, e);
         });
     }

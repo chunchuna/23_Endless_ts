@@ -1,9 +1,11 @@
 import { game } from "./Game/gameplay/game.js";
 import { EventSystem } from "./Game/utils/EventSystem.js";
+export var gl_runtime;
 runOnStartup(async (runtime) => {
     runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
 });
 async function OnBeforeProjectStart(runtime) {
+    gl_runtime = runtime;
     BindRoom(runtime);
 }
 async function BindRoom(runtime) {
