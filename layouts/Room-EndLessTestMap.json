@@ -1,5 +1,5 @@
 {
-	"name": "RGame",
+	"name": "Room-EndLessTestMap",
 	"layers": [
 		{
 			"name": "Game",
@@ -27,10 +27,10 @@
 									"instanceVariables": {},
 									"behaviors": {},
 									"world": {
-										"x": 5946,
-										"y": 6208.5,
-										"width": 12420.598327876105,
-										"height": 12621.60034545093,
+										"x": 5991.5,
+										"y": 6039.5,
+										"width": 11937.598327876105,
+										"height": 12084.60034545093,
 										"originX": 0.5,
 										"originY": 0.5,
 										"color": [
@@ -126,10 +126,10 @@
 									"instanceVariables": {},
 									"behaviors": {},
 									"world": {
-										"x": 882.8555211275223,
-										"y": -490.13153927361543,
-										"width": 64,
-										"height": 64,
+										"x": 845.8263292478966,
+										"y": -523.2458177703611,
+										"width": 10.16893325238808,
+										"height": 10.16893325238808,
 										"originX": 0.5,
 										"originY": 0.5,
 										"color": [
@@ -1119,9 +1119,9 @@
 								1
 							],
 							"backgroundColor": [
-								0.23529411764705882,
-								0.19607843137254902,
-								0.3058823529411765,
+								0.7058823529411765,
+								0.6784313725490196,
+								0.7607843137254902,
 								1
 							],
 							"isTransparent": false,
@@ -1723,5 +1723,5 @@
 	"vpX": 0.5,
 	"vpY": 0.5,
 	"projection": "perspective",
-	"eventSheet": "EGame"
+	"eventSheet": "Event-RoomGame"
 }

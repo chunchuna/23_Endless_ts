@@ -19,6 +19,12 @@ var MoveType;
     MoveType["MoveRight"] = "MoveRight";
 })(MoveType || (MoveType = {}));
 export class Player extends ConstructSystem {
+    static get PlayerInstance() {
+        return this._PlayerInstance;
+    }
+    static set PlayerInstance(value) {
+        this._PlayerInstance = value;
+    }
     static get PLayerInstanceClass() {
         return this._PLayerInstanceClass;
     }
@@ -26,30 +32,49 @@ export class Player extends ConstructSystem {
         this._PLayerInstanceClass = value;
     }
     static _PLayerInstanceClass = null;
+    static _PlayerInstance;
     async Init(runtime) {
         super.Init(runtime);
         Player.Event(runtime);
         Player.SetInstanceClass(runtime);
+        Player.SetInstance(runtime);
     }
     static async Event(runtime) {
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
-        await (EventHnadlerInstance?.addEventListener)("[player-mouseleftclick]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("Player->MouseClickAnyPostion", (e) => {
             Player.OnMouseLeftClick(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[player-moving]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("Player->OnSimulationMoving", (e) => {
             Player.OnPlayerMoving(runtime);
         });
-        await (EventHnadlerInstance?.addEventListener)("[player-dirmove-arrive]", (e) => {
+        await (EventHnadlerInstance?.addEventListener)("Player->OnDirMoveArrive", (e) => {
             Player.OnPlayerIsArriveMoverTarget(runtime);
         });
         //await runtime.addEventListener("keydown", (e) => {
         //})
+        await EventSystem.TouchEvent(runtime, "Player->OnPlayerMoveingStop", (e) => {
+            this.OnPlayerMoveingStopOnece(runtime, e);
+        });
+        await EventSystem.TouchEvent(runtime, "[buildingmode-toggle-on]", (e) => {
+            this.OnBuildingModeIsOn(runtime, e);
+        });
     }
     Update(runtime) {
         super.Update(runtime);
         Player.InputUpdate(runtime);
     }
     /** Event **/
+    static OnBuildingModeIsOn(runtime, e) {
+        var DirMoveBehavior = this.PlayerInstance.behaviors.DirMove;
+        if (DirMoveBehavior.isMoving) {
+            DirMoveBehavior.stop();
+            this.ClearDrawPlayerPathFindPoint(runtime);
+        }
+    }
+    static OnPlayerMoveingStopOnece(runtime, e) {
+        if (runtime.globalVars.ISBuildingMode)
+            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount);
+    }
     static OnMouseLeftClick(runtime) {
         var MouseInstance = runtime.mouse;
         if (runtime.globalVars.ISBuildingMode)
@@ -59,8 +84,6 @@ export class Player extends ConstructSystem {
         Player.MoveCharacterByMoveTo(runtime, MouseInstance.getMousePosition("Object")[0], MouseInstance.getMousePosition("Object")[1]);
     }
     static OnPlayerMoving(runtime) {
-        if (runtime.globalVars.ISBuildingMode)
-            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount);
     }
     static OnPlayerIsArriveMoverTarget(runtime) {
         this.ClearDrawPlayerPathFindPoint(runtime);
@@ -81,6 +104,10 @@ export class Player extends ConstructSystem {
         }
     }
     /** Function **/
+    static SetInstance(runtime) {
+        this.PlayerInstance = this.PLayerInstanceClass.getFirstInstance();
+        return true;
+    }
     static SetInstanceClass(runtime) {
         this.PLayerInstanceClass = runtime.objects.player;
     }
@@ -140,6 +167,7 @@ export class Player extends ConstructSystem {
         await PathFindBehavior?.findPath(PositionX, PositionY);
         PathFindBehavior?.startMoving();
         console.log("player - path find move");
+        DebugMessage.sm("Player->is path finding move");
     }
     static DrawPlayerPathFindPoint(runtime) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);
@@ -160,6 +188,7 @@ export class Player extends ConstructSystem {
         var DirMoveBehavior = PlayerInstance?.behaviors.DirMove;
         DirMoveBehavior?.moveToPosition(PositionX, PositionY);
         Player.DrawPlayerDirMovePoint(runtime, PositionX, PositionY);
+        DebugMessage.sm("Player->is Dir move");
     }
     static DrawPlayerDirMovePoint(runtime, PositionX, PositionY) {
         var PlayerInstance = Player.GetPlayerInstance(runtime);

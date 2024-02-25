@@ -7,6 +7,7 @@ export class GameGuideWindow extends ConstructSystem {
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
         GameGuideWindow.Event(runtime);
+        runtime.objects.DrawingCanvas.getFirstInstance()?.line
     }
 
     Update(runtime: IRuntime) {
@@ -37,7 +38,7 @@ export class GameGuideWindow extends ConstructSystem {
 
 
     public static GetGuideWindowLayer(runtime: IRuntime) {
-        return LayerManager.GetLayer(runtime, "GameGuideWindow")
+        return LayerManager.GetLayerFromTestMAP(runtime, "GameGuideWindow")
 
     }
 
@@ -54,14 +55,14 @@ export class GameGuideWindow extends ConstructSystem {
 
     public static OpenWindow(runtime: IRuntime) {
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
-        if(typeof Layer ==="boolean") return
+        if (typeof Layer === "boolean") return
         Layer!.isVisible = true;
 
     }
 
     public static CloseWindow(runtime: IRuntime) {
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
-        if(typeof Layer ==="boolean") return
+        if (typeof Layer === "boolean") return
         Layer!.isVisible = false;
 
     }
@@ -69,7 +70,7 @@ export class GameGuideWindow extends ConstructSystem {
     public static SwitchWindow(runtime: IRuntime) {
         console.log("click p ")
         var Layer = GameGuideWindow.GetGuideWindowLayer(runtime)
-        if(typeof Layer ==="boolean") return
+        if (typeof Layer === "boolean") return
         Layer!.isVisible = !Layer!.isVisible;
 
     }

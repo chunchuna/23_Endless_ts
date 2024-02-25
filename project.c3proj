@@ -16,21 +16,21 @@
 		{
 			"type": "plugin",
 			"id": "Button",
-			"name": "Button",
+			"name": "按钮",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "plugin",
 			"id": "Camera3D",
-			"name": "3D camera",
+			"name": "3D相机",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "plugin",
 			"id": "DrawingCanvas",
-			"name": "Drawing canvas",
+			"name": "绘图画布",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -51,7 +51,7 @@
 		{
 			"type": "plugin",
 			"id": "Shape3D",
-			"name": "3D shape",
+			"name": "3D形状",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -72,7 +72,7 @@
 		{
 			"type": "plugin",
 			"id": "skymen_mask",
-			"name": "Clipping Mask",
+			"name": "[Clipping Mask]",
 			"author": "reddog, skymen",
 			"bundled": true,
 			"version": "1.0.0.4"
@@ -80,70 +80,70 @@
 		{
 			"type": "behavior",
 			"id": "DragnDrop",
-			"name": "Drag & Drop",
+			"name": "拖放",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "EightDir",
-			"name": "8 Direction",
+			"name": "8方向",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "MoveTo",
-			"name": "Move To",
+			"name": "移动到",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Pathfinding",
-			"name": "Pathfinding",
+			"name": "寻路",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Sin",
-			"name": "Sine",
+			"name": "正弦",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Timer",
-			"name": "Timer",
+			"name": "计时器",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "scrollto",
-			"name": "Scroll To",
+			"name": "镜头跟随",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "solid",
-			"name": "Solid",
+			"name": "实体",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "multiply",
-			"name": "Multiply",
+			"name": "正片叠底",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "skymen_BetterOutline",
-			"name": "BetterOutline",
+			"name": "[BetterOutline]",
 			"author": "skymen",
 			"bundled": true,
 			"version": "1.4.0.3"
@@ -224,14 +224,14 @@
 	},
 	"layouts": {
 		"items": [
-			"RGame",
-			"RRes"
+			"Room-EndLessTestMap",
+			"Room-Resource"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
-			"EGame"
+			"Event-RoomGame"
 		],
 		"subfolders": []
 	},

@@ -42,7 +42,7 @@ export class ObjectYsort extends ConstructSystem {
         var YsortGroupClass = runtime.objects.YsortGroup.instances();
         for (let YsortGroups of YsortGroupClass) {
             var LayerName = YsortGroups.instVars["LocalLayerName"];
-            var Layer = LayerManager.GetLayer(runtime, LayerName);
+            var Layer = LayerManager.GetLayerFromTestMAP(runtime, LayerName);
             if (typeof Layer !== "boolean")
                 YsortGroups.moveToLayer(Layer);
             else {

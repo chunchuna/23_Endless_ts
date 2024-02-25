@@ -63,8 +63,8 @@ export class Building extends ConstructSystem {
         console.log("building mode on");
         /** creat grid on player postion **/
         Grid.CreateGridArrayByPlayer(runtime, Building.BuildMaxGridCount, 256);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), true);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "BuildingLayer"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "Light"), false);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
         (EventHnadlerInstance?.addEventListener)("[doubleclick-buildinggroup]", (e) => {
             var getBuilding = e.buildings;
@@ -78,9 +78,9 @@ export class Building extends ConstructSystem {
     static OnBuildModeOff(runtime) {
         console.log("building mode off");
         Grid.ClearAllGrid(runtime);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "BuildingLayer"), false);
         ObjectYsort.YsortFixbug(runtime);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "Light"), true);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
         DebugMessage.sm("Building Off", MesType.Warm);
     }
@@ -107,9 +107,9 @@ export class Building extends ConstructSystem {
     }
     static PlaceBuildingInstance(runtime, buildingStuffClass, SpwnType) {
         var objectClass = buildingStuffClass;
-        var layer = runtime.getLayout("Game").getLayer("Object");
+        var layer = LayerManager.GetLayerFromTestMAP(runtime, "Object");
         var playerOffset = 500;
-        if (!layer) {
+        if (typeof layer == "boolean") {
             return;
         }
         var objectInstance;
@@ -133,7 +133,9 @@ export class Building extends ConstructSystem {
     }
     static SetAllBuildingsToLayer(runtime, LayerName, Type) {
         var BuildingGroupClass;
-        var Layer = runtime.getLayout("Game").getLayer(LayerName);
+        var Layer = LayerManager.GetLayerFromTestMAP(runtime, LayerName);
+        if (typeof Layer == "boolean")
+            return;
         BuildingGroupClass = runtime.objects.BuildingGroup;
         for (var bdgi of BuildingGroupClass.instances()) {
             if (bdgi && Layer) {

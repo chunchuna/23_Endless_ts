@@ -16,8 +16,8 @@ export class LayerManager extends ConstructSystem {
         var GetLayer = Layer;
         GetLayer.isVisible = type;
     }
-    static GetLayer(runtime, LayerName) {
-        var Layer = runtime.getLayout("RGame").getLayer(LayerName);
+    static GetLayerFromTestMAP(runtime, LayerName) {
+        var Layer = runtime.getLayout("Room-EndLessTestMap").getLayer(LayerName);
         if (Layer != undefined)
             return Layer;
         else {

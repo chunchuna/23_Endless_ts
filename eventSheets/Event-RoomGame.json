@@ -1,5 +1,5 @@
 {
-	"name": "EGame",
+	"name": "Event-RoomGame",
 	"events": [
 		{
 			"eventType": "variable",
@@ -446,10 +446,43 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-moving]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Player->OnSimulationMoving\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 708837788329524
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-moving",
+									"objectClass": "player",
+									"sid": 957309596093349,
+									"behaviorType": "SimulationMove",
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 453031915456530,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 786510482263843
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"script": "const Event = new C3.Event(\"Player->OnPlayerMoveingStop\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+										}
+									],
+									"sid": 201690168767092
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -468,7 +501,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-mouseleftclick]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Player->MouseClickAnyPostion\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 634603501694089
@@ -486,7 +519,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-pathfind-findpos]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Player->OnPathFinderisFindPath\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 646108175725766
@@ -504,7 +537,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-pathfind-arrive]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Player->OnPathFinderArrive\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 124258312719463
@@ -522,28 +555,10 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-dirmove-arrive]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Player->OnDirMoveArrive\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 682488867604189
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-moving",
-									"objectClass": "player",
-									"sid": 128763770745459,
-									"behaviorType": "DirMove"
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"script": "const Event = new C3.Event(\"[player-moving]\");\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
-								}
-							],
-							"sid": 906552497921767
 						}
 					],
 					"sid": 643460820417666

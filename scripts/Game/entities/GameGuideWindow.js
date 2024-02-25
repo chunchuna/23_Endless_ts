@@ -4,6 +4,7 @@ export class GameGuideWindow extends ConstructSystem {
     async Init(runtime) {
         super.Init(runtime);
         GameGuideWindow.Event(runtime);
+        runtime.objects.DrawingCanvas.getFirstInstance()?.line;
     }
     Update(runtime) {
         super.Update(runtime);
@@ -26,7 +27,7 @@ export class GameGuideWindow extends ConstructSystem {
         GameGuideWindow.CloseWindow(runtime);
     }
     static GetGuideWindowLayer(runtime) {
-        return LayerManager.GetLayer(runtime, "GameGuideWindow");
+        return LayerManager.GetLayerFromTestMAP(runtime, "GameGuideWindow");
     }
     static SetGuideContent(runtime, Content) {
         var GuideTextInstance = runtime.objects.GameGuideText.getFirstInstance();

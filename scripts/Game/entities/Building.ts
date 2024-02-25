@@ -1,8 +1,8 @@
-import {LayerManager} from "../utils/Layer.js";
-import {ObjectYsort} from "./Ysort.js";
-import {Grid} from "./Grid.js";
-import {ConstructSystem} from "../utils/ConstructSystem.js";
-import {DebugMessage, MesType} from "./DebugMessage.js";
+import { LayerManager } from "../utils/Layer.js";
+import { ObjectYsort } from "./Ysort.js";
+import { Grid } from "./Grid.js";
+import { ConstructSystem } from "../utils/ConstructSystem.js";
+import { DebugMessage, MesType } from "./DebugMessage.js";
 
 enum SpwnTypeEnum { //The type of building, in what way is the building generated?
     Mouse, //Near the mouse
@@ -89,8 +89,8 @@ export class Building extends ConstructSystem {
         console.log("building mode on")
         /** creat grid on player postion **/
         Grid.CreateGridArrayByPlayer(runtime, Building.BuildMaxGridCount, 256)
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), true);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "BuildingLayer"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "Light"), false);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Enable");
 
 
@@ -111,9 +111,9 @@ export class Building extends ConstructSystem {
 
         console.log("building mode off")
         Grid.ClearAllGrid(runtime)
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "BuildingLayer"), false);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "BuildingLayer"), false);
         ObjectYsort.YsortFixbug(runtime);
-        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayer(runtime, "Light"), true);
+        LayerManager.SetLayerVisibel(runtime, LayerManager.GetLayerFromTestMAP(runtime, "Light"), true);
         runtime.objects.BuildingModeSpButton.getFirstPickedInstance()?.setAnimation("Disable");
 
         DebugMessage.sm("Building Off", MesType.Warm)
@@ -149,9 +149,9 @@ export class Building extends ConstructSystem {
 
     private static PlaceBuildingInstance(runtime: IRuntime, buildingStuffClass: IObjectType<InstanceType.BuildingGroup>, SpwnType: SpwnTypeEnum) {
         var objectClass = buildingStuffClass;
-        var layer = runtime.getLayout("Game").getLayer("Object");
+        var layer = LayerManager.GetLayerFromTestMAP(runtime, "Object")
         var playerOffset = 500;
-        if (!layer) {
+        if (typeof layer=="boolean") {
             return
         }
         var objectInstance: InstanceType.BuildingGroup;
@@ -179,9 +179,11 @@ export class Building extends ConstructSystem {
 
     }
 
-    private static SetAllBuildingsToLayer(runtime: IRuntime, LayerName: LayerParameter, Type: String) {
+    private static SetAllBuildingsToLayer(runtime: IRuntime, LayerName: string, Type: String) {
         var BuildingGroupClass: IObjectClass<InstanceType.BuildingGroup>;
-        var Layer: IAnyProjectLayer | null = runtime.getLayout("Game").getLayer(LayerName);
+        var Layer = LayerManager.GetLayerFromTestMAP(runtime, LayerName)
+        if (typeof Layer == "boolean") return
+
         BuildingGroupClass = runtime.objects.BuildingGroup;
         for (var bdgi of BuildingGroupClass.instances()) {
             if (bdgi && Layer) {

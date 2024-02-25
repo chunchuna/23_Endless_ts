@@ -1,9 +1,9 @@
-import { Building } from "./Building.js";
-import { Grid } from "./Grid.js";
-import { ConstructSystem } from "../utils/ConstructSystem.js";
-import { EventSystem } from "../utils/EventSystem.js";
-import { Input, KeyCode } from "../utils/Input.js";
-import { DebugMessage, MesType } from "./DebugMessage.js";
+import {Building} from "./Building.js";
+import {Grid} from "./Grid.js";
+import {ConstructSystem} from "../utils/ConstructSystem.js";
+import {EventSystem} from "../utils/EventSystem.js";
+import {Input, KeyCode} from "../utils/Input.js";
+import {DebugMessage, MesType} from "./DebugMessage.js";
 
 
 enum InputKey {
@@ -22,6 +22,14 @@ enum MoveType {
 
 
 export class Player extends ConstructSystem {
+    static get PlayerInstance(): InstanceType.player {
+        return this._PlayerInstance;
+    }
+
+    static set PlayerInstance(value: InstanceType.player) {
+        this._PlayerInstance = value;
+    }
+
     static get PLayerInstanceClass(): any {
         return this._PLayerInstanceClass;
     }
@@ -32,12 +40,13 @@ export class Player extends ConstructSystem {
 
 
     private static _PLayerInstanceClass = null;
+    private static _PlayerInstance: InstanceType.player;
 
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
         Player.Event(runtime);
-        Player.SetInstanceClass(runtime)
-        
+        Player.SetInstanceClass(runtime);
+        Player.SetInstance(runtime);
 
 
     }
@@ -47,20 +56,27 @@ export class Player extends ConstructSystem {
 
         var EventHnadlerInstance = runtime.objects.EventHnadler.getFirstPickedInstance();
 
-        await (EventHnadlerInstance?.addEventListener as any)("[player-mouseleftclick]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Player->MouseClickAnyPostion", (e: any) => {
             Player.OnMouseLeftClick(runtime);
         });
 
-        await (EventHnadlerInstance?.addEventListener as any)("[player-moving]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Player->OnSimulationMoving", (e: any) => {
             Player.OnPlayerMoving(runtime);
         });
 
-        await (EventHnadlerInstance?.addEventListener as any)("[player-dirmove-arrive]", (e: any) => {
+        await (EventHnadlerInstance?.addEventListener as any)("Player->OnDirMoveArrive", (e: any) => {
             Player.OnPlayerIsArriveMoverTarget(runtime);
         });
 
         //await runtime.addEventListener("keydown", (e) => {
         //})
+        await EventSystem.TouchEvent(runtime, "Player->OnPlayerMoveingStop", (e: any) => {
+            this.OnPlayerMoveingStopOnece(runtime, e)
+        })
+
+        await EventSystem.TouchEvent(runtime, "[buildingmode-toggle-on]", (e: any) => {
+            this.OnBuildingModeIsOn(runtime, e)
+        })
 
 
     }
@@ -74,6 +90,24 @@ export class Player extends ConstructSystem {
 
     /** Event **/
 
+
+    private static OnBuildingModeIsOn(runtime: IRuntime, e: any) {
+        var DirMoveBehavior = this.PlayerInstance.behaviors.DirMove;
+        if (DirMoveBehavior.isMoving) {
+            DirMoveBehavior.stop();
+            this.ClearDrawPlayerPathFindPoint(runtime);
+        }
+
+
+    }
+
+    private static OnPlayerMoveingStopOnece(runtime: IRuntime, e: any) {
+        if (runtime.globalVars.ISBuildingMode)
+            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount)
+
+    }
+
+
     private static OnMouseLeftClick(runtime: IRuntime) {
 
         var MouseInstance = runtime.mouse;
@@ -85,13 +119,11 @@ export class Player extends ConstructSystem {
     }
 
     private static OnPlayerMoving(runtime: IRuntime) {
-        if (runtime.globalVars.ISBuildingMode)
-            Grid.UpdateGridPositionByPlayer(runtime, Building.BuildMaxGridCount)
-
     }
 
     private static OnPlayerIsArriveMoverTarget(runtime: IRuntime) {
         this.ClearDrawPlayerPathFindPoint(runtime);
+
 
     }
 
@@ -118,6 +150,12 @@ export class Player extends ConstructSystem {
     /** Function **/
 
 
+    private static SetInstance(runtime: IRuntime) {
+        this.PlayerInstance = this.PLayerInstanceClass.getFirstInstance();
+        return true;
+
+    }
+
     private static SetInstanceClass(runtime: IRuntime) {
         this.PLayerInstanceClass = runtime.objects.player;
     }
@@ -143,7 +181,7 @@ export class Player extends ConstructSystem {
 
     /** out-of-date **/
     public static async InputUpdate_outofdate(runtime: IRuntime) {
-        const { keyboard, objects: { player } } = runtime;
+        const {keyboard, objects: {player}} = runtime;
         const playerInstance = player.getFirstInstance();
         const simulMover = playerInstance?.behaviors.SimulationMove;
         const keyMap = {
@@ -192,6 +230,7 @@ export class Player extends ConstructSystem {
 
         PathFindBehavior?.startMoving();
         console.log("player - path find move")
+        DebugMessage.sm("Player->is path finding move")
 
 
     }
@@ -219,6 +258,7 @@ export class Player extends ConstructSystem {
         var DirMoveBehavior: IMoveToBehaviorInstance<InstanceType.player> | undefined = PlayerInstance?.behaviors.DirMove;
         DirMoveBehavior?.moveToPosition(PositionX, PositionY);
         Player.DrawPlayerDirMovePoint(runtime, PositionX, PositionY)
+        DebugMessage.sm("Player->is Dir move")
     }
 
     public static DrawPlayerDirMovePoint(runtime: IRuntime, PositionX: number, PositionY: number) {
