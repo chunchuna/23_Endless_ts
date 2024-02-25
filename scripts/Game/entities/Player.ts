@@ -4,6 +4,8 @@ import {ConstructSystem} from "../utils/ConstructSystem.js";
 import {EventSystem} from "../utils/EventSystem.js";
 import {Input, KeyCode} from "../utils/Input.js";
 import {DebugMessage, MesType} from "./DebugMessage.js";
+import {LightEntities} from "./LightEntities.js";
+import {gl_runtime} from "../../main.js";
 
 
 enum InputKey {
@@ -30,23 +32,24 @@ export class Player extends ConstructSystem {
         this._PlayerInstance = value;
     }
 
-    static get PLayerInstanceClass(): any {
+
+    static get PLayerInstanceClass(): IObjectType<InstanceType.player> {
         return this._PLayerInstanceClass;
     }
 
-    static set PLayerInstanceClass(value: any) {
+    static set PLayerInstanceClass(value: IObjectType<InstanceType.player>) {
         this._PLayerInstanceClass = value;
     }
 
-
-    private static _PLayerInstanceClass = null;
+    private static _PLayerInstanceClass: IObjectType<InstanceType.player>;
     private static _PlayerInstance: InstanceType.player;
 
     async Init(runtime: IRuntime): Promise<void> {
         super.Init(runtime);
-        Player.Event(runtime);
         Player.SetInstanceClass(runtime);
         Player.SetInstance(runtime);
+        await Player.Event(runtime);
+        Player.CreatPlayer(4204, 6288)
 
 
     }
@@ -68,8 +71,7 @@ export class Player extends ConstructSystem {
             Player.OnPlayerIsArriveMoverTarget(runtime);
         });
 
-        //await runtime.addEventListener("keydown", (e) => {
-        //})
+
         await EventSystem.TouchEvent(runtime, "Player->OnPlayerMoveingStop", (e: any) => {
             this.OnPlayerMoveingStopOnece(runtime, e)
         })
@@ -77,6 +79,18 @@ export class Player extends ConstructSystem {
         await EventSystem.TouchEvent(runtime, "Building->ModeOn", (e: any) => {
             this.OnBuildingModeIsOn(runtime, e)
         })
+
+        this.PLayerInstanceClass.addEventListener("instancecreate", (e) => {
+
+            this.OnPlayerCrearted(e);
+        })
+
+        // gl_runtime.objects.player.addEventListener("instancecreate", (e) => {
+        //     console.log("Player->Creat Player")
+        // })
+
+        //await runtime.addEventListener("keydown", (e) => {
+        //})
 
 
     }
@@ -90,6 +104,19 @@ export class Player extends ConstructSystem {
 
     /** Event **/
 
+
+    private static OnPlayerCrearted(e: any) {
+
+        var ThisPlayer = e.instance;
+        /** Add LightEntities to Player **/
+        var SetLight = LightEntities.CreatLightEntities(ThisPlayer.x, ThisPlayer.y)
+        ThisPlayer.addChild(SetLight, {
+            transformX: true,
+            transformY: true,
+            destroyWithParent: true,
+        })
+
+    }
 
     private static OnBuildingModeIsOn(runtime: IRuntime, e: any) {
         var DirMoveBehavior = this.PlayerInstance.behaviors.DirMove;
@@ -143,7 +170,6 @@ export class Player extends ConstructSystem {
             Player.MoveCharaterBySimulation(runtime, MoveType.MoveRight)
         }
 
-
     }
 
 
@@ -151,13 +177,25 @@ export class Player extends ConstructSystem {
 
 
     private static SetInstance(runtime: IRuntime) {
-        this.PlayerInstance = this.PLayerInstanceClass.getFirstInstance();
+        this.PlayerInstance = this.PLayerInstanceClass.getAllInstances()[0];
         return true;
 
     }
 
     private static SetInstanceClass(runtime: IRuntime) {
         this.PLayerInstanceClass = runtime.objects.player;
+    }
+
+
+    private static CreatPlayer(PosX: number, PosY: number) {
+        var NewPlayer = this.PLayerInstanceClass.createInstance("Object", PosX, PosY, true);
+        DebugMessage.sm("Player->Creat Player")
+        /** force camera position **/
+        gl_runtime.objects.MainCamera.getFirstInstance()!.x = NewPlayer.x;
+        gl_runtime.objects.MainCamera.getFirstInstance()!.y = NewPlayer.y;
+        /** reset player instance **/
+        this.SetInstance(gl_runtime)
+        return NewPlayer;
     }
 
     private static MoveCharaterBySimulation(runtime: IRuntime, MoveType_: string) {
@@ -217,7 +255,7 @@ export class Player extends ConstructSystem {
 
 
     public static GetPlayerInstance(runtime: IRuntime) {
-        return this.PLayerInstanceClass.getFirstInstance();
+        return this.PLayerInstanceClass.getAllInstances()[0];
 
     }
 

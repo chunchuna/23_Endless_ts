@@ -67,7 +67,7 @@ export class DebugMessage extends ConstructSystem {
     private static _MessagePositionInterval: number = 40;
     private static _MessageQueenList: InstanceType.DebugMessageText[] = [];
 
-    private static _MessageTimerDuration: number = 2;
+    private static _MessageTimerDuration: number = 50;
 
 
     /** Message INstance Class **/

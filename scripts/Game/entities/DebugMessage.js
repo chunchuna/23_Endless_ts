@@ -49,7 +49,7 @@ export class DebugMessage extends ConstructSystem {
     static _FirstMessageStartPosition = [22, 1021];
     static _MessagePositionInterval = 40;
     static _MessageQueenList = [];
-    static _MessageTimerDuration = 2;
+    static _MessageTimerDuration = 50;
     /** Message INstance Class **/
     static _MessageInstanceClass;
     /** system **/

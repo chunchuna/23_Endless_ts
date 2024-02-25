@@ -346,6 +346,14 @@
 									"script-info": {
 										"purpose": "none"
 									}
+								},
+								{
+									"name": "LightEntities.js",
+									"type": "application/javascript",
+									"sid": 609173310241873,
+									"script-info": {
+										"purpose": "none"
+									}
 								}
 							],
 							"subfolders": [],

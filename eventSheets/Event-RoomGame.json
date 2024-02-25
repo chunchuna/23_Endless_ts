@@ -1389,7 +1389,7 @@
 							"actions": [
 								{
 									"type": "script",
-									"script": "const Event = new C3.Event(\"[OnPresskey]\");\nEvent.key=\"Pkey\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
+									"script": "const Event = new C3.Event(\"Input->OnPressedKey\");\nEvent.key=\"Pkey\"\nconst EventHandler =runtime.objects.EventHnadler.getFirstInstance();\nEventHandler.dispatchEvent(Event)\n"
 								}
 							],
 							"sid": 624402762027454

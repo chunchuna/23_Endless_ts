@@ -8,6 +8,7 @@ import {GameGuideWindow} from "../entities/GameGuideWindow.js";
 import {Grid} from "../entities/Grid.js";
 import {DebugMessage} from "../entities/DebugMessage.js";
 import {EventSystem} from "../utils/EventSystem.js";
+import {LightEntities} from "../entities/LightEntities.js";
 
 /**
  * for game room
@@ -26,6 +27,7 @@ export class game {
     private static IntroduceTextInstance = new IntroduceTextInstance();
     private static ObjectYsort = new ObjectYsort();
     private static GameGuideWindow = new GameGuideWindow();
+    private static LightEntities = new LightEntities();
 
     public static Update(runtime: IRuntime) {
         this.EventSystem.Update(runtime);
@@ -36,6 +38,7 @@ export class game {
         this.DebugMessage.Update(runtime);
         this.Collectable.Update(runtime);
         this.IntroduceTextInstance.Update(runtime);
+        this.LightEntities.Update(runtime);
         // Add other Update calls for additional classes as needed
     }
 
@@ -50,6 +53,7 @@ export class game {
         this.DebugMessage.Init(runtime);
         this.IntroduceTextInstance.Init(runtime);
         this.WallInstance.Init(runtime);
+        this.LightEntities.Init(runtime);
         // Add other Init calls for additional classes as needed
     }
 }
